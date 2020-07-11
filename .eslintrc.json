@@ -13,12 +13,20 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "prettier",
+    "jsx-a11y"
+  ],
   "extends": [
+    "react-app",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
+    "plugin:jsx-a11y/strict",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
     "prettier/react"
