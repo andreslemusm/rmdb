@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Card = (): React.ReactElement => (
+export const PrimaryCard = (): React.ReactElement => (
   <article className="mx-2 md:mx-0 relative">
     <img
       className="w-full shadow-lg rounded-md md:relative md:top-0 md:rounded-none md:shadow-none xl:h-screen"

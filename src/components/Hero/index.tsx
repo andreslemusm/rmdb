@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar, A11y, Autoplay } from "swiper";
-import { Card } from "./components/Card";
+import { PrimaryCard } from "../PrimaryCard";
 
 SwiperCore.use([Scrollbar, A11y, Autoplay]);
 
@@ -24,22 +24,22 @@ export const Hero = (): React.ReactElement => {
       }}
     >
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
       <SwiperSlide>
-        <Card />
+        <PrimaryCard />
       </SwiperSlide>
     </Swiper>
   );
