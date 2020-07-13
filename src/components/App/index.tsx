@@ -11,11 +11,11 @@ export const App = (): React.ReactElement => {
       <main>
         <Hero />
         <div className="pb-4 md:pb-16 md:pt-2">
-          <Section />
+          <Section title="Films" />
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
-          <Section />
+          <Section title="TV Shows" />
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
-          <Section />
+          <Section title="People" />
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
         </div>
       </main>
