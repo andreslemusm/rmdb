@@ -1,9 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Scrollbar, A11y, Autoplay } from "swiper";
+import SwiperCore, { Scrollbar, A11y, Autoplay, Mousewheel } from "swiper";
 import { PrimaryCard } from "../PrimaryCard";
 
-SwiperCore.use([Scrollbar, A11y, Autoplay]);
+SwiperCore.use([Scrollbar, A11y, Autoplay, Mousewheel]);
 
 export const Hero = (): React.ReactElement => {
   return (
@@ -22,6 +22,9 @@ export const Hero = (): React.ReactElement => {
       autoplay={{
         delay: 10000,
         disableOnInteraction: false,
+      }}
+      mousewheel={{
+        forceToAxis: true,
       }}
     >
       <SwiperSlide>
