@@ -5,7 +5,7 @@ const sections = ["Premier", "Movies", "TV Shows", "People"];
 
 export const Navbar = (): React.ReactElement => (
   <header className="md:absolute w-full md:z-40">
-    <div className="container mx-auto flex p-5 flex-row items-center justify-between">
+    <div className=" max-w-screen-lg mx-auto flex p-5 flex-row items-center justify-between">
       <a
         href="/"
         className="flex font-black tracking-widest text-gray-200 items-center text-xl"
