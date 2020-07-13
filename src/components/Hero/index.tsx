@@ -14,6 +14,7 @@ export const Hero = (): React.ReactElement => {
         enabled: true,
       }}
       speed={800}
+      initialSlide={1}
       scrollbar={{
         draggable: true,
         dragClass: "swiper-scrollbar-drag bg-primary",
