@@ -29,8 +29,11 @@ export const Section = ({ title }: SectionProps): React.ReactElement => (
           centeredSlides: false,
           centeredSlidesBounds: false,
         },
-        "1024": { slidesPerView: 6 },
-        "1280": { slidesPerView: 6 },
+        "1024": {
+          slidesPerView: 6,
+          centeredSlides: false,
+          centeredSlidesBounds: false,
+        },
       }}
       mousewheel={{
         forceToAxis: true,
