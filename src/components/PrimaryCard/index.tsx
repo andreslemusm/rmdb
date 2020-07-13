@@ -3,7 +3,7 @@ import React from "react";
 export const PrimaryCard = (): React.ReactElement => (
   <article className="mx-2 md:mx-0 relative">
     <img
-      className="w-full shadow-lg rounded-md md:relative md:top-0 md:rounded-none md:shadow-none xl:h-screen"
+      className="w-full shadow-lg rounded-md md:rounded-none md:shadow-none xl:h-screen"
       src="https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg"
       alt="avengers"
     />
