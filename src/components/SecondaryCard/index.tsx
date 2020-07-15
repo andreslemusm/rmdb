@@ -1,32 +1,61 @@
 import React from "react";
 
-export const SecondaryCard = (): React.ReactElement => (
-  <article>
-    <img
-      className="w-48 msx- rounded-md md:rounded-none"
-      src="https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
-      alt="avengers"
-    />
-    <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
-      <h2 className="text-gray-700 md:text-sm">Once Upon a Time...</h2>
-      <div className="relative flex justify-center md:hidden">
-        <svg height="32" width="32">
-          <circle
-            stroke="#cc073c"
-            fill="#111822"
-            strokeDasharray="75"
-            style={{ strokeDashoffset: 22.6195 }}
-            strokeWidth="2"
-            r="12"
-            cx="16"
-            cy="16"
-          />
-        </svg>
-        <div className="absolute top-0 text-xs pt-2">7.5</div>
+type SecondaryCardProps = {
+  imageUrl: string;
+  language: string;
+  title: string;
+  releaseDate: string;
+  voteAvg: number;
+};
+
+const formatTitle = (arg: string): string =>
+  arg.length > 19 ? arg.slice(0, 16) + "..." : arg;
+
+const getYear = (date: string): string => date.slice(0, 4);
+
+export const SecondaryCard = ({
+  imageUrl,
+  language,
+  releaseDate,
+  title,
+  voteAvg,
+}: SecondaryCardProps): React.ReactElement => {
+  const radius = 16;
+  const strokeWidth = 2;
+  const normalizedRadius = radius - strokeWidth * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (voteAvg / 10) * circumference;
+
+  return (
+    <article>
+      <img
+        className="w-48 msx- rounded-md md:rounded-none"
+        src={`https://image.tmdb.org/t/p/original${imageUrl}`}
+        alt={title}
+      />
+      <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
+        <h2 className="text-gray-700 md:text-sm">{formatTitle(title)}</h2>
+        <div className="relative flex justify-center md:hidden">
+          <svg height={radius * 2} width={radius * 2}>
+            <circle
+              stroke="#cc073c"
+              fill="#111822"
+              strokeDasharray={`${circumference} ${circumference}`}
+              style={{ strokeDashoffset }}
+              strokeWidth={strokeWidth}
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+            />
+          </svg>
+          <div className="absolute top-0 text-xs pt-2">{voteAvg}</div>
+        </div>
+        <div className="hidden md:block">
+          <span className="text-xs text-gray-900 uppercase">{`${getYear(
+            releaseDate
+          )} ${language}`}</span>
+        </div>
       </div>
-      <div className="hidden md:block">
-        <span className="text-xs text-gray-900 uppercase">2019 USA</span>
-      </div>
-    </div>
-  </article>
-);
+    </article>
+  );
+};
