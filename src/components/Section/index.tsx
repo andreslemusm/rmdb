@@ -84,8 +84,20 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
                 </SwiperSlide>
               );
             }
+            case "person": {
+              const { id, profile_path, name, known_for_department } = item;
+              return (
+                <SwiperSlide key={id}>
+                  <SecondaryCard
+                    imageUrl={profile_path}
+                    deparment={known_for_department}
+                    title={name}
+                  />
+                </SwiperSlide>
+              );
+            }
             default:
-              return <div></div>;
+              return <React.Fragment />;
           }
         })}
     </Swiper>

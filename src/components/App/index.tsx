@@ -3,7 +3,7 @@ import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { Hero } from "../Hero";
 import { Section } from "../Section";
-import { dummyMovies, dummyTvShows } from "./dummy";
+import { dummyMovies, dummyTvShows, dummyPeople } from "./dummy";
 
 export const App = (): React.ReactElement => {
   return (
@@ -16,7 +16,7 @@ export const App = (): React.ReactElement => {
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
           <Section title="TV Shows" data={dummyTvShows} />
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
-          <Section title="People" data={dummyMovies} />
+          <Section title="People" data={dummyPeople} />
           <hr className="hidden md:block w-2/3 xl:w-1/2 my-2 mx-auto border-gray-900" />
         </div>
       </main>

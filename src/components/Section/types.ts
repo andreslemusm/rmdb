@@ -1,6 +1,6 @@
 export type SectionProps = {
   title: string;
-  data: (MovieItemAttr | TvShowItemAttr)[];
+  data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr)[];
 };
 
 export type MovieItemAttr = {
@@ -36,4 +36,16 @@ export type TvShowItemAttr = {
   origin_country: string[];
   popularity: number;
   media_type: "tv";
+};
+
+export type PersonItemAttr = {
+  adult: boolean;
+  gender: number;
+  name: string;
+  id: number;
+  known_for: (MovieItemAttr | TvShowItemAttr)[];
+  known_for_department: string;
+  profile_path: string;
+  popularity: number;
+  media_type: "person";
 };
