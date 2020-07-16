@@ -2,30 +2,9 @@ import React from "react";
 import { SecondaryCard } from "../SecondaryCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
+import { SectionProps } from "./types";
 
 SwiperCore.use([A11y, Mousewheel]);
-
-type SectionProps = {
-  title: string;
-  data: ItemAttr[];
-};
-
-type ItemAttr = {
-  id: number;
-  video: boolean;
-  vote_count: number;
-  vote_average: number;
-  title: string;
-  release_date: string;
-  original_language: string;
-  original_title: string;
-  genre_ids: number[];
-  backdrop_path: string;
-  adult: boolean;
-  overview: string;
-  poster_path: string;
-  popularity: number;
-};
 
 export const Section = ({ data, title }: SectionProps): React.ReactElement => (
   <section className="max-w-screen-lg md:mx-4 my-6 md:my-0 md:py-6 lg:mx-auto">
@@ -59,26 +38,56 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
       spaceBetween={15}
       slidesPerView={2}
     >
-      {data.map(
-        ({
-          id,
-          original_language,
-          poster_path,
-          release_date,
-          title,
-          vote_average,
-        }: ItemAttr) => (
-          <SwiperSlide key={id}>
-            <SecondaryCard
-              imageUrl={poster_path}
-              language={original_language}
-              releaseDate={release_date}
-              title={title}
-              voteAvg={vote_average}
-            />
-          </SwiperSlide>
-        )
-      )}
+      {data !== undefined &&
+        data.length > 1 &&
+        data.map((item) => {
+          switch (item.media_type) {
+            case "movie": {
+              const {
+                id,
+                original_language,
+                poster_path,
+                release_date,
+                title,
+                vote_average,
+              } = item;
+              return (
+                <SwiperSlide key={id}>
+                  <SecondaryCard
+                    imageUrl={poster_path}
+                    language={original_language}
+                    releaseDate={release_date}
+                    title={title}
+                    voteAvg={vote_average}
+                  />
+                </SwiperSlide>
+              );
+            }
+            case "tv": {
+              const {
+                id,
+                name,
+                original_language,
+                poster_path,
+                first_air_date,
+                vote_average,
+              } = item;
+              return (
+                <SwiperSlide key={id}>
+                  <SecondaryCard
+                    imageUrl={poster_path}
+                    language={original_language}
+                    releaseDate={first_air_date}
+                    title={name}
+                    voteAvg={vote_average}
+                  />
+                </SwiperSlide>
+              );
+            }
+            default:
+              return <div></div>;
+          }
+        })}
     </Swiper>
   </section>
 );

@@ -39,6 +39,7 @@
         "usePrettierrc": true
       }
     ],
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/explicit-function-return-type": "error",
     "react-hooks/rules-of-hooks": "error",
