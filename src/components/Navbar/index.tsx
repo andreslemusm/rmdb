@@ -1,29 +1,34 @@
 import React from "react";
 import { ReactComponent as MenuIcon } from "../../assets/menu.svg";
+import { NavLink, Link } from "react-router-dom";
 
-const sections = ["Premier", "Movies", "TV Shows", "People"];
+const sections = [
+  { name: "Premier", path: "/premier" },
+  { name: "Movies", path: "/movies" },
+  { name: "TV Shows", path: "/tv" },
+  { name: "People", path: "/people" },
+];
 
 export const Navbar = (): React.ReactElement => (
   <header className="md:absolute w-full md:z-40">
     <div className=" max-w-screen-lg mx-auto flex p-5 flex-row items-center justify-between">
-      <a
-        href="/"
+      <Link
+        to="/"
         className="flex font-black tracking-widest text-gray-200 items-center text-xl"
       >
         <span className="text-primary">R</span>MDB
-      </a>
+      </Link>
       <nav className="hidden md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 md:flex flex-wrap items-center text-sm justify-center">
         {sections.map(
           (section): React.ReactElement => (
-            <a
-              href="/"
-              className={`mr-5 hover:text-primary uppercase ${
-                section === "Premier" ? "text-primary" : ""
-              }`}
-              key={section}
+            <NavLink
+              to={section.path}
+              activeClassName="text-primary"
+              className={`mr-5 hover:text-primary uppercase`}
+              key={section.name}
             >
-              {section}
-            </a>
+              {section.name}
+            </NavLink>
           )
         )}
       </nav>
