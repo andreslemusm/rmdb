@@ -30,7 +30,7 @@ export const SecondaryCard = ({
   return (
     <article>
       <img
-        className="w-48 msx- rounded-md md:rounded-none"
+        className="w-48 rounded-md md:rounded-none"
         src={`https://image.tmdb.org/t/p/original${imageUrl}`}
         alt={title}
       />
