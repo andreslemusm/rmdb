@@ -28,9 +28,9 @@ export const SecondaryCard = ({
   const circumference = normalizedRadius * 2 * Math.PI;
 
   return (
-    <article>
+    <article className="w-full h-full">
       <img
-        className="w-48 rounded-md md:rounded-none"
+        className="w-full rounded-md md:rounded-none"
         src={`https://image.tmdb.org/t/p/original${imageUrl}`}
         alt={title}
       />
