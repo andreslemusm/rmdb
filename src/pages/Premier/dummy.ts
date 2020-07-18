@@ -2,7 +2,7 @@ import {
   MovieItemAttr,
   TvShowItemAttr,
   PersonItemAttr,
-} from "../Section/types";
+} from "../../components/Section/types";
 
 export const dummyMovies: MovieItemAttr[] = [
   {

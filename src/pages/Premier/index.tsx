@@ -1,11 +1,7 @@
 import React from "react";
 import { Hero } from "../../components/Hero";
 import { Section } from "../../components/Section";
-import {
-  dummyMovies,
-  dummyTvShows,
-  dummyPeople,
-} from "../../components/App/dummy";
+import { dummyMovies, dummyTvShows, dummyPeople } from "./dummy";
 
 export const Premier = (): React.ReactElement => (
   <React.Fragment>

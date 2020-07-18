@@ -1,6 +1,6 @@
 import React from "react";
 import { SecondaryCard } from "../../components/SecondaryCard";
-import { dummyMovies } from "../../components/App/dummy";
+import { dummyMovies } from "../Premier/dummy";
 import { DropdownButton } from "../../components/DropdownButton";
 
 export const Search = (): React.ReactElement => (
