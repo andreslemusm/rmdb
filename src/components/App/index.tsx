@@ -4,6 +4,7 @@ import { Footer } from "../Footer";
 import { Premier } from "../../pages/Premier";
 import { Discover } from "../../pages/Discover";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { Details } from "../../pages/Details";
 
 export const App = (): React.ReactElement => {
   return (
@@ -16,6 +17,9 @@ export const App = (): React.ReactElement => {
           </Route>
           <Route path="/discover/:section">
             <Discover />
+          </Route>
+          <Route path="/movie/:id">
+            <Details />
           </Route>
           <Redirect from="*" to="/premier" />
         </Switch>
