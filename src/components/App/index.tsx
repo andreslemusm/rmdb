@@ -2,8 +2,8 @@ import React from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { Premier } from "../../pages/Premier";
+import { Discover } from "../../pages/Discover";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { Search } from "../../pages/Search";
 
 export const App = (): React.ReactElement => {
   return (
@@ -11,11 +11,11 @@ export const App = (): React.ReactElement => {
       <Navbar />
       <main>
         <Switch>
-          <Route path="/movies">
-            <Search />
-          </Route>
           <Route path="/premier">
             <Premier />
+          </Route>
+          <Route path="/discover/:section">
+            <Discover />
           </Route>
           <Redirect from="*" to="/premier" />
         </Switch>

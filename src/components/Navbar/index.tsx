@@ -5,8 +5,8 @@ import { ReactComponent as ArrowRight } from "../../assets/arrow-right.svg";
 
 const sections = [
   { name: "Premier", path: "/premier" },
-  { name: "Movies", path: "/movies" },
-  { name: "TV Shows", path: "/tv" },
+  { name: "Movies", path: "/discover/movies" },
+  { name: "TV Shows", path: "/discover/tv" },
   { name: "People", path: "/people" },
 ];
 

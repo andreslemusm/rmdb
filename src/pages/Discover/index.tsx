@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { SecondaryCard } from "../../components/SecondaryCard";
 import { dummyMovies } from "../Premier/dummy";
 import { DropdownButton } from "../../components/DropdownButton";
@@ -11,12 +12,14 @@ const genresOptions = genres.map((genre) => ({
   label: genre.name,
 }));
 
-export const Search = (): React.ReactElement => {
+export const Discover = (): React.ReactElement => {
+  const { section } = useParams<{ section: string }>();
+
   return (
     <section className="px-5 max-w-6xl md:pt-24 md:mx-4 lg:mx-auto">
       <div className="flex flex-col md:flex-row justify-around items-center">
         <h2 className="lg:pl-16 uppercase text-lg text-gray-800 font-light tracking-wider">
-          Films
+          {section === "tv" ? "tv shows" : section}
         </h2>
         <div className="pt-5 md:p-0 flex flex-wrap sm:flex-no-wrap justify-center max-w-xl">
           {filters.map((filter) => (
