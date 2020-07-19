@@ -12,9 +12,9 @@ export const DropdownButton = ({
 }: DropdownButtonProps): React.ReactElement => {
   const [value, setValue] = React.useState("");
 
-  const handleBlur = (event: React.FocusEvent<HTMLSelectElement>): void => {
+  function handleBlur(event: React.FocusEvent<HTMLSelectElement>): void {
     setValue(event.target.value);
-  };
+  }
 
   return (
     <div className="relative mt-2 sm:m-0 sm:mr-1 w-full">
