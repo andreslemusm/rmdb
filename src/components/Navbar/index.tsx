@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as MenuIcon } from "../../assets/menu.svg";
 import { NavLink, Link } from "react-router-dom";
+import { ReactComponent as ArrowRight } from "../../assets/arrow-right.svg";
 
 const sections = [
   { name: "Premier", path: "/premier" },
@@ -35,17 +36,7 @@ export const Navbar = (): React.ReactElement => (
       <MenuIcon className="fill-current text-gray-200 cursor-pointer md:hidden" />
       <button className="hidden md:inline-flex items-center bg-primary border-0 py-1 px-3 focus:outline-none rounded-sm text-base">
         Sign in
-        <svg
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          className="w-4 h-4 ml-1"
-          viewBox="0 0 24 24"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
+        <ArrowRight />
       </button>
     </div>
   </header>
