@@ -1,4 +1,6 @@
-export const genres = [
+import { GenreAttr } from "./types";
+
+export const genres: GenreAttr[] = [
   {
     id: 28,
     name: "Action",
