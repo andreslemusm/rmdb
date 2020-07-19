@@ -54,6 +54,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               return (
                 <SwiperSlide key={id}>
                   <SecondaryCard
+                    id={id}
                     imageUrl={poster_path}
                     language={original_language}
                     releaseDate={release_date}
@@ -75,6 +76,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               return (
                 <SwiperSlide key={id}>
                   <SecondaryCard
+                    id={id}
                     imageUrl={poster_path}
                     language={original_language}
                     releaseDate={first_air_date}
@@ -89,6 +91,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               return (
                 <SwiperSlide key={id}>
                   <SecondaryCard
+                    id={id}
                     imageUrl={profile_path}
                     deparment={known_for_department}
                     title={name}

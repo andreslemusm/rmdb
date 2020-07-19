@@ -35,6 +35,7 @@ export const Discover = (): React.ReactElement => {
         {dummyMovies.map((movie) => (
           <SecondaryCard
             key={movie.id}
+            id={movie.id}
             imageUrl={movie.poster_path}
             title={movie.title}
             language={movie.original_language}
