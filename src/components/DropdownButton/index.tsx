@@ -20,7 +20,7 @@ export const DropdownButton = ({
     <div className="relative mt-2 sm:m-0 sm:mr-1 w-full">
       <select
         defaultValue={value}
-        className="appearance-none w-full bg-transparent border border-gray-800 text-gray-800 py-1 pl-3 pr-6 lowercase focus:outline-none "
+        className="appearance-none w-full bg-transparent border border-gray-800 text-gray-800 py-2 sm:py-1 pl-3 pr-6 lowercase focus:outline-none "
         onBlur={handleBlur}
       >
         <option value={value}>{label}</option>
