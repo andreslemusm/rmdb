@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { App } from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import "swiper/swiper-bundle.min.css";
+import "react-circular-progressbar/dist/styles.css";
 import "./tailwind.output.css";
 
 ReactDOM.render(
