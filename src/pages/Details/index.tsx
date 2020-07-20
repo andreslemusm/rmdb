@@ -24,7 +24,7 @@ export const Details = (): React.ReactElement => {
 
   return (
     <section className="md:pt-18">
-      <div className="px-5 relative">
+      <div className="relative">
         <img
           className="block absolute left-0 z-0 object-cover w-full h-full"
           style={{ filter: "grayscale(1) contrast(1.5)" }}
@@ -37,13 +37,13 @@ export const Details = (): React.ReactElement => {
             backgroundColor: `${vibrant}E6`,
           }}
         />
-        <div className="flex flex-col md:flex-row relative z-20">
+        <div className="px-5 md:px-6 py-12 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
           <img
-            className="mx-auto mt-12 md:max-w-xs rounded-md shadow-md"
+            className="w-full md:w-4/12 rounded-md md:rounded shadow-md"
             src={`https://image.tmdb.org/t/p/original${dummyMovie.poster_path}`}
             alt={`${dummyMovie.title} poster`}
           />
-          <div className="mt-6 text-gray-100">
+          <div className="mt-6 md:mt-0 md:ml-6 text-gray-100 md:w-8/12">
             <h2 className="text-3xl">{dummyMovie.title}</h2>
             <div className="mt-4">
               <Badge>{getYear(dummyMovie.release_date)}</Badge>
@@ -65,12 +65,13 @@ export const Details = (): React.ReactElement => {
               </h3>
             </div>
             <h3 className="mt-6 text-xl leading-4">Overview</h3>
-            <p className="text-gray-300 my-4 tracking-wide">
+            <p className="text-gray-300 my-4 tracking-wide md:text-sm">
               {dummyMovie.overview}
             </p>
           </div>
         </div>
       </div>
+      <div className="h-screen"></div>
     </section>
   );
 };
