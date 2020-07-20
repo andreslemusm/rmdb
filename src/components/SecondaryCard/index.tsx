@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getYear, formatTitle } from "../../utils";
 
 type SecondaryCardProps = {
   id: number;
@@ -10,11 +11,6 @@ type SecondaryCardProps = {
   releaseDate?: string;
   voteAvg?: number;
 };
-
-const formatTitle = (arg: string): string =>
-  arg.length > 19 ? arg.slice(0, 16) + "..." : arg;
-
-const getYear = (date: string): string => date.slice(0, 4);
 
 export const SecondaryCard = ({
   id,
