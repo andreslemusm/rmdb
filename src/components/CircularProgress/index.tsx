@@ -12,6 +12,7 @@ export const CircularProgress = ({
   const isLoading = useLoadingStatus(400);
   return (
     <CircularProgressbar
+      className="shadow-2xl"
       value={isLoading ? 0 : value}
       maxValue={10}
       text={`${value}`}
@@ -25,6 +26,8 @@ export const CircularProgress = ({
         text: {
           fill: "#F3F3F4",
           fontSize: "1.7rem",
+          dominantBaseline: "middle",
+          textAnchor: "middle",
         },
         trail: {
           stroke: "#00000000",
