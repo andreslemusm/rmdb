@@ -7,7 +7,7 @@ type CircularProgressProps = {
 };
 
 export const CircularProgress = ({
-  value = 0,
+  value,
 }: CircularProgressProps): React.ReactElement => {
   const isLoading = useLoadingStatus(400);
   return (

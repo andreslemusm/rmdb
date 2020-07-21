@@ -44,3 +44,13 @@ export type MovieDetailsAttr = {
   vote_average: number;
   vote_count: number;
 };
+
+export type CrewPersonAttr = {
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  name: string;
+  profile_path: string | null;
+};

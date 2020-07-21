@@ -1,7 +1,7 @@
 import React from "react";
-import { dummyMovie } from "./dummy";
+import { dummyMovie, dummyCredits } from "./dummy";
 import Vibrant from "node-vibrant";
-import { getYear, toHourFormat } from "../../utils";
+import { getYear, toHourFormat, getPrincipalCrew } from "../../utils";
 import { Badge } from "../../components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
 
@@ -14,13 +14,14 @@ export const Details = (): React.ReactElement => {
     )
       .getPalette()
       .then((palette) => {
-        console.log(palette);
         setVibrant(palette.DarkVibrant?.getHex() as string);
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
   }, []);
+
+  const principalCrew = getPrincipalCrew(dummyCredits.crew);
 
   return (
     <section className="md:pt-18">
@@ -65,9 +66,43 @@ export const Details = (): React.ReactElement => {
               </h3>
             </div>
             <h3 className="mt-6 text-xl leading-4">Overview</h3>
-            <p className="text-gray-300 my-4 tracking-wide md:text-sm">
+            <p className="text-gray-300 mt-4 tracking-wide md:text-sm">
               {dummyMovie.overview}
             </p>
+            <div className="mt-6 flex flex-wrap">
+              <div className="flex flex-col">
+                <h3>Directed By</h3>
+                {principalCrew.directors.map((director) => (
+                  <Badge key={director} className="mt-1">
+                    {director}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex flex-col ml-16">
+                <h3>Produced By</h3>
+                {principalCrew.producers.map((producer) => (
+                  <Badge key={producer} className="mt-1">
+                    {producer}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex flex-col mt-10">
+                <h3>Written By</h3>
+                {principalCrew.writters.map((writer) => (
+                  <Badge key={writer} className="mt-1">
+                    {writer}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex flex-col ml-16 mt-10">
+                <h3>Characters By</h3>
+                {principalCrew.characters.map((character) => (
+                  <Badge key={character} className="mt-1">
+                    {character}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
