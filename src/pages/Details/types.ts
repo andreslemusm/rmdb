@@ -54,3 +54,14 @@ export type CrewPersonAttr = {
   name: string;
   profile_path: string | null;
 };
+
+export type CastPersonAttr = {
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  name: string;
+  order: number;
+  profile_path: string | null;
+};

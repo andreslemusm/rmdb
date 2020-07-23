@@ -1,4 +1,4 @@
-import { MovieDetailsAttr } from "./types";
+import { MovieDetailsAttr, CastPersonAttr, CrewPersonAttr } from "./types";
 
 export const dummyMovie: MovieDetailsAttr = {
   adult: false,
@@ -111,7 +111,11 @@ export const dummyMovie: MovieDetailsAttr = {
   vote_count: 13797,
 };
 
-export const dummyCredits = {
+export const dummyCredits: {
+  id: number;
+  cast: CastPersonAttr[];
+  crew: CrewPersonAttr[];
+} = {
   id: 475557,
   cast: [
     {
