@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getYear, formatTitle } from "../../utils";
+import { getYear } from "../../utils";
 import { CircularProgress } from "../CircularProgress";
 
-type SecondaryCardProps = {
+type ItemCardProps = {
   id: number;
   deparment?: string;
   imageUrl: string;
@@ -13,7 +13,7 @@ type SecondaryCardProps = {
   voteAvg?: number;
 };
 
-export const SecondaryCard = ({
+export const ItemCard = ({
   id,
   deparment,
   imageUrl,
@@ -21,7 +21,7 @@ export const SecondaryCard = ({
   releaseDate,
   title,
   voteAvg,
-}: SecondaryCardProps): React.ReactElement => (
+}: ItemCardProps): React.ReactElement => (
   <article className="w-full h-full">
     <Link to={`/movie/${id}`}>
       <img
@@ -30,8 +30,8 @@ export const SecondaryCard = ({
         alt={title}
       />
       <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
-        <h2 className="text-gray-700 w-3/4 md:text-sm md:w-full">
-          {formatTitle(title)}
+        <h2 className="text-gray-700 w-3/4 md:text-sm md:w-full whitespace-no-wrap truncate">
+          {title}
         </h2>
         <div className="w-1/4 md:hidden">
           {voteAvg !== undefined && <CircularProgress value={voteAvg} />}

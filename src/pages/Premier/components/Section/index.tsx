@@ -1,10 +1,15 @@
 import React from "react";
-import { SecondaryCard } from "../SecondaryCard";
+import { ItemCard } from "../../../../components/ItemCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
-import { SectionProps } from "./types";
+import { MovieItemAttr, TvShowItemAttr, PersonItemAttr } from "./types";
 
 SwiperCore.use([A11y, Mousewheel]);
+
+type SectionProps = {
+  title: string;
+  data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr)[];
+};
 
 export const Section = ({ data, title }: SectionProps): React.ReactElement => (
   <section className="max-w-screen-lg md:mx-4 my-6 md:my-0 md:py-6 lg:mx-auto">
@@ -53,7 +58,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               } = item;
               return (
                 <SwiperSlide key={id}>
-                  <SecondaryCard
+                  <ItemCard
                     id={id}
                     imageUrl={poster_path}
                     language={original_language}
@@ -75,7 +80,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               } = item;
               return (
                 <SwiperSlide key={id}>
-                  <SecondaryCard
+                  <ItemCard
                     id={id}
                     imageUrl={poster_path}
                     language={original_language}
@@ -90,7 +95,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
               const { id, profile_path, name, known_for_department } = item;
               return (
                 <SwiperSlide key={id}>
-                  <SecondaryCard
+                  <ItemCard
                     id={id}
                     imageUrl={profile_path}
                     deparment={known_for_department}

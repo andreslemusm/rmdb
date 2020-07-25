@@ -2,11 +2,11 @@ import React from "react";
 import { dummyMovie, dummyCredits } from "./dummy";
 import Vibrant from "node-vibrant";
 import { getYear, toHourFormat, getPrincipalCrew } from "../../utils";
-import { Badge } from "../../components/Badge";
+import { Badge } from "./components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
-import { SecondaryCard } from "../../components/SecondaryCard";
+import { CastCard } from "./components/CastCard";
 
 SwiperCore.use([A11y, Mousewheel]);
 
@@ -135,7 +135,7 @@ export const Details = (): React.ReactElement => {
             const { id, profile_path, character, name } = castPerson;
             return (
               <SwiperSlide key={id}>
-                <SecondaryCard
+                <CastCard
                   id={id}
                   imageUrl={profile_path as string}
                   deparment={character}

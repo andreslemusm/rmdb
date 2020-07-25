@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as CaretDown } from "../../assets/caret-down.svg";
+import { ReactComponent as CaretDown } from "../../../../assets/caret-down.svg";
 
 type DropdownButtonProps = {
   label: string;
