@@ -19,23 +19,14 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
     <Swiper
       tag="section"
       className="px-5 pb-4 sm:px-8 md:p-0"
-      centeredSlides
-      centeredSlidesBounds
       a11y={{
         enabled: true,
       }}
       breakpoints={{
         "470": { slidesPerView: 3 },
-        "768": {
-          slidesPerView: 5,
-          centeredSlides: false,
-          centeredSlidesBounds: false,
-        },
-        "1024": {
-          slidesPerView: 6,
-          centeredSlides: false,
-          centeredSlidesBounds: false,
-        },
+        "690": { slidesPerView: 4 },
+        "768": { slidesPerView: 5 },
+        "1024": { slidesPerView: 6 },
       }}
       mousewheel={{
         forceToAxis: true,
