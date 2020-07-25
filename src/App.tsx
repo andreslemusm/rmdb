@@ -1,10 +1,10 @@
 import React from "react";
-import { Navbar } from "../Navbar";
-import { Footer } from "../Footer";
-import { Premier } from "../../pages/Premier";
-import { Discover } from "../../pages/Discover";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { Details } from "../../pages/Details";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { Premier } from "./pages/Premier";
+import { Discover } from "./pages/Discover";
+import { Details } from "./pages/Details";
 
 export const App = (): React.ReactElement => {
   return (

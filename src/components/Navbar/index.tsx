@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as MenuIcon } from "../../assets/menu.svg";
-import { NavLink, Link } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../../assets/arrow-right.svg";
+import { NavLink, Link } from "react-router-dom";
 
 const sections = [
   { name: "Premier", path: "/premier" },
