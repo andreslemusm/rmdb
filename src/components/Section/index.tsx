@@ -1,43 +1,62 @@
 import React from "react";
-import { ItemCard } from "../../../../components/ItemCard";
+import { ItemCard } from "../ItemCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { A11y, Mousewheel } from "swiper";
+import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
 import { MovieItemAttr, TvShowItemAttr, PersonItemAttr } from "./types";
+import { CastPersonAttr, MovieDetailsAttr } from "../../pages/Details/types";
+import { CastCard } from "../CastCard";
 
 SwiperCore.use([A11y, Mousewheel]);
 
 type SectionProps = {
   title: string;
-  data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr)[];
+  titleClass?: string;
+  data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr | CastPersonAttr)[];
+  breakpointsConfig?: {
+    [width: number]: SwiperOptions;
+  };
+  cardType: "movie" | "tv" | "popularPerson" | "castPerson";
+  wrapperClass?: string;
+  sliderClass?: string;
 };
 
-export const Section = ({ data, title }: SectionProps): React.ReactElement => (
-  <section className="max-w-screen-lg md:mx-4 my-6 md:my-0 md:py-6 lg:mx-auto">
-    <h2 className="pl-10 md:pl-0 md:w-2/3 lg:w-3/4 md:mx-auto pb-3 md:pb-6 text-lg text-gray-800 md:text-gray-500 font-light md:font-normal tracking-wider uppercase">
+export const Section = ({
+  data,
+  title,
+  cardType,
+  breakpointsConfig = {
+    "0": { slidesPerView: 2 },
+    "470": { slidesPerView: 3 },
+    "690": { slidesPerView: 4 },
+    "768": { slidesPerView: 5 },
+    "1024": { slidesPerView: 6 },
+  },
+  titleClass = "",
+  wrapperClass = "",
+  sliderClass = "",
+}: SectionProps): React.ReactElement => (
+  <section className={`max-w-screen-lg lg:mx-auto ${wrapperClass}`}>
+    <h2
+      className={`text-gray-800 font-light tracking-wider text-lg ${titleClass}`}
+    >
       {title}
     </h2>
     <Swiper
       tag="section"
-      className="px-5 pb-4 sm:px-8 md:p-0"
+      className={sliderClass}
       a11y={{
         enabled: true,
       }}
-      breakpoints={{
-        "470": { slidesPerView: 3 },
-        "690": { slidesPerView: 4 },
-        "768": { slidesPerView: 5 },
-        "1024": { slidesPerView: 6 },
-      }}
+      breakpoints={breakpointsConfig}
       mousewheel={{
         forceToAxis: true,
       }}
       spaceBetween={15}
-      slidesPerView={2}
     >
       {data !== undefined &&
         data.length > 1 &&
-        data.map((item) => {
-          switch (item.media_type) {
+        data.map((element) => {
+          switch (cardType) {
             case "movie": {
               const {
                 id,
@@ -46,7 +65,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
                 release_date,
                 title,
                 vote_average,
-              } = item;
+              } = element as MovieItemAttr;
               return (
                 <SwiperSlide key={id}>
                   <ItemCard
@@ -68,7 +87,7 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
                 poster_path,
                 first_air_date,
                 vote_average,
-              } = item;
+              } = element as TvShowItemAttr;
               return (
                 <SwiperSlide key={id}>
                   <ItemCard
@@ -82,8 +101,13 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
                 </SwiperSlide>
               );
             }
-            case "person": {
-              const { id, profile_path, name, known_for_department } = item;
+            case "popularPerson": {
+              const {
+                id,
+                profile_path,
+                name,
+                known_for_department,
+              } = element as PersonItemAttr;
               return (
                 <SwiperSlide key={id}>
                   <ItemCard
@@ -95,8 +119,20 @@ export const Section = ({ data, title }: SectionProps): React.ReactElement => (
                 </SwiperSlide>
               );
             }
-            default:
-              return <React.Fragment />;
+            default: {
+              const castPerson = element as CastPersonAttr;
+              const { id, profile_path, character, name } = castPerson;
+              return (
+                <SwiperSlide key={id}>
+                  <CastCard
+                    id={id}
+                    imageUrl={profile_path as string}
+                    character={character}
+                    name={name}
+                  />
+                </SwiperSlide>
+              );
+            }
           }
         })}
     </Swiper>

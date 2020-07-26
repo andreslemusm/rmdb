@@ -4,12 +4,11 @@ import Vibrant from "node-vibrant";
 import { getYear, toHourFormat, getPrincipalCrew } from "../../utils";
 import { Badge } from "./components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
-import { CastCard } from "./components/CastCard";
-import { ItemCard } from "../../components/ItemCard";
 import { Fact } from "./components/Fact";
 import { FactConfig, SpokenLanguage } from "./types";
+import { Section } from "../../components/Section";
+import { MovieItemAttr } from "../../components/Section/types";
 
 SwiperCore.use([A11y, Mousewheel]);
 
@@ -128,104 +127,46 @@ export const Details = (): React.ReactElement => {
           </div>
         </div>
       </div>
-      <div className="max-w-screen-lg pt-10 pb-12 md:py-10 lg:mx-auto">
-        <section>
-          <h2 className="container pl-5 md:pl-10 pb-4 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
-            Starring
-          </h2>
-          <Swiper
-            tag="section"
-            className="px-5 md:px-0 md:mx-5"
-            a11y={{
-              enabled: true,
-            }}
-            breakpoints={{
-              "470": { slidesPerView: 5 },
-              "575": { slidesPerView: 6 },
-              "1024": { slidesPerView: 7 },
-            }}
-            mousewheel={{
-              forceToAxis: true,
-            }}
-            spaceBetween={15}
-            slidesPerView={4}
-          >
-            {dummyCredits.cast.map((castPerson) => {
-              const { id, profile_path, character, name } = castPerson;
-              return (
-                <SwiperSlide key={id}>
-                  <CastCard
-                    id={id}
-                    imageUrl={profile_path as string}
-                    character={character}
-                    name={name}
-                  />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </section>
-        <hr className="w-2/3 my-8 mx-auto border-gray-900" />
-        <div className="flex flex-col">
-          <section className="h-40 mb-4 w-4/5 mx-auto flex flex-col justify-between">
-            {facts.map((fact) => (
-              <Fact
-                name={fact.name}
-                formatter={fact.formatter}
-                data={dummyMovie[fact.key]}
-                key={fact.key}
-              />
-            ))}
-          </section>
-          <hr className="w-2/3 my-8 mx-auto border-gray-900" />
-          <section className="w-full">
-            <h2 className="px-5 pb-4 md:pl-5 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
-              Recomended
-            </h2>
-            <Swiper
-              tag="section"
-              className="px-5"
-              a11y={{
-                enabled: true,
-              }}
-              breakpoints={{
-                "470": { slidesPerView: 3 },
-                "575": { slidesPerView: 4 },
-                "745": { slidesPerView: 5 },
-                "1024": { slidesPerView: 5 },
-              }}
-              mousewheel={{
-                forceToAxis: true,
-              }}
-              spaceBetween={15}
-              slidesPerView={3}
-            >
-              {dummyRecommended.map((movie) => {
-                const {
-                  id,
-                  poster_path,
-                  title,
-                  release_date,
-                  vote_average,
-                  original_language,
-                } = movie;
-                return (
-                  <SwiperSlide key={id}>
-                    <ItemCard
-                      id={id}
-                      language={original_language}
-                      releaseDate={release_date}
-                      imageUrl={poster_path}
-                      title={title}
-                      voteAvg={vote_average}
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </section>
-        </div>
-      </div>
+      <Section
+        title="Starring"
+        titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
+        data={dummyCredits.cast}
+        cardType="castPerson"
+        breakpointsConfig={{
+          "0": { slidesPerView: 4 },
+          "470": { slidesPerView: 5 },
+          "575": { slidesPerView: 6 },
+          "1024": { slidesPerView: 7 },
+        }}
+        sliderClass="px-5 md:px-0 md:mx-5"
+        wrapperClass="pt-10"
+      />
+      <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
+      <section className="h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
+        {facts.map((fact) => (
+          <Fact
+            name={fact.name}
+            formatter={fact.formatter}
+            data={dummyMovie[fact.key]}
+            key={fact.key}
+          />
+        ))}
+      </section>
+      <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
+      <Section
+        title="Recommended"
+        data={dummyRecommended as MovieItemAttr[]}
+        cardType="movie"
+        titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+        sliderClass="px-5 md:px-0 md:mx-5"
+        breakpointsConfig={{
+          "0": { slidesPerView: 3 },
+          "575": { slidesPerView: 4 },
+          "765": { slidesPerView: 5 },
+          "1024": { slidesPerView: 5 },
+        }}
+        wrapperClass="pb-12"
+      />
     </section>
   );
 };
