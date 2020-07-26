@@ -7,8 +7,17 @@ import { CircularProgress } from "../../components/CircularProgress";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
 import { CastCard } from "./components/CastCard";
+import { MovieDetailsAttr } from "./types";
 
 SwiperCore.use([A11y, Mousewheel]);
+
+const details: (keyof MovieDetailsAttr)[] = [
+  "budget",
+  "status",
+  "revenue",
+  "popularity",
+  "original_language",
+];
 
 export const Details = (): React.ReactElement => {
   const [vibrant, setVibrant] = React.useState("");
@@ -100,52 +109,44 @@ export const Details = (): React.ReactElement => {
           </div>
         </div>
       </div>
-      <section className="max-w-screen-lg md:mx-4 my-6 md:my-0 md:py-6 lg:mx-auto">
-        <h2 className="container pl-5 md:pl-10 pb-3 md:pb-6 text-lg text-gray-800 font-light tracking-wider uppercase">
-          Starring
-        </h2>
-        <Swiper
-          tag="section"
-          className="px-5 md:px-0"
-          centeredSlides
-          centeredSlidesBounds
-          a11y={{
-            enabled: true,
-          }}
-          breakpoints={{
-            "470": { slidesPerView: 5 },
-            "768": {
-              slidesPerView: 6,
-              centeredSlides: false,
-              centeredSlidesBounds: false,
-            },
-            "1024": {
-              slidesPerView: 7,
-              centeredSlides: false,
-              centeredSlidesBounds: false,
-            },
-          }}
-          mousewheel={{
-            forceToAxis: true,
-          }}
-          spaceBetween={15}
-          slidesPerView={4}
-        >
-          {dummyCredits.cast.map((castPerson) => {
-            const { id, profile_path, character, name } = castPerson;
-            return (
-              <SwiperSlide key={id}>
-                <CastCard
-                  id={id}
-                  imageUrl={profile_path as string}
-                  deparment={character}
-                  title={name}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </section>
+      <div className="max-w-screen-lg py-6 md:py-10 lg:mx-auto">
+        <section>
+          <h2 className="container pl-5 md:pl-10 pb-4 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
+            Starring
+          </h2>
+          <Swiper
+            tag="section"
+            className="px-5 md:px-0 md:mx-5"
+            a11y={{
+              enabled: true,
+            }}
+            breakpoints={{
+              "470": { slidesPerView: 5 },
+              "575": { slidesPerView: 6 },
+              "1024": { slidesPerView: 7 },
+            }}
+            mousewheel={{
+              forceToAxis: true,
+            }}
+            spaceBetween={15}
+            slidesPerView={4}
+          >
+            {dummyCredits.cast.map((castPerson) => {
+              const { id, profile_path, character, name } = castPerson;
+              return (
+                <SwiperSlide key={id}>
+                  <CastCard
+                    id={id}
+                    imageUrl={profile_path as string}
+                    character={character}
+                    name={name}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </section>
+      </div>
     </section>
   );
 };

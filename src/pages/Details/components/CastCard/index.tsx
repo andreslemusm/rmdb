@@ -3,37 +3,34 @@ import { Link } from "react-router-dom";
 
 type CastCardProps = {
   id: number;
-  deparment?: string;
+  character: string;
   imageUrl: string;
-  language?: string;
-  title: string;
-  releaseDate?: string;
-  voteAvg?: number;
+  name: string;
 };
 
 export const CastCard = ({
   id,
-  deparment,
+  character,
   imageUrl,
-  title,
+  name,
 }: CastCardProps): React.ReactElement => (
-  <article className="w-full h-full">
-    <Link to={`/movie/${id}`}>
-      <img
-        className="w-full rounded-md md:rounded-none"
-        src={`https://image.tmdb.org/t/p/original${imageUrl}`}
-        alt={title}
-      />
-      <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
-        <h2 className="text-gray-700 md:text-sm whitespace-no-wrap truncate">
-          {title}
+  <Link to={`/movie/${id}`}>
+    <article className="w-full h-full flex flex-col items-center">
+      <div className="w-20 h-20 rounded-full overflow-hidden bg-black sm:w-24 sm:h-24 md:w-full md:h-auto md:rounded-none md:bg-transparent">
+        <img
+          className="h-full w-full object-contain"
+          src={`https://image.tmdb.org/t/p/original${imageUrl}`}
+          alt={name}
+        />
+      </div>
+      <div className="mt-3 self-start">
+        <h2 className="text-gray-700 text-center md:text-gray-600 md:text-sm md:text-left">
+          {name}
         </h2>
-        <div className="hidden md:block">
-          <span className="text-xs text-gray-900 uppercase">
-            {deparment !== undefined && `${deparment}`}
-          </span>
+        <div className="hidden md:block text-gray-800 text-xs">
+          {character !== undefined && `${character}`}
         </div>
       </div>
-    </Link>
-  </article>
+    </article>
+  </Link>
 );
