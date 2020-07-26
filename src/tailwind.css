@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.place-items-center {
-  place-items: center;
+.justify-items-center {
+  justify-items: center;
 }
 
 @media (min-width: 768px) {

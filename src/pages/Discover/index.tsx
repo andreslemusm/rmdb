@@ -31,7 +31,7 @@ export const Discover = (): React.ReactElement => {
           ))}
         </div>
       </div>
-      <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 place-items-center grid-flow-row-dense">
+      <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 items-center justify-items-center grid-flow-row-dense">
         {dummyMovies.map((movie) => (
           <ItemCard
             key={movie.id}
