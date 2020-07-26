@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar, A11y, Autoplay, Mousewheel } from "swiper";
-import { PrimaryCard } from "../../components/PrimaryCard";
+import { PrimaryCard } from "../PrimaryCard";
 
 SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar]);
 
