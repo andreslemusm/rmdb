@@ -12,7 +12,7 @@ type ProductionCountry = {
   name: string;
 };
 
-type SpokenLanguage = {
+export type SpokenLanguage = {
   iso_639_1: string;
   name: string;
 };
@@ -64,4 +64,10 @@ export type CastPersonAttr = {
   name: string;
   order: number;
   profile_path: string | null;
+};
+
+export type FactConfig = {
+  name: string;
+  key: keyof MovieDetailsAttr;
+  formatter?: (data: unknown) => string | number;
 };

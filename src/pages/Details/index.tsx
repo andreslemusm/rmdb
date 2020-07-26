@@ -7,17 +7,11 @@ import { CircularProgress } from "../../components/CircularProgress";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
 import { CastCard } from "./components/CastCard";
-import { MovieDetailsAttr } from "./types";
 import { ItemCard } from "../../components/ItemCard";
+import { Fact } from "./components/Fact";
+import { FactConfig, SpokenLanguage } from "./types";
 
 SwiperCore.use([A11y, Mousewheel]);
-
-const details: (keyof MovieDetailsAttr)[] = [
-  "budget",
-  "status",
-  "revenue",
-  "popularity",
-];
 
 export const Details = (): React.ReactElement => {
   const [vibrant, setVibrant] = React.useState("");
@@ -38,6 +32,31 @@ export const Details = (): React.ReactElement => {
   }, []);
 
   const principalCrew = getPrincipalCrew(dummyCredits.crew);
+
+  const facts: FactConfig[] = [
+    { name: "Status", key: "status" },
+    {
+      name: "Release date",
+      key: "release_date",
+      formatter: (data): string =>
+        new Date(data as string).toUTCString().slice(0, 16),
+    },
+    {
+      name: "Language",
+      key: "spoken_languages",
+      formatter: (data): string => (data as SpokenLanguage[])[0].name,
+    },
+    {
+      name: "Budget",
+      key: "budget",
+      formatter: (data): string => `$ ${(data as number).toLocaleString()}`,
+    },
+    {
+      name: "Revenue",
+      key: "revenue",
+      formatter: (data): string => `$ ${(data as number).toLocaleString()}`,
+    },
+  ];
 
   return (
     <section className="md:pt-18">
@@ -109,7 +128,7 @@ export const Details = (): React.ReactElement => {
           </div>
         </div>
       </div>
-      <div className="max-w-screen-lg py-6 md:py-10 lg:mx-auto">
+      <div className="max-w-screen-lg pt-10 pb-12 md:py-10 lg:mx-auto">
         <section>
           <h2 className="container pl-5 md:pl-10 pb-4 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
             Starring
@@ -146,26 +165,40 @@ export const Details = (): React.ReactElement => {
             })}
           </Swiper>
         </section>
-        <div className="container flex px-5">
-          <section className="w-8/12">
-            <h2 className="pb-4 md:pl-5 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
+        <hr className="w-2/3 my-8 mx-auto border-gray-900" />
+        <div className="flex flex-col">
+          <section className="h-40 mb-4 w-4/5 mx-auto flex flex-col justify-between">
+            {facts.map((fact) => (
+              <Fact
+                name={fact.name}
+                formatter={fact.formatter}
+                data={dummyMovie[fact.key]}
+                key={fact.key}
+              />
+            ))}
+          </section>
+          <hr className="w-2/3 my-8 mx-auto border-gray-900" />
+          <section className="w-full">
+            <h2 className="px-5 pb-4 md:pl-5 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
               Recomended
             </h2>
             <Swiper
               tag="section"
+              className="px-5"
               a11y={{
                 enabled: true,
               }}
               breakpoints={{
                 "470": { slidesPerView: 3 },
                 "575": { slidesPerView: 4 },
+                "745": { slidesPerView: 5 },
                 "1024": { slidesPerView: 5 },
               }}
               mousewheel={{
                 forceToAxis: true,
               }}
               spaceBetween={15}
-              slidesPerView={2}
+              slidesPerView={3}
             >
               {dummyRecommended.map((movie) => {
                 const {
@@ -190,16 +223,6 @@ export const Details = (): React.ReactElement => {
                 );
               })}
             </Swiper>
-          </section>
-          <section className="w-4/12 grid content-between justify-center">
-            {details.map((detail, index) => (
-              <article key={detail}>
-                <h3 className="text-lg text-gray-800 font-light tracking-wider capitalize">
-                  {detail}
-                </h3>
-                <p className="text-gray-700">{dummyMovie[detail]}</p>
-              </article>
-            ))}
           </section>
         </div>
       </div>
