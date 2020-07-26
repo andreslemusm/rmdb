@@ -11,7 +11,7 @@ export const Fact = ({
   data,
   formatter,
 }: FactProps): React.ReactElement => (
-  <article className="grid grid-cols-2 justify-items-center">
+  <article className="grid grid-cols-2" style={{ justifyItems: "center" }}>
     <h3 className="text-lg text-gray-800 font-light tracking-wider">{name}</h3>
     <p className="text-gray-700">
       {formatter === undefined ? (data as string | number) : formatter(data)}

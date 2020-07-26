@@ -2,15 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.justify-items-center {
-  justify-items: center;
-}
-
 @media (min-width: 768px) {
   .md\:pt-18 {
       padding-top: 4.5rem;
-  }
-  .md\:justify-items-start{
-    justify-items: start;
   }
 }
