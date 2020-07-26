@@ -1,5 +1,5 @@
 import React from "react";
-import { dummyMovie, dummyCredits } from "./dummy";
+import { dummyMovie, dummyCredits, dummyRecommended } from "./dummy";
 import Vibrant from "node-vibrant";
 import { getYear, toHourFormat, getPrincipalCrew } from "../../utils";
 import { Badge } from "./components/Badge";
@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
 import { CastCard } from "./components/CastCard";
 import { MovieDetailsAttr } from "./types";
+import { ItemCard } from "../../components/ItemCard";
 
 SwiperCore.use([A11y, Mousewheel]);
 
@@ -16,7 +17,6 @@ const details: (keyof MovieDetailsAttr)[] = [
   "status",
   "revenue",
   "popularity",
-  "original_language",
 ];
 
 export const Details = (): React.ReactElement => {
@@ -146,16 +146,62 @@ export const Details = (): React.ReactElement => {
             })}
           </Swiper>
         </section>
-        <section className="px-5 flex flex-wrap h-32 justify-between content-around">
-          {details.map((detail) => (
-            <article key={detail}>
-              <h3 className="text-lg text-gray-800 font-light tracking-wider capitalize">
-                {detail}
-              </h3>
-              <p className="text-gray-700">{dummyMovie[detail]}</p>
-            </article>
-          ))}
-        </section>
+        <div className="container flex px-5">
+          <section className="w-8/12">
+            <h2 className="pb-4 md:pl-5 md:pb-6 text-lg text-gray-800 font-light tracking-wider">
+              Recomended
+            </h2>
+            <Swiper
+              tag="section"
+              a11y={{
+                enabled: true,
+              }}
+              breakpoints={{
+                "470": { slidesPerView: 3 },
+                "575": { slidesPerView: 4 },
+                "1024": { slidesPerView: 5 },
+              }}
+              mousewheel={{
+                forceToAxis: true,
+              }}
+              spaceBetween={15}
+              slidesPerView={2}
+            >
+              {dummyRecommended.map((movie) => {
+                const {
+                  id,
+                  poster_path,
+                  title,
+                  release_date,
+                  vote_average,
+                  original_language,
+                } = movie;
+                return (
+                  <SwiperSlide key={id}>
+                    <ItemCard
+                      id={id}
+                      language={original_language}
+                      releaseDate={release_date}
+                      imageUrl={poster_path}
+                      title={title}
+                      voteAvg={vote_average}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </section>
+          <section className="w-4/12 grid content-between justify-center">
+            {details.map((detail, index) => (
+              <article key={detail}>
+                <h3 className="text-lg text-gray-800 font-light tracking-wider capitalize">
+                  {detail}
+                </h3>
+                <p className="text-gray-700">{dummyMovie[detail]}</p>
+              </article>
+            ))}
+          </section>
+        </div>
       </div>
     </section>
   );
