@@ -146,6 +146,16 @@ export const Details = (): React.ReactElement => {
             })}
           </Swiper>
         </section>
+        <section className="px-5 flex flex-wrap h-32 justify-between content-around">
+          {details.map((detail) => (
+            <article key={detail}>
+              <h3 className="text-lg text-gray-800 font-light tracking-wider capitalize">
+                {detail}
+              </h3>
+              <p className="text-gray-700">{dummyMovie[detail]}</p>
+            </article>
+          ))}
+        </section>
       </div>
     </section>
   );
