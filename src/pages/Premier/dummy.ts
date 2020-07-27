@@ -2,7 +2,7 @@ import {
   MovieItemAttr,
   TvShowItemAttr,
   PersonItemAttr,
-} from "../../components/Section/types";
+} from "../../components/Carousel/types";
 
 export const dummyMovies: MovieItemAttr[] = [
   {

@@ -1,13 +1,13 @@
 import React from "react";
 import { Hero } from "./components/Hero";
-import { Section } from "../../components/Section";
+import { Carousel } from "../../components/Carousel";
 import { dummyMovies, dummyTvShows, dummyPeople } from "./dummy";
 
 export const Premier = (): React.ReactElement => (
   <React.Fragment>
     <Hero />
     <div className="pb-8 md:pb-16 md:pt-2">
-      <Section
+      <Carousel
         title="FILMS"
         data={dummyMovies}
         cardType="movie"
@@ -16,7 +16,7 @@ export const Premier = (): React.ReactElement => (
         wrapperClass="my-8 md:mx-5"
       />
       <hr className="my-2 mx-auto border-gray-900 hidden md:block w-2/3 xl:w-1/2 " />
-      <Section
+      <Carousel
         title="TV SHOWS"
         data={dummyTvShows}
         cardType="tv"
@@ -25,7 +25,7 @@ export const Premier = (): React.ReactElement => (
         wrapperClass="my-8 md:mx-5"
       />
       <hr className="my-2 mx-auto border-gray-900 hidden md:block w-2/3 xl:w-1/2" />
-      <Section
+      <Carousel
         title="PEOPLE"
         data={dummyPeople}
         cardType="popularPerson"

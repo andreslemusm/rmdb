@@ -1,5 +1,5 @@
 import { MovieDetailsAttr, CastPersonAttr, CrewPersonAttr } from "./types";
-import { MovieItemAttr } from "../../components/Section/types";
+import { MovieItemAttr } from "../../components/Carousel/types";
 
 export const dummyMovie: MovieDetailsAttr = {
   adult: false,

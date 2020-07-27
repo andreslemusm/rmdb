@@ -7,8 +7,8 @@ import { CircularProgress } from "../../components/CircularProgress";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
 import { Fact } from "./components/Fact";
 import { FactConfig, SpokenLanguage } from "./types";
-import { Section } from "../../components/Section";
-import { MovieItemAttr } from "../../components/Section/types";
+import { Carousel } from "../../components/Carousel";
+import { MovieItemAttr } from "../../components/Carousel/types";
 
 SwiperCore.use([A11y, Mousewheel]);
 
@@ -127,7 +127,7 @@ export const Details = (): React.ReactElement => {
           </div>
         </div>
       </div>
-      <Section
+      <Carousel
         title="Starring"
         titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
         data={dummyCredits.cast}
@@ -153,7 +153,7 @@ export const Details = (): React.ReactElement => {
         ))}
       </section>
       <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
-      <Section
+      <Carousel
         title="Recommended"
         data={dummyRecommended as MovieItemAttr[]}
         cardType="movie"

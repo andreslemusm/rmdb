@@ -8,7 +8,7 @@ import { CastCard } from "../CastCard";
 
 SwiperCore.use([A11y, Mousewheel]);
 
-type SectionProps = {
+type CarouselProps = {
   title: string;
   titleClass?: string;
   data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr | CastPersonAttr)[];
@@ -20,7 +20,7 @@ type SectionProps = {
   sliderClass?: string;
 };
 
-export const Section = ({
+export const Carousel = ({
   data,
   title,
   cardType,
@@ -34,7 +34,7 @@ export const Section = ({
   titleClass = "",
   wrapperClass = "",
   sliderClass = "",
-}: SectionProps): React.ReactElement => (
+}: CarouselProps): React.ReactElement => (
   <section className={`max-w-screen-lg lg:mx-auto ${wrapperClass}`}>
     <h2
       className={`text-gray-800 font-light tracking-wider text-lg ${titleClass}`}
