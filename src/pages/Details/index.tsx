@@ -59,7 +59,7 @@ export const Details = (): React.ReactElement => {
 
   return (
     <section className="md:pt-18">
-      <div className="relative">
+      <section className="relative">
         <img
           className="block absolute left-0 z-0 object-cover w-full h-full"
           style={{ filter: "grayscale(1) contrast(1.5)" }}
@@ -72,13 +72,13 @@ export const Details = (): React.ReactElement => {
             backgroundColor: `${vibrant}E6`,
           }}
         />
-        <div className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
+        <section className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
           <img
             className="w-full md:w-5/12 lg:w-4/12 rounded-md md:rounded shadow-md"
             src={`https://image.tmdb.org/t/p/original${dummyMovie.poster_path}`}
             alt={`${dummyMovie.title} poster`}
           />
-          <div className="mt-6 md:mt-0 md:ml-6 md:w-7/12 lg:w-8/12 text-gray-100">
+          <article className="mt-6 md:mt-0 md:ml-6 md:w-7/12 lg:w-8/12 text-gray-100">
             <h2 className="text-4xl">{dummyMovie.title}</h2>
             <div className="mt-3">
               <Badge>{getYear(dummyMovie.release_date)}</Badge>
@@ -97,16 +97,20 @@ export const Details = (): React.ReactElement => {
               <div className="w-12">
                 <CircularProgress value={dummyMovie.vote_average} />
               </div>
-              <h3 className="pl-6 italic">{`"${dummyMovie.tagline}"`}</h3>
+              <p className="pl-6 italic">{`"${dummyMovie.tagline}"`}</p>
             </div>
-            <h3 className="mt-5 text-xs leading-4 uppercase text-gray-400 tracking-wide">
-              Overview
-            </h3>
-            <p className="mt-2 tracking-wide text-sm">{dummyMovie.overview}</p>
+            <section>
+              <h3 className="mt-5 text-xs leading-4 uppercase text-gray-400 tracking-wide">
+                Overview
+              </h3>
+              <p className="mt-2 tracking-wide text-sm">
+                {dummyMovie.overview}
+              </p>
+            </section>
             <div className="flex flex-col items-start">
               {(["directors", "writters"] as ["directors", "writters"]).map(
                 (job) => (
-                  <div className="mt-5 flex flex-col" key={job}>
+                  <section className="mt-5 flex flex-col" key={job}>
                     <h3 className="uppercase text-gray-400 tracking-wide text-xs">
                       {job}
                     </h3>
@@ -120,13 +124,13 @@ export const Details = (): React.ReactElement => {
                         </Badge>
                       ))}
                     </div>
-                  </div>
+                  </section>
                 )
               )}
             </div>
-          </div>
-        </div>
-      </div>
+          </article>
+        </section>
+      </section>
       <Carousel
         title="Starring"
         titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
@@ -163,7 +167,7 @@ export const Details = (): React.ReactElement => {
           "0": { slidesPerView: 3 },
           "575": { slidesPerView: 4 },
           "765": { slidesPerView: 5 },
-          "1024": { slidesPerView: 5 },
+          "1024": { slidesPerView: 6 },
         }}
         wrapperClass="pb-12"
       />
