@@ -3,7 +3,7 @@ import { ItemCard } from "../ItemCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
 import { MovieItemAttr, TvShowItemAttr, PersonItemAttr } from "./types";
-import { CastPersonAttr, MovieDetailsAttr } from "../../pages/Details/types";
+import { CastPersonAttr } from "../../pages/Details/types";
 import { CastCard } from "../CastCard";
 
 SwiperCore.use([A11y, Mousewheel]);
