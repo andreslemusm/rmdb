@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@media (min-width: 768px) {
-  .md\:pt-18 {
-      padding-top: 4.5rem;
-  }
-}

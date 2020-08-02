@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "swiper/swiper-bundle.min.css";
-import "./tailwind.output.css";
+import "./styles/tailwind.output.css";
 
 ReactDOM.render(
   <React.StrictMode>

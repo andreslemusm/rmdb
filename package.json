@@ -47,7 +47,7 @@
     "prestart": "npm run build:tailwind",
     "start": "react-scripts start",
     "build": "npm run build:tailwind && react-scripts build",
-    "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css -c tailwind.config.js",
+    "build:tailwind": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.output.css -c tailwind.config.js",
     "test": "react-scripts test",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --format codeframe"
   }
