@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar, A11y, Autoplay, Mousewheel } from "swiper";
 import { PrimaryCard } from "../PrimaryCard";
+import { dummyMovies } from "../../dummy";
 
 SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar]);
 
@@ -14,7 +15,6 @@ export const Hero = (): React.ReactElement => {
         enabled: true,
       }}
       speed={800}
-      initialSlide={1}
       scrollbar={{
         draggable: true,
         dragClass: "swiper-scrollbar-drag bg-primary",
@@ -27,24 +27,18 @@ export const Hero = (): React.ReactElement => {
         forceToAxis: true,
       }}
     >
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <PrimaryCard />
-      </SwiperSlide>
+      {dummyMovies.map((movie) => {
+        const { id, title, backdrop_path, overview } = movie;
+        return (
+          <SwiperSlide key={id}>
+            <PrimaryCard
+              title={title}
+              imageUrl={backdrop_path}
+              description={overview}
+            />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };

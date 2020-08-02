@@ -17,7 +17,7 @@ export const Footer = (): React.ReactElement => (
         &copy; 2020 Andres Lemus —
         <a
           href="https://github.com/andresclm/"
-          className="text-gray-300 hover:text-gray-200 ml-1"
+          className="text-gray-300 hover:text-gray-100 ml-1"
           rel="noopener noreferrer"
           target="_blank"
         >
