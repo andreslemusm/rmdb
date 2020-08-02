@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getYear } from "../../utils";
 import { CircularProgress } from "../CircularProgress";
+import { BASE_URL, posterSize } from "../../apiConfig";
 
 type ItemCardProps = {
   id: number;
@@ -26,7 +27,7 @@ export const ItemCard = ({
     <Link to={`/movie/${id}`}>
       <img
         className="w-full rounded-md md:rounded-none"
-        src={`https://image.tmdb.org/t/p/original${imageUrl}`}
+        src={`${BASE_URL}${posterSize.sm}${imageUrl}`}
         alt={title}
       />
       <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
