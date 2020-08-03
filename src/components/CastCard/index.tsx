@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BASE_URL, profileSize } from "../../apiConfig";
+import { BASE_IMAGE_URL, profileSize } from "../../apiConfig";
 
 type CastCardProps = {
   id: number;
@@ -20,12 +20,12 @@ export const CastCard = ({
       <div className="w-20 h-20 rounded-full overflow-hidden bg-black sm:w-24 sm:h-24 md:w-full md:h-auto md:rounded-none md:bg-transparent">
         <picture>
           <source
-            srcSet={`${BASE_URL}${profileSize.md}${imageUrl}`}
+            srcSet={`${BASE_IMAGE_URL}${profileSize.md}${imageUrl}`}
             media="(min-width: 768px)"
           />
           <img
             className="h-full w-full object-contain"
-            src={`${BASE_URL}${profileSize.sm}${imageUrl}`}
+            src={`${BASE_IMAGE_URL}${profileSize.sm}${imageUrl}`}
             alt={name}
           />
         </picture>
