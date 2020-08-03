@@ -12,7 +12,7 @@ export const Navbar = (): React.ReactElement => {
 
   return (
     <header className="md:absolute w-full md:z-40">
-      <div className="container mx-auto flex p-5 flex-row items-center justify-between tracking-wide">
+      <div className="container mx-auto flex p-5 flex-row items-center justify-between tracking-wide lg:px-8">
         <Link
           to="/"
           className="flex font-black tracking-widest text-gray-200 items-center text-xl"
@@ -33,13 +33,13 @@ export const Navbar = (): React.ReactElement => {
             )
           )}
         </nav>
-        <MenuIcon className="fill-current text-gray-200 cursor-pointer md:hidden" />
         <Link
           to="/login"
-          className="hidden md:block uppercase font-light text-sm"
+          className="hidden md:block uppercase text-gray-400 font-light text-sm hover:text-primary"
         >
           Sign in
         </Link>
+        <MenuIcon className="fill-current text-gray-200 cursor-pointer md:hidden" />
       </div>
     </header>
   );
