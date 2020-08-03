@@ -28,13 +28,15 @@ export const Hero = (): React.ReactElement => {
       }}
     >
       {dummyMovies.map((movie) => {
-        const { id, title, backdrop_path, overview } = movie;
+        const { id, title, backdrop_path, overview, vote_average } = movie;
         return (
           <SwiperSlide key={id}>
             <PrimaryCard
+              id={id}
               title={title}
               imageUrl={backdrop_path}
               description={overview}
+              score={vote_average}
             />
           </SwiperSlide>
         );
