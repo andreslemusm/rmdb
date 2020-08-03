@@ -1,8 +1,8 @@
 import React from "react";
-import { ItemCard } from "../ItemCard";
+import { MovieCard } from "../MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
-import { MovieItemAttr, TvShowItemAttr, PersonItemAttr } from "./types";
+import { MovieItemAttr } from "./types";
 import { CastPersonAttr } from "../../pages/Details/types";
 import { CastCard } from "../CastCard";
 
@@ -11,11 +11,11 @@ SwiperCore.use([A11y, Mousewheel]);
 type CarouselProps = {
   title: string;
   titleClass?: string;
-  data: (MovieItemAttr | TvShowItemAttr | PersonItemAttr | CastPersonAttr)[];
+  data: (MovieItemAttr | CastPersonAttr)[];
   breakpointsConfig?: {
     [width: number]: SwiperOptions;
   };
-  cardType: "movie" | "tv" | "popularPerson" | "castPerson";
+  cardType: "movie" | "castPerson";
   wrapperClass?: string;
   sliderClass?: string;
 };
@@ -54,8 +54,7 @@ export const Carousel = ({
       }}
       spaceBetween={15}
     >
-      {data !== undefined &&
-        data.length > 1 &&
+      {data.length > 1 &&
         data.map((element) => {
           switch (cardType) {
             case "movie": {
@@ -69,53 +68,13 @@ export const Carousel = ({
               } = element as MovieItemAttr;
               return (
                 <SwiperSlide key={id}>
-                  <ItemCard
+                  <MovieCard
                     id={id}
                     imageUrl={poster_path}
                     language={original_language}
                     releaseDate={release_date}
                     title={title}
                     voteAvg={vote_average}
-                  />
-                </SwiperSlide>
-              );
-            }
-            case "tv": {
-              const {
-                id,
-                name,
-                original_language,
-                poster_path,
-                first_air_date,
-                vote_average,
-              } = element as TvShowItemAttr;
-              return (
-                <SwiperSlide key={id}>
-                  <ItemCard
-                    id={id}
-                    imageUrl={poster_path}
-                    language={original_language}
-                    releaseDate={first_air_date}
-                    title={name}
-                    voteAvg={vote_average}
-                  />
-                </SwiperSlide>
-              );
-            }
-            case "popularPerson": {
-              const {
-                id,
-                profile_path,
-                name,
-                known_for_department,
-              } = element as PersonItemAttr;
-              return (
-                <SwiperSlide key={id}>
-                  <ItemCard
-                    id={id}
-                    imageUrl={profile_path}
-                    deparment={known_for_department}
-                    title={name}
                   />
                 </SwiperSlide>
               );

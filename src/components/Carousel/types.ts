@@ -22,23 +22,3 @@ export type MovieItemAttr = EntertaimentItemAttr & {
   popularity: number;
   media_type: "movie";
 };
-
-export type TvShowItemAttr = EntertaimentItemAttr & {
-  name: string;
-  first_air_date: string;
-  original_name: string;
-  origin_country: string[];
-  popularity: number;
-  media_type: "tv";
-};
-
-export type PersonItemAttr = ItemAttr & {
-  adult: boolean;
-  gender: number;
-  name: string;
-  known_for: (MovieItemAttr | TvShowItemAttr)[];
-  known_for_department: string;
-  profile_path: string;
-  popularity: number;
-  media_type: "person";
-};

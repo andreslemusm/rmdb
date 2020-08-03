@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ItemCard } from "../../components/ItemCard";
+import { MovieCard } from "../../components/MovieCard";
 import { dummyMovies } from "../Premier/dummy";
 import { DropdownButton } from "./components/DropdownButton";
 import { genres } from "./dummy";
@@ -35,7 +35,7 @@ export const Discover = (): React.ReactElement => {
         </div>
         <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 grid-flow-row-dense">
           {dummyMovies.map((movie) => (
-            <ItemCard
+            <MovieCard
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
