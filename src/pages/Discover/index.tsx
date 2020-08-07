@@ -4,6 +4,7 @@ import { dummyMovies } from "../Premier/dummy";
 import { Dropdown } from "./components/Dropdown";
 import { genres } from "./dummy";
 import { Layout } from "../../components/Layout";
+import { API_KEY } from "../../apiConfig";
 
 export const Discover = (): React.ReactElement => {
   const filters = ["country", "genre", "language", "year"];
@@ -15,7 +16,15 @@ export const Discover = (): React.ReactElement => {
 
   React.useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/configuration/countries?api_key=8159e2d84c680cdf3f26ab87b194850a"
+      `https://api.themoviedb.org/3/configuration/countries?api_key=${API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }, []);
+  React.useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
     )
       .then((response) => response.json())
       .then((data) => console.log(data))

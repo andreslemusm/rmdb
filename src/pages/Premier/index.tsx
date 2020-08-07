@@ -55,7 +55,7 @@ export const Premier = (): React.ReactElement => {
   // State management
   const [state, dispatch] = React.useReducer(moviesReducer, {
     error: null,
-    loading: true,
+    loading: false,
     movies: null,
   });
   function fetchMovies(listTypes: string[]): void {
