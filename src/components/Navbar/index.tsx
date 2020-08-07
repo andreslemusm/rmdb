@@ -6,8 +6,6 @@ export const Navbar = (): React.ReactElement => {
   const sections = [
     { name: "Premier", path: "/premier" },
     { name: "Movies", path: "/discover/movies" },
-    { name: "TV Shows", path: "/discover/tv" },
-    { name: "People", path: "/people" },
   ];
 
   return (

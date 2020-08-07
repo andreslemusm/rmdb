@@ -1,35 +1,37 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard";
 import { dummyMovies } from "../Premier/dummy";
-import { DropdownButton } from "./components/DropdownButton";
+import { Dropdown } from "./components/Dropdown";
 import { genres } from "./dummy";
 import { Layout } from "../../components/Layout";
 
-const filters = ["country", "genre", "language", "year"];
-
-const genresOptions = genres.map((genre) => ({
-  value: genre.id.toString(),
-  label: genre.name,
-}));
-
 export const Discover = (): React.ReactElement => {
-  const { section } = useParams<{ section: string }>();
+  const filters = ["country", "genre", "language", "year"];
+
+  const genresOptions = genres.map((genre) => ({
+    value: genre.id.toString(),
+    name: genre.name,
+  }));
+
+  React.useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/configuration/countries?api_key=8159e2d84c680cdf3f26ab87b194850a"
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <Layout>
       <section className="px-5 max-w-6xl md:pt-24 md:mx-4 lg:mx-auto">
         <div className="flex flex-col md:flex-row justify-around items-center">
           <h2 className="lg:pl-16 uppercase text-lg text-gray-800 font-light tracking-wider">
-            {section === "tv" ? "tv shows" : section}
+            Movies
           </h2>
           <div className="pt-5 md:p-0 flex flex-wrap sm:flex-no-wrap justify-center max-w-xl">
             {filters.map((filter) => (
-              <DropdownButton
-                key={filter}
-                label={filter}
-                options={genresOptions}
-              />
+              <Dropdown key={filter} label={filter} options={genresOptions} />
             ))}
           </div>
         </div>
