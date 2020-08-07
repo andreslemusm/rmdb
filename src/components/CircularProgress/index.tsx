@@ -9,7 +9,7 @@ type CircularProgressProps = {
 export const CircularProgress = ({
   value,
 }: CircularProgressProps): React.ReactElement => {
-  const isLoading = useLoadingStatus(400);
+  const isLoading = useLoadingStatus(400, true);
   return (
     <CircularProgressbar
       className="shadow-2xl"

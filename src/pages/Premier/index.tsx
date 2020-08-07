@@ -117,7 +117,7 @@ export const Premier = (): React.ReactElement => {
           </React.Fragment>
         )}
       </div>
-      <Loading isLoading={state.loading} />
+      <Loading />
     </Layout>
   );
 };
