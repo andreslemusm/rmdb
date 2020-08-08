@@ -53,9 +53,7 @@ export const Details = (): React.ReactElement => {
       const palette = await Vibrant.from(
         `${BASE_IMAGE_URL}${backdropSize.sm}/${dummyMovie.backdrop_path}`
       ).getPalette();
-      setTimeout(() => {
-        setVibrant(palette.DarkVibrant?.getHex() as string);
-      }, 200);
+      setVibrant(palette.DarkVibrant?.getHex() as string);
     } catch (error) {
       console.log("An error ocurred while getting the color: ", error);
     }
