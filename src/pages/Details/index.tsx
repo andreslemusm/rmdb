@@ -6,31 +6,20 @@ import { Badge } from "./components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
 import { Fact } from "./components/Fact";
-import { FactConfig, SpokenLanguage } from "./types";
 import { Carousel } from "../../components/Carousel";
 import { MovieItemAttr } from "../../components/Carousel/types";
 import { Layout } from "../../components/Layout";
+import { BASE_IMAGE_URL, backdropSize } from "../../apiConfig";
+import {
+  dateFormatter,
+  langFormatter,
+  moneyFormatter,
+} from "./components/Fact/formatters";
+import { FactConfig } from "./components/Fact/types";
 
 SwiperCore.use([A11y, Mousewheel]);
 
 export const Details = (): React.ReactElement => {
-  const [vibrant, setVibrant] = React.useState("");
-
-  React.useEffect(() => {
-    Vibrant.from(
-      `https://image.tmdb.org/t/p/original/${dummyMovie.backdrop_path}`
-    )
-      .getPalette()
-      .then((palette) => {
-        setTimeout(() => {
-          setVibrant(palette.DarkVibrant?.getHex() as string);
-        }, 200);
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
-  }, []);
-
   const principalCrew = getPrincipalCrew(dummyCredits.crew);
 
   const facts: FactConfig[] = [
@@ -38,36 +27,59 @@ export const Details = (): React.ReactElement => {
     {
       name: "Release date",
       key: "release_date",
-      formatter: (data): string =>
-        new Date(data as string).toUTCString().slice(0, 16),
+      formatter: dateFormatter,
     },
     {
       name: "Language",
       key: "spoken_languages",
-      formatter: (data): string => (data as SpokenLanguage[])[0].name,
+      formatter: langFormatter,
     },
     {
       name: "Budget",
       key: "budget",
-      formatter: (data): string => `$ ${(data as number).toLocaleString()}`,
+      formatter: moneyFormatter,
     },
     {
       name: "Revenue",
       key: "revenue",
-      formatter: (data): string => `$ ${(data as number).toLocaleString()}`,
+      formatter: moneyFormatter,
     },
   ];
+
+  // Vibrant color from background image
+  const [vibrant, setVibrant] = React.useState("");
+  const getColor = async (): Promise<void> => {
+    try {
+      const palette = await Vibrant.from(
+        `${BASE_IMAGE_URL}${backdropSize.sm}/${dummyMovie.backdrop_path}`
+      ).getPalette();
+      setTimeout(() => {
+        setVibrant(palette.DarkVibrant?.getHex() as string);
+      }, 200);
+    } catch (error) {
+      console.log("An error ocurred while getting the color: ", error);
+    }
+  };
+  React.useEffect(() => {
+    void getColor();
+  }, []);
 
   return (
     <Layout>
       <section className="md:pt-18">
         <section className="relative">
-          <img
-            className="block absolute left-0 z-0 object-cover w-full h-full"
-            style={{ filter: "grayscale(1) contrast(1.5)" }}
-            src={`https://image.tmdb.org/t/p/original${dummyMovie.backdrop_path}`}
-            alt={`${dummyMovie.title} backdrop`}
-          />
+          <picture>
+            <source
+              srcSet={`${BASE_IMAGE_URL}${backdropSize.md}${dummyMovie.backdrop_path}`}
+              media="(min-width: 768px)"
+            />
+            <img
+              className="block absolute left-0 z-0 object-cover w-full h-full"
+              style={{ filter: "grayscale(1) contrast(1.5)" }}
+              src={`${BASE_IMAGE_URL}${backdropSize.sm}${dummyMovie.backdrop_path}`}
+              alt={`${dummyMovie.title} backdrop`}
+            />
+          </picture>
           <div
             className="block absolute left-0 z-10 w-full h-full transition-color duration-1000"
             style={{
@@ -77,7 +89,7 @@ export const Details = (): React.ReactElement => {
           <section className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
             <img
               className="w-full md:w-5/12 lg:w-4/12 rounded-md md:rounded shadow-md"
-              src={`https://image.tmdb.org/t/p/original${dummyMovie.poster_path}`}
+              src={`${BASE_IMAGE_URL}original${dummyMovie.poster_path}`}
               alt={`${dummyMovie.title} poster`}
             />
             <article className="mt-6 md:mt-0 md:ml-6 md:w-7/12 lg:w-8/12 text-gray-100">

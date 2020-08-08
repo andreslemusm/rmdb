@@ -65,9 +65,3 @@ export type CastPersonAttr = {
   order: number;
   profile_path: string | null;
 };
-
-export type FactConfig = {
-  name: string;
-  key: keyof MovieDetailsAttr;
-  formatter?: (data: unknown) => string | number;
-};

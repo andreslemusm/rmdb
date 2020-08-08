@@ -1,10 +1,5 @@
 import React from "react";
-
-type FactProps = {
-  name: string;
-  data: unknown;
-  formatter?: (data: unknown) => string | number;
-};
+import { FactProps } from "./types";
 
 export const Fact = ({
   name,
