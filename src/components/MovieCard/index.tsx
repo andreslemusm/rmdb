@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getYear } from "../../utils";
+import { getYear } from "../../utils/formats";
 import { CircularProgress } from "../CircularProgress";
 import { BASE_IMAGE_URL, posterSize } from "../../apiConfig";
 

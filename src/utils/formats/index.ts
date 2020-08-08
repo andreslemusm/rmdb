@@ -1,4 +1,4 @@
-import { CrewPersonAttr } from "../pages/Details/types";
+import { CrewPersonAttr } from "../../pages/Details/types";
 
 export const getYear = (date: string): string => date.slice(0, 4);
 

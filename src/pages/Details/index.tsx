@@ -1,7 +1,7 @@
 import React from "react";
 import { dummyMovie, dummyCredits, dummyRecommended } from "./dummy";
 import Vibrant from "node-vibrant";
-import { getYear, toHourFormat, getPrincipalCrew } from "../../utils";
+import { getYear, toHourFormat, getPrincipalCrew } from "../../utils/formats";
 import { Badge } from "./components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
 import SwiperCore, { A11y, Mousewheel } from "swiper";
