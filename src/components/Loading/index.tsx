@@ -1,9 +1,9 @@
 import React from "react";
-import { useLoadingStatus } from "../../hooks";
+import { useLoadingStatus } from "../../utils/hooks";
 
 export const Loading = (): React.ReactElement => {
-  const isLoading = useLoadingStatus(100, true);
-  const remove = useLoadingStatus(4600, false);
+  const isLoading = useLoadingStatus(400, true);
+  const remove = useLoadingStatus(4400, false);
   return (
     <div
       className={`h-screen w-screen transition-opacity fixed top-0 z-50 ${
@@ -11,7 +11,7 @@ export const Loading = (): React.ReactElement => {
       } ${remove ? "hidden" : "block"}`}
       style={{
         background: "linear-gradient(to right, #c31432, #240b36)",
-        transitionDuration: "4.5s",
+        transitionDuration: "4.4s",
       }}
     >
       <div className="spinner">

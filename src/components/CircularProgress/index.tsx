@@ -1,6 +1,6 @@
 import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
-import { useLoadingStatus } from "../../hooks";
+import { useLoadingStatus } from "../../utils/hooks";
 
 type CircularProgressProps = {
   value: number;
