@@ -3,10 +3,12 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { Premier } from "./pages/Premier";
 import { Discover } from "./pages/Discover";
 import { Details } from "./pages/Details";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 export const App = (): React.ReactElement => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/premier">
           <Premier />
