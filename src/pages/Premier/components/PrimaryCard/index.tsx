@@ -5,10 +5,8 @@ import {
   API_KEY,
   BASE_API_URL,
 } from "../../../../apiConfig";
-import { ReactComponent as CaretRight } from "../../../../assets/caret-right.svg";
-import { ReactComponent as Close } from "../../../../assets/close.svg";
 import { Link } from "react-router-dom";
-import { Modal } from "../Modal";
+import { useTrailerModal } from "../../../../utils/hooks";
 
 type PrimaryCardProps = {
   id: number;
@@ -25,15 +23,6 @@ export const PrimaryCard = ({
   description,
   score,
 }: PrimaryCardProps): React.ReactElement => {
-  // Trailer modal
-  const [showModal, toggleModal] = React.useState(false);
-  function handleOpenModal(): void {
-    toggleModal(true);
-  }
-  function handleCloseModal(): void {
-    toggleModal(false);
-  }
-
   // Trailer request
   const [video, setVideo] = React.useState<string>();
   const fetchVideos = async (id: number): Promise<void> => {
@@ -55,6 +44,8 @@ export const PrimaryCard = ({
   React.useEffect(() => {
     void fetchVideos(id);
   }, [id]);
+
+  const [showModal, PlayButton, TrailerModal] = useTrailerModal();
 
   return (
     <React.Fragment>
@@ -95,15 +86,7 @@ export const PrimaryCard = ({
                     {score}
                   </span>
                 </p>
-                {video !== undefined && (
-                  <button
-                    onClick={handleOpenModal}
-                    className="tracking-widest inline-flex text-gray-200 items-center bg-primary border-0 py-2 pl-6 pr-8 mr-5 focus:outline-none rounded-sm text-sm lg:mr-8"
-                  >
-                    <CaretRight className="w-5 h-5 fill-current" />
-                    PLAY
-                  </button>
-                )}
+                {video !== undefined && <PlayButton />}
               </div>
             </div>
           </section>
@@ -119,33 +102,7 @@ export const PrimaryCard = ({
           </section>
         </div>
       </article>
-      {showModal && (
-        <Modal>
-          <div className="w-screen h-screen px-20 fixed top-0 flex flex-col items-center justify-center z-40 bg-black bg-opacity-50">
-            <button
-              className="self-end text-gray-100"
-              onClick={handleCloseModal}
-            >
-              <Close className="w-10 h-10 fill-current" />
-            </button>
-            <div
-              className="relative h-0 w-full"
-              style={{
-                paddingBottom: "56.25%",
-              }}
-            >
-              <iframe
-                title={`${title} Trailer`}
-                className="absolute top-0 left-0 w-full h-full"
-                src={`https://www.youtube-nocookie.com/embed/${video!}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </Modal>
-      )}
+      {showModal && <TrailerModal title={title} video={video!} />}
     </React.Fragment>
   );
 };
