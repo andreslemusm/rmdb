@@ -11,7 +11,6 @@ export const Dropdown = ({
   options = [],
 }: DropdownProps): React.ReactElement => {
   const [value, setValue] = React.useState("");
-
   function handleSelect(event: React.FocusEvent<HTMLSelectElement>): void {
     setValue(event.target.value);
   }

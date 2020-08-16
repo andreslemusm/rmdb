@@ -1,9 +1,9 @@
 import React from "react";
 
-export function useLoadingStatus(
+export const useLoadingStatus = (
   timeOut: number,
   defaultState: boolean
-): boolean {
+): boolean => {
   const [isLoading, toggle] = React.useState(defaultState);
 
   React.useEffect(() => {
@@ -17,4 +17,4 @@ export function useLoadingStatus(
   });
 
   return isLoading;
-}
+};

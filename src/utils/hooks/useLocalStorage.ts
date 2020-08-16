@@ -1,9 +1,9 @@
 import React from "react";
 
-export function useLocalStorage<T>(
+export const useLocalStorage = <T>(
   defaultState: T,
   key: string
-): readonly [T, React.Dispatch<React.SetStateAction<T>>] {
+): readonly [T, React.Dispatch<React.SetStateAction<T>>] => {
   const getInitialState = (): T => {
     const storedState = localStorage.getItem(key);
 
@@ -21,4 +21,4 @@ export function useLocalStorage<T>(
   }, [state, key]);
 
   return [state, setState] as const;
-}
+};

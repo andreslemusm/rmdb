@@ -2,10 +2,10 @@ import React from "react";
 
 export type Thunk<T> = (dispatch: React.Dispatch<T>) => void;
 
-export function useThunkReducer<S, A>(
+export const useThunkReducer = <S, A>(
   reducer: React.Reducer<S, A>,
   initialState: S
-): readonly [S, (action: A | Thunk<A>) => void] {
+): readonly [S, (action: A | Thunk<A>) => void] => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   const enhancedDispatch = React.useCallback((action: A | Thunk<A>): void => {
@@ -16,4 +16,4 @@ export function useThunkReducer<S, A>(
   }, []);
 
   return [state, enhancedDispatch] as const;
-}
+};

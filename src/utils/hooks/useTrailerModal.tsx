@@ -8,11 +8,11 @@ type TrailerModalProps = {
   video: string;
 };
 
-export function useTrailerModal(): readonly [
+export const useTrailerModal = (): readonly [
   boolean,
   React.FC,
   React.FC<TrailerModalProps>
-] {
+] => {
   const [showModal, toggleModal] = React.useState(false);
   function handleOpenModal(): void {
     toggleModal(true);
@@ -59,4 +59,4 @@ export function useTrailerModal(): readonly [
   );
 
   return [showModal, PlayButton, TrailerModal] as const;
-}
+};
