@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BASE_IMAGE_URL,
-  backdropSize,
-  API_KEY,
-  BASE_MOVIE_URL,
-} from "../../../../apiConfig";
+import { BASE_IMAGE_URL, backdropSize } from "../../../../apiConfig";
 import { Link } from "react-router-dom";
 import { useTrailerModal } from "../../../../utils/hooks";
 
@@ -23,29 +18,7 @@ export const PrimaryCard = ({
   description,
   score,
 }: PrimaryCardProps): React.ReactElement => {
-  // Trailer request
-  const [video, setVideo] = React.useState<string>();
-  const fetchVideos = async (id: number): Promise<void> => {
-    try {
-      const response = await fetch(
-        `${BASE_MOVIE_URL}/${id}/videos?api_key=${API_KEY}`
-      );
-      const videos = (await response.json()) as {
-        results: Record<string, string>[];
-      };
-      const trailer = videos.results.find((video) => video.type === "Trailer");
-      if (trailer !== undefined) {
-        setVideo(trailer.key);
-      }
-    } catch (error) {
-      console.error("An error ocurred while fetching the videos: ", error);
-    }
-  };
-  React.useEffect(() => {
-    void fetchVideos(id);
-  }, [id]);
-
-  const [showModal, PlayButton, TrailerModal] = useTrailerModal();
+  const [showModal, showButton, PlayButton, TrailerModal] = useTrailerModal(id);
 
   return (
     <React.Fragment>
@@ -67,13 +40,13 @@ export const PrimaryCard = ({
           <section>
             <div className="hidden absolute top-0 w-full h-full bg-black bg-opacity-50 md:block" />
             <div className="hidden container md:mb-16 md:block md:absolute md:bottom-0 md:inset-x-0 md:mx-auto md:px-10 lg:mb-24 lg:max-w-screen-lg">
-              <Link to={`/movie/${id}`}>
-                <h2 className="w-3/4 pr-32 leading-none overflow-hidden text-gray-200 text-3xl tracking-widest font-black uppercase lg:text-6xl">
+              <h2 className="w-3/4 pr-32 leading-none overflow-hidden text-gray-200 text-3xl tracking-widest font-black uppercase lg:text-6xl">
+                <Link to={`/movie/${id}`}>
                   {title.length < 23
                     ? title
                     : `${(/[\w &]+/.exec(title) as RegExpMatchArray)[0]}`}
-                </h2>
-              </Link>
+                </Link>
+              </h2>
               <p className="w-3/4 pr-16 pt-6 tracking-wider text-gray-300 text-sm lg:text-base">
                 {description.length < 200
                   ? description
@@ -86,7 +59,7 @@ export const PrimaryCard = ({
                     {score}
                   </span>
                 </p>
-                {video !== undefined && <PlayButton />}
+                {showButton && <PlayButton />}
               </div>
             </div>
           </section>
@@ -102,7 +75,7 @@ export const PrimaryCard = ({
           </section>
         </div>
       </article>
-      {showModal && <TrailerModal title={title} video={video!} />}
+      {showModal && <TrailerModal title={title} />}
     </React.Fragment>
   );
 };
