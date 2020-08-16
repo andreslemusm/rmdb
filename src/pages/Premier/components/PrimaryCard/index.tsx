@@ -18,7 +18,9 @@ export const PrimaryCard = ({
   description,
   score,
 }: PrimaryCardProps): React.ReactElement => {
-  const [showModal, showButton, PlayButton, TrailerModal] = useTrailerModal(id);
+  const { showModal, showButton, PlayButton, TrailerModal } = useTrailerModal(
+    id
+  );
 
   return (
     <React.Fragment>
@@ -75,7 +77,7 @@ export const PrimaryCard = ({
           </section>
         </div>
       </article>
-      {showModal && <TrailerModal title={title} />}
+      {showModal && <TrailerModal />}
     </React.Fragment>
   );
 };

@@ -1,16 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Modal } from "../../components/Modal";
 import { ReactComponent as CaretRight } from "../../assets/caret-right.svg";
 import { ReactComponent as Close } from "../../assets/close.svg";
 import { BASE_MOVIE_URL, API_KEY } from "../../apiConfig";
 
-type TrailerModalProps = {
-  title: string;
+const fetchTrailer = async (
+  _key: string,
+  id: number
+): Promise<{ key: string; name: string } | undefined> => {
+  // Query
+  const videosQuery = fetch(
+    `${BASE_MOVIE_URL}/${id}/videos?api_key=${API_KEY}`
+  );
+
+  // Request
+  const response = await videosQuery;
+  const videos = (await response.json()) as {
+    results: Record<string, string>[];
+  };
+
+  // Formatter
+  const trailer = videos.results.find((video) => video.type === "Trailer");
+  const result =
+    trailer === undefined
+      ? undefined
+      : { key: trailer.key, name: trailer.name };
+
+  return result;
 };
 
 export const useTrailerModal = (
-  id: number
-): readonly [boolean, boolean, React.FC, React.FC<TrailerModalProps>] => {
+  movieId: number
+): {
+  showModal: boolean;
+  showButton: boolean;
+  PlayButton: () => React.ReactElement;
+  TrailerModal: () => React.ReactElement;
+} => {
+  const { data } = useQuery(["trailer", movieId], fetchTrailer, {
+    staleTime: Infinity,
+  });
+
   // Handle Modal
   const [showModal, toggleModal] = useState(false);
   function handleOpenModal(): void {
@@ -20,29 +51,7 @@ export const useTrailerModal = (
     toggleModal(false);
   }
 
-  // Trailer request
-  const [video, setVideo] = useState<string>();
-  const fetchVideos = async (id: number): Promise<void> => {
-    try {
-      const response = await fetch(
-        `${BASE_MOVIE_URL}/${id}/videos?api_key=${API_KEY}`
-      );
-      const videos = (await response.json()) as {
-        results: Record<string, string>[];
-      };
-      const trailer = videos.results.find((video) => video.type === "Trailer");
-      if (trailer !== undefined) {
-        setVideo(trailer.key);
-      }
-    } catch (error) {
-      console.error("An error ocurred while fetching the videos: ", error);
-    }
-  };
-  useEffect(() => {
-    void fetchVideos(id);
-  }, [id]);
-
-  const TrailerModal = ({ title }: TrailerModalProps): React.ReactElement => (
+  const TrailerModal = (): React.ReactElement => (
     <Modal>
       <div className="w-screen h-screen px-20 fixed top-0 flex flex-col items-center justify-center z-40 bg-black bg-opacity-50">
         <button className="self-end text-gray-100" onClick={handleCloseModal}>
@@ -55,9 +64,11 @@ export const useTrailerModal = (
           }}
         >
           <iframe
-            title={`${title} Trailer`}
+            title={`${data === undefined ? "" : data.name} Trailer`}
             className="absolute top-0 left-0 w-full h-full"
-            src={`https://www.youtube-nocookie.com/embed/${video!}`}
+            src={`https://www.youtube-nocookie.com/embed/${
+              data === undefined ? "" : data.key
+            }`}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -77,7 +88,7 @@ export const useTrailerModal = (
     </button>
   );
 
-  const showButton = video !== undefined;
+  const showButton = data !== undefined;
 
-  return [showModal, showButton, PlayButton, TrailerModal] as const;
+  return { showModal, showButton, PlayButton, TrailerModal };
 };
