@@ -1,5 +1,7 @@
+import React, { createContext } from "react";
 import { BASE_API_URL, API_KEY } from "../../../apiConfig";
 import { MovieItemAttr } from "../../../components/Carousel/types";
+import { useThunkReducer, Thunk } from "../../../utils/hooks";
 
 export const moviesLists = ["now_playing", "popular", "top_rated", "upcoming"];
 
@@ -16,7 +18,7 @@ type MoviesState = {
   movies: Record<string, MovieItemAttr[]> | null;
 };
 
-export const moviesReducer = (
+const moviesReducer = (
   state: MoviesState,
   action: MoviesAction
 ): MoviesState => {
@@ -50,8 +52,8 @@ export const moviesReducer = (
   }
 };
 
-// Thunk
-export const fetchMovies = (dispatch: React.Dispatch<MoviesAction>): void => {
+// Thunks
+const fetchMovies = (dispatch: React.Dispatch<MoviesAction>): void => {
   dispatch({ type: "MOVIES/LOADING" });
 
   void (async (): Promise<void> => {
@@ -73,4 +75,35 @@ export const fetchMovies = (dispatch: React.Dispatch<MoviesAction>): void => {
       dispatch({ type: "MOVIES/FAILURE", payload: error as Error });
     }
   })();
+};
+
+// Context
+type MoviesContextState = {
+  state: MoviesState;
+  dispatch: (action: MoviesAction | Thunk<MoviesAction>) => void;
+  thunks: Record<string, Thunk<MoviesAction>>;
+};
+
+export const MoviesContext = createContext({} as MoviesContextState);
+
+type MoviesProviderProps = {
+  children: React.ReactNode;
+};
+
+export const MoviesProvider = ({
+  children,
+}: MoviesProviderProps): React.ReactElement => {
+  const [state, dispatch] = useThunkReducer(moviesReducer, {
+    error: null,
+    loading: true,
+    movies: null,
+  });
+
+  return (
+    <MoviesContext.Provider
+      value={{ state, dispatch, thunks: { fetchMovies } }}
+    >
+      {children}
+    </MoviesContext.Provider>
+  );
 };

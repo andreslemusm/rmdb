@@ -1,6 +1,6 @@
 import React from "react";
 
-type Thunk<T> = (dispatch: React.Dispatch<T>) => void;
+export type Thunk<T> = (dispatch: React.Dispatch<T>) => void;
 
 export function useThunkReducer<S, A>(
   reducer: React.Reducer<S, A>,

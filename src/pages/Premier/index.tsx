@@ -1,21 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Hero } from "./components/Hero";
 import { Carousel } from "../../components/Carousel";
-import { Loading } from "../../components/Loading";
 import { Layout } from "../../components/Layout";
-import { useThunkReducer } from "../../utils/hooks";
-import { moviesReducer, moviesLists, fetchMovies } from "./state/movies";
+import { moviesLists, MoviesContext } from "./context/movies";
 
 export const Premier = (): React.ReactElement => {
-  const [state, dispatch] = useThunkReducer(moviesReducer, {
-    error: null,
-    loading: true,
-    movies: null,
-  });
+  const { state, dispatch, thunks } = useContext(MoviesContext);
 
-  React.useEffect(() => {
-    dispatch(fetchMovies);
-  }, [dispatch]);
+  useEffect(() => {
+    if (state.movies === null) {
+      dispatch(thunks.fetchMovies);
+    }
+  }, [dispatch, thunks.fetchMovies, state.movies]);
 
   return (
     <Layout>
@@ -46,7 +42,6 @@ export const Premier = (): React.ReactElement => {
           </React.Fragment>
         )}
       </div>
-      <Loading />
     </Layout>
   );
 };
