@@ -3,16 +3,17 @@ import { ReactComponent as LinkedinIcon } from "../../assets/linkedin.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/instagram.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/twitter.svg";
 import { ReactComponent as FacebookIcon } from "../../assets/facebook.svg";
+import { Link } from "react-router-dom";
 
 export const Footer = (): React.ReactElement => (
   <footer className="bg-primary">
     <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-      <a
-        href="/"
+      <Link
+        to="/"
         className="flex ml-3 text-xl text-gray-200 font-black tracking-widest items-center md:justify-start justify-center"
       >
         RMDB
-      </a>
+      </Link>
       <p className="text-sm text-gray-300 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
         &copy; 2020 Andres Lemus —
         <a
