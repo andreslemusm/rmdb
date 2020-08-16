@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { BASE_API_URL, API_KEY } from "../../../apiConfig";
+import { BASE_MOVIE_URL, API_KEY, BASE_TRENDING_URL } from "../../../apiConfig";
 import { MovieItemAttr } from "../../../components/Carousel/types";
 import { useThunkReducer, Thunk } from "../../../utils/hooks";
 
@@ -39,13 +39,16 @@ const moviesReducer = (
       return {
         error: null,
         loading: false,
-        movies: moviesLists.reduce(
-          (movies, movielist, index) => ({
-            ...movies,
-            [movielist]: action.payload[index].results,
-          }),
-          {}
-        ),
+        movies: {
+          ...moviesLists.reduce(
+            (movies, movielist, index) => ({
+              ...movies,
+              [movielist]: action.payload[index].results,
+            }),
+            {}
+          ),
+          trending: action.payload.slice(-1)[0].results,
+        },
       };
     default:
       return state;
@@ -58,11 +61,16 @@ const fetchMovies = (dispatch: React.Dispatch<MoviesAction>): void => {
 
   void (async (): Promise<void> => {
     try {
-      const responses = await Promise.all(
-        moviesLists.map((movieList) =>
-          fetch(`${BASE_API_URL}/${movieList}?api_key=${API_KEY}&page=1`)
-        )
+      const releaseMovieQueries = moviesLists.map((movieList) =>
+        fetch(`${BASE_MOVIE_URL}/${movieList}?api_key=${API_KEY}`)
       );
+      const trendingMovieQuery = fetch(
+        `${BASE_TRENDING_URL}?api_key=${API_KEY}`
+      );
+      const responses = await Promise.all([
+        ...releaseMovieQueries,
+        trendingMovieQuery,
+      ]);
       const data = await Promise.all(
         responses.map((response) => response.json())
       );

@@ -3,7 +3,7 @@ import {
   BASE_IMAGE_URL,
   backdropSize,
   API_KEY,
-  BASE_API_URL,
+  BASE_MOVIE_URL,
 } from "../../../../apiConfig";
 import { Link } from "react-router-dom";
 import { useTrailerModal } from "../../../../utils/hooks";
@@ -28,7 +28,7 @@ export const PrimaryCard = ({
   const fetchVideos = async (id: number): Promise<void> => {
     try {
       const response = await fetch(
-        `${BASE_API_URL}/${id}/videos?api_key=${API_KEY}`
+        `${BASE_MOVIE_URL}/${id}/videos?api_key=${API_KEY}`
       );
       const videos = (await response.json()) as {
         results: Record<string, string>[];

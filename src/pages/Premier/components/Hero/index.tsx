@@ -2,11 +2,15 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Scrollbar, A11y, Autoplay, Mousewheel } from "swiper";
 import { PrimaryCard } from "../PrimaryCard";
-import { dummyMovies } from "../../dummy";
+import { MovieItemAttr } from "../../../../components/Carousel/types";
 
 SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar]);
 
-export const Hero = (): React.ReactElement => {
+type HeroProps = {
+  data: MovieItemAttr[];
+};
+
+export const Hero = ({ data }: HeroProps): React.ReactElement => {
   return (
     <Swiper
       tag="section"
@@ -14,7 +18,7 @@ export const Hero = (): React.ReactElement => {
       a11y={{
         enabled: true,
       }}
-      speed={800}
+      speed={500}
       scrollbar={{
         draggable: true,
         dragClass: "swiper-scrollbar-drag bg-primary",
@@ -27,7 +31,7 @@ export const Hero = (): React.ReactElement => {
         forceToAxis: true,
       }}
     >
-      {dummyMovies.map((movie) => {
+      {data.map((movie) => {
         const { id, title, backdrop_path, overview, vote_average } = movie;
         return (
           <SwiperSlide key={id}>
