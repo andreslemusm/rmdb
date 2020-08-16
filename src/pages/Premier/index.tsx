@@ -1,31 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Hero } from "./components/Hero";
 import { Carousel } from "../../components/Carousel";
 import { Layout } from "../../components/Layout";
-import { moviesLists, MoviesContext } from "./context/movies";
+import { useQuery } from "react-query";
+import { fetchMovies, releaseTypes } from "./queries";
 
 export const Premier = (): React.ReactElement => {
-  const { state, dispatch, thunks } = useContext(MoviesContext);
-
-  useEffect(() => {
-    if (state.movies === null) {
-      dispatch(thunks.fetchMovies);
-    }
-  }, [dispatch, thunks.fetchMovies, state.movies]);
+  const { isLoading, data } = useQuery("movies", fetchMovies, {
+    staleTime: Infinity,
+  });
 
   return (
     <Layout>
-      {state.loading && state.movies === null ? (
+      {isLoading ? (
         "loading..."
       ) : (
         <React.Fragment>
-          <Hero data={state.movies!.trending} />
+          <Hero data={data!.trending} />
           <div className="pb-8 md:pb-16 md:pt-2">
-            {moviesLists.map((listType) => (
+            {releaseTypes.map((listType) => (
               <React.Fragment key={listType}>
                 <Carousel
                   title={listType.split("_").join(" ")}
-                  data={state.movies![listType]}
+                  data={data![listType]}
                   cardType="movie"
                   titleClass="pl-10 pb-3 md:pl-0 md:w-3/4 md:mx-auto md:pb-6 md:text-gray-500 uppercase"
                   sliderClass="px-5 sm:px-8 md:p-0"

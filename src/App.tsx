@@ -4,13 +4,13 @@ import { Premier } from "./pages/Premier";
 import { Discover } from "./pages/Discover";
 import { Details } from "./pages/Details";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { MoviesProvider } from "./pages/Premier/context/movies";
+import { ReactQueryDevtools } from "react-query-devtools";
 
 export const App = (): React.ReactElement => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <MoviesProvider>
+    <React.Fragment>
+      <BrowserRouter>
+        <ScrollToTop />
         <Switch>
           <Route path="/premier">
             <Premier />
@@ -23,7 +23,9 @@ export const App = (): React.ReactElement => {
           </Route>
           <Redirect from="*" to="/premier" />
         </Switch>
-      </MoviesProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+      {/* Only in development mode */}
+      <ReactQueryDevtools initialIsOpen />
+    </React.Fragment>
   );
 };
