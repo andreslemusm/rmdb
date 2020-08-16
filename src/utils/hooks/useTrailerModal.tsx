@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "../../pages/Premier/components/Modal";
+import { Modal } from "../../components/Modal";
 import { ReactComponent as CaretRight } from "../../assets/caret-right.svg";
 import { ReactComponent as Close } from "../../assets/close.svg";
 
