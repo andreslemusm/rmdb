@@ -52,7 +52,7 @@ export const PrimaryCard = ({
               <p className="w-3/4 pr-16 pt-6 tracking-wider text-gray-300 text-sm lg:text-base">
                 {description.length < 200
                   ? description
-                  : `${description.slice(0, 197)}`}
+                  : `${description.slice(0, 197)}...`}
               </p>
               <div className="flex justify-between items-center font-light">
                 <p className="text-gray-300 pt-2 tracking-wider text-sm md:text-base">

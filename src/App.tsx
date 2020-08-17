@@ -12,13 +12,13 @@ export const App = (): React.ReactElement => {
       <BrowserRouter>
         <ScrollToTop />
         <Switch>
-          <Route path="/premier">
+          <Route exact path="/premier">
             <Premier />
           </Route>
-          <Route path="/discover/:section">
+          <Route exact path="/discover">
             <Discover />
           </Route>
-          <Route path="/movie/:id">
+          <Route exact path="/movie/:id">
             <Details />
           </Route>
           <Redirect from="*" to="/premier" />

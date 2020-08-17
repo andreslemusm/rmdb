@@ -1,9 +1,11 @@
 import React from "react";
+import { useInfiniteQuery } from "react-query";
 import { MovieCard } from "../../components/MovieCard";
-import { dummyMovies } from "../Premier/dummy";
 import { Dropdown } from "./components/Dropdown";
 import { genres } from "./dummy";
 import { Layout } from "../../components/Layout";
+import { Loading } from "../../components/Loading";
+import { searchMovies } from "./queries";
 
 export const Discover = (): React.ReactElement => {
   const filters = ["country", "genre", "language", "year"];
@@ -13,22 +15,17 @@ export const Discover = (): React.ReactElement => {
     name: genre.name,
   }));
 
-  // React.useEffect(() => {
-  //   fetch(
-  //     `https://api.themoviedb.org/3/configuration/countries?api_key=${API_KEY}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.error(err));
-  // }, []);
-  // React.useEffect(() => {
-  //   fetch(
-  //     `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.error(err));
-  // }, []);
+  const { data, isLoading, fetchMore, isFetchingMore } = useInfiniteQuery(
+    "discover",
+    searchMovies,
+    {
+      staleTime: Infinity,
+      getFetchMore: (_lastPage, allPages) => allPages.length + 1,
+    }
+  );
+  function handleLoadMore(): void {
+    void fetchMore();
+  }
 
   return (
     <Layout>
@@ -44,21 +41,35 @@ export const Discover = (): React.ReactElement => {
           </div>
         </div>
         <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 grid-flow-row-dense">
-          {dummyMovies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path || ""}
-              title={movie.title}
-              language={movie.original_language}
-              releaseDate={movie.release_date}
-              voteAvg={movie.vote_average}
-            />
-          ))}
+          {isLoading
+            ? "loading..."
+            : data !== undefined &&
+              data
+                .flat()
+                .map((movie) => (
+                  <MovieCard
+                    key={movie.id}
+                    id={movie.id}
+                    imageUrl={movie.poster_path || ""}
+                    title={movie.title}
+                    language={movie.original_language}
+                    releaseDate={movie.release_date}
+                    voteAvg={movie.vote_average}
+                  />
+                ))}
         </div>
-        <button className="block mx-auto mb-20 uppercase text-gray-800 tracking-widest">
-          Load More
-        </button>
+        <div className="flex justify-center items-center h-20 mb-20">
+          {isFetchingMore ? (
+            <Loading />
+          ) : (
+            <button
+              onClick={handleLoadMore}
+              className="uppercase text-gray-800 tracking-widest transition-colors duration-200 hover:text-gray-500"
+            >
+              Load More
+            </button>
+          )}
+        </div>
       </section>
     </Layout>
   );

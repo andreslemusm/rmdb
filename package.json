@@ -27,7 +27,7 @@
     "react": "^16.13.1",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.13.1",
-    "react-query": "^2.5.14",
+    "react-query": "^2.5.7-tsnext.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "swiper": "^6.1.1",

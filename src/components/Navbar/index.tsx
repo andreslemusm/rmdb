@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 export const Navbar = (): React.ReactElement => {
   const sections = [
     { name: "Premier", path: "/premier" },
-    { name: "Movies", path: "/discover/movies" },
+    { name: "Discover", path: "/discover" },
   ];
 
   return (

@@ -2,11 +2,9 @@
 @tailwind components;
 
 .spinner {
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
   border-radius: 50%;
   perspective: 800px;
-  @apply absolute h-16 w-16;
+  @apply h-16 w-16;
 }
 
 .spinner > div {
