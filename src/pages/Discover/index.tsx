@@ -1,23 +1,22 @@
 import React from "react";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { MovieCard } from "../../components/MovieCard";
 import { Dropdown } from "./components/Dropdown";
-import { genres } from "./dummy";
 import { Layout } from "../../components/Layout";
 import { Loading } from "../../components/Loading";
-import { searchMovies } from "./queries";
+import { getDiscover, getGenres } from "./queries";
 
 export const Discover = (): React.ReactElement => {
+  // Filters
   const filters = ["country", "genre", "language", "year"];
+  const { data: genresData } = useQuery("genres", getGenres, {
+    staleTime: Infinity,
+  });
 
-  const genresOptions = genres.map((genre) => ({
-    value: genre.id.toString(),
-    name: genre.name,
-  }));
-
+  // Search movies
   const { data, isLoading, fetchMore, isFetchingMore } = useInfiniteQuery(
     "discover",
-    searchMovies,
+    getDiscover,
     {
       staleTime: Infinity,
       getFetchMore: (_lastPage, allPages) => allPages.length + 1,
@@ -36,7 +35,7 @@ export const Discover = (): React.ReactElement => {
           </h2>
           <div className="pt-5 md:p-0 flex flex-wrap sm:flex-no-wrap justify-center max-w-xl">
             {filters.map((filter) => (
-              <Dropdown key={filter} label={filter} options={genresOptions} />
+              <Dropdown key={filter} label={filter} options={genresData} />
             ))}
           </div>
         </div>
