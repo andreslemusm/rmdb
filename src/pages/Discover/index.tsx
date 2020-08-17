@@ -8,10 +8,18 @@ import { getDiscover, getGenres } from "./queries";
 
 export const Discover = (): React.ReactElement => {
   // Filters
-  const filters = ["country", "genre", "language", "year"];
   const { data: genresData } = useQuery("genres", getGenres, {
     staleTime: Infinity,
   });
+  const sortByData = [
+    { value: "popularity.asc", name: "Popularity Ascending" },
+    { value: "release_date.desc", name: "Release Date Descending" },
+    { value: "release_date.asc", name: "Release Date Ascending" },
+    { value: "revenue.desc", name: "Revenue Descending" },
+    { value: "revenue.asc", name: "Revenue Ascending" },
+    { value: "vote_average.desc", name: "Vote Average Descending" },
+    { value: "vote_average.asc", name: "Vote Average Ascending" },
+  ];
 
   // Search movies
   const { data, isLoading, fetchMore, isFetchingMore } = useInfiniteQuery(
@@ -34,9 +42,8 @@ export const Discover = (): React.ReactElement => {
             Movies
           </h2>
           <div className="pt-5 md:p-0 flex flex-wrap sm:flex-no-wrap justify-center max-w-xl">
-            {filters.map((filter) => (
-              <Dropdown key={filter} label={filter} options={genresData} />
-            ))}
+            <Dropdown label="genre" options={genresData} />
+            <Dropdown label="sort by" options={sortByData} />
           </div>
         </div>
         <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 grid-flow-row-dense">
