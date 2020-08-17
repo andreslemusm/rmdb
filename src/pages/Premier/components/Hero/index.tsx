@@ -38,7 +38,7 @@ export const Hero = ({ data }: HeroProps): React.ReactElement => {
             <PrimaryCard
               id={id}
               title={title}
-              imageUrl={backdrop_path}
+              imageUrl={backdrop_path || ""}
               description={overview}
               score={vote_average}
             />

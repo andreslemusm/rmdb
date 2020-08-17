@@ -17,7 +17,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "Four undying warriors who've secretly protected humanity for centuries become targeted for their mysterious powers just as they discover a new immortal.",
     poster_path: "/cjr4NWURcVN3gW5FlHeabgBHLrY.jpg",
     popularity: 351.438,
-    media_type: "movie",
   },
   {
     id: 516486,
@@ -35,7 +34,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "A first-time captain leads a convoy of allied ships carrying thousands of soldiers across the treacherous waters of the “Black Pit” to the front lines of WW2. With no air cover protection for 5 days, the captain and his convoy must battle the surrounding enemy Nazi U-boats in order to give the allies a chance to win the war.",
     poster_path: "/AsdB9A2XGalCZVjlyG9tRf03IfW.jpg",
     popularity: 351.193,
-    media_type: "movie",
   },
   {
     id: 587792,
@@ -53,7 +51,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "When carefree Nyles and reluctant maid of honor Sarah have a chance encounter at a Palm Springs wedding, things get complicated as they are unable to escape the venue, themselves, or each other.",
     poster_path: "/yf5IuMW6GHghu39kxA0oFx7Bxmj.jpg",
     popularity: 66.585,
-    media_type: "movie",
   },
   {
     id: 299534,
@@ -71,7 +68,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
     poster_path: "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
     popularity: 72.622,
-    media_type: "movie",
   },
   {
     id: 539181,
@@ -89,7 +85,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "When Edna, the elderly and widowed matriarch of the family, goes missing, her daughter Kay and granddaughter Sam travel to their remote family home to find her. Soon after her return, they start to discover a sinister presence haunting the house and taking control of Edna.",
     poster_path: "/3wZ0gxLqsPleneFSTZILmM3BE8Q.jpg",
     popularity: 87.111,
-    media_type: "movie",
   },
   {
     id: 606234,
@@ -107,7 +102,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "2038: George Almore is working on a true human-equivalent AI, and his latest prototype is almost ready. This sensitive phase is also the riskiest as he has a goal that must be hidden at all costs—being reunited with his dead wife.",
     poster_path: "/q9t1AxbzyGQENDunK1GT8OS4aJl.jpg",
     popularity: 53.994,
-    media_type: "movie",
   },
   {
     id: 556574,
@@ -125,7 +119,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "Presenting the tale of American founding father Alexander Hamilton, this filmed version of the original Broadway smash hit is the story of America then, told by America now.",
     poster_path: "/h1B7tW0t399VDjAcWJh8m87469b.jpg",
     popularity: 82.625,
-    media_type: "movie",
   },
   {
     id: 385103,
@@ -143,7 +136,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "In Scooby-Doo’s greatest adventure yet, see the never-before told story of how lifelong friends Scooby and Shaggy first met and how they joined forces with young detectives Fred, Velma, and Daphne to form the famous Mystery Inc. Now, with hundreds of cases solved, Scooby and the gang face their biggest, toughest mystery ever: an evil plot to unleash the ghost dog Cerberus upon the world. As they race to stop this global “dogpocalypse,” the gang discovers that Scooby has a secret legacy and an epic destiny greater than anyone ever imagined.",
     poster_path: "/jHo2M1OiH9Re33jYtUQdfzPeUkx.jpg",
     popularity: 100.079,
-    media_type: "movie",
   },
   {
     id: 11,
@@ -161,7 +153,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
     poster_path: "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
     popularity: 68.052,
-    media_type: "movie",
   },
   {
     adult: false,
@@ -179,7 +170,6 @@ export const dummyMovies: MovieItemAttr[] = [
     vote_average: 2.1,
     vote_count: 8,
     popularity: 4.74,
-    media_type: "movie",
   },
   {
     id: 495764,
@@ -199,7 +189,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "Harley Quinn joins forces with a singer, an assassin and a police detective to help a young girl who had a hit placed on her after she stole a rare diamond from a crime lord.",
     poster_path: "/h4VB6m0RwcicVEZvzftYZyKXs6K.jpg",
     popularity: 98.917,
-    media_type: "movie",
   },
   {
     id: 556678,
@@ -217,7 +206,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "In 1800s England, a well-meaning but selfish young woman meddles in the love lives of her friends.",
     poster_path: "/uHpHzbHLSsVmAuuGuQSpyVDZmDc.jpg",
     popularity: 41.656,
-    media_type: "movie",
   },
   {
     id: 531876,
@@ -235,7 +223,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "A small unit of U.S. soldiers, alone at the remote Combat Outpost Keating, located deep in the valley of three mountains in Afghanistan, battles to defend against an overwhelming force of Taliban fighters in a coordinated attack. The Battle of Kamdesh, as it was known, was the bloodiest American engagement of the Afghan War in 2009 and Bravo Troop 3-61 CAV became one of the most decorated units of the 19-year conflict.",
     poster_path: "/hPkqY2EMqWUnFEoedukilIUieVG.jpg",
     popularity: 117.321,
-    media_type: "movie",
   },
   {
     id: 686245,
@@ -253,7 +240,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "A disgraced doctor and his family are held hostage at their home by criminals on the run, when a robbery-gone-awry requires them to seek immediate medical attention.",
     poster_path: "/niyXFhGIk4W2WTcX2Eod8vx2Mfe.jpg",
     popularity: 48.775,
-    media_type: "movie",
   },
   {
     id: 428045,
@@ -271,7 +257,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again… What will prevail this time — the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?",
     poster_path: "/GAeK18hkfR6rzlo1vITvQhoEiW.jpg",
     popularity: 76.241,
-    media_type: "movie",
   },
   {
     id: 451184,
@@ -289,7 +274,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "Havana, Cuba, 1990. René González, an airplane pilot, unexpectedly flees the country, leaving behind his wife Olga and his daughter Irma, and begins a new life in Miami, where he becomes a member of an anti-Castro organization.",
     poster_path: "/fOvqEunubL3wPskvtk2Ficfl0pH.jpg",
     popularity: 54.082,
-    media_type: "movie",
   },
   {
     id: 508439,
@@ -307,7 +291,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "In a suburban fantasy world, two teenage elf brothers embark on an extraordinary quest to discover if there is still a little magic left out there.",
     poster_path: "/f4aul3FyD3jv3v4bul1IrkWZvzq.jpg",
     popularity: 67.737,
-    media_type: "movie",
   },
   {
     id: 181812,
@@ -325,7 +308,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.",
     poster_path: "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
     popularity: 63.217,
-    media_type: "movie",
   },
   {
     id: 706510,
@@ -343,7 +325,6 @@ export const dummyMovies: MovieItemAttr[] = [
       "A panicked young woman and her two best friends fly to Mexico to delete a ranting email she sent to her new boyfriend. On arrival, they run into her former beau, who soon gets caught up in their frantic scheme.",
     poster_path: "/hoUzSMxGu4Bm73EvH6B3iceFwW8.jpg",
     popularity: 76.859,
-    media_type: "movie",
   },
   {
     id: 522627,
@@ -361,6 +342,5 @@ export const dummyMovies: MovieItemAttr[] = [
       "American expat Mickey Pearson has built a highly profitable marijuana empire in London. When word gets out that he’s looking to cash out of the business forever it triggers plots, schemes, bribery and blackmail in an attempt to steal his domain out from under him.",
     poster_path: "/jtrhTYB7xSrJxR1vusu99nvnZ1g.jpg",
     popularity: 53.234,
-    media_type: "movie",
   },
 ];

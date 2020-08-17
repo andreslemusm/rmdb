@@ -70,7 +70,7 @@ export const Carousel = ({
                 <SwiperSlide key={id}>
                   <MovieCard
                     id={id}
-                    imageUrl={poster_path}
+                    imageUrl={poster_path || ""}
                     language={original_language}
                     releaseDate={release_date}
                     title={title}
