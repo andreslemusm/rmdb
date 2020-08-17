@@ -1,12 +1,5 @@
 export const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/";
 
-export const BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie";
-
-export const BASE_TRENDING_URL =
-  "https://api.themoviedb.org/3/trending/movie/day";
-
-export const BASE_DISCOVER_URL = "https://api.themoviedb.org/3/discover/movie";
-
 export const BASE_URL = "https://api.themoviedb.org/3/";
 
 // You should use your own api key my man.

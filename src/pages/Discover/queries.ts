@@ -1,5 +1,5 @@
 import { MovieItemAttr } from "../../components/Carousel/types";
-import { BASE_DISCOVER_URL, API_KEY, BASE_URL } from "../../apiConfig";
+import { API_KEY, BASE_URL } from "../../apiConfig";
 import { GenreAttr } from "./types";
 
 export const getDiscover = async (
@@ -8,7 +8,7 @@ export const getDiscover = async (
 ): Promise<MovieItemAttr[]> => {
   // Query
   const searchQuery = fetch(
-    `${BASE_DISCOVER_URL}?api_key=${API_KEY}&page=${page}`
+    `${BASE_URL}discover/movie?api_key=${API_KEY}&page=${page}`
   );
 
   // Request

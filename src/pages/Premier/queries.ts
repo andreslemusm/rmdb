@@ -1,4 +1,4 @@
-import { BASE_MOVIE_URL, API_KEY, BASE_TRENDING_URL } from "../../apiConfig";
+import { API_KEY, BASE_URL } from "../../apiConfig";
 import { MovieItemAttr } from "../../components/Carousel/types";
 
 export const releaseTypes = ["now_playing", "popular", "top_rated", "upcoming"];
@@ -8,9 +8,11 @@ export const fetchMovies = async (): Promise<
 > => {
   // Queries
   const releaseMovieQueries = releaseTypes.map((movieList) =>
-    fetch(`${BASE_MOVIE_URL}/${movieList}?api_key=${API_KEY}`)
+    fetch(`${BASE_URL}movie/${movieList}?api_key=${API_KEY}`)
   );
-  const trendingMovieQuery = fetch(`${BASE_TRENDING_URL}?api_key=${API_KEY}`);
+  const trendingMovieQuery = fetch(
+    `${BASE_URL}trending/movie/day?api_key=${API_KEY}`
+  );
 
   // Request
   const responses = await Promise.all([

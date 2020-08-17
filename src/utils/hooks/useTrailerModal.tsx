@@ -3,16 +3,14 @@ import { useQuery } from "react-query";
 import { Modal } from "../../components/Modal";
 import { ReactComponent as CaretRight } from "../../assets/caret-right.svg";
 import { ReactComponent as Close } from "../../assets/close.svg";
-import { BASE_MOVIE_URL, API_KEY } from "../../apiConfig";
+import { BASE_URL, API_KEY } from "../../apiConfig";
 
 const fetchTrailer = async (
   _key: string,
   id: number
 ): Promise<{ key: string; name: string } | undefined> => {
   // Query
-  const videosQuery = fetch(
-    `${BASE_MOVIE_URL}/${id}/videos?api_key=${API_KEY}`
-  );
+  const videosQuery = fetch(`${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`);
 
   // Request
   const response = await videosQuery;
