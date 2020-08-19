@@ -1,4 +1,5 @@
 import { GenreAttr } from "../Discover/types";
+import { MovieItemAttr } from "../../components/Carousel/types";
 
 type ProductionCompany = {
   id: number;
@@ -19,30 +20,37 @@ export type SpokenLanguage = {
 
 export type MovieDetailsAttr = {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   id: number;
   original_language: string;
   original_title: string;
-  overview: string;
+  overview: string | null;
   popularity: number;
-  poster_path: string;
-  belongs_to_collection?: Record<string, unknown> | null;
+  poster_path: string | null;
+  belongs_to_collection: Record<string, unknown> | null;
   budget: number;
   genres: GenreAttr[];
-  homepage: string;
-  imdb_id: string;
+  homepage: string | null;
+  imdb_id: string | null;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
   release_date: string;
   revenue: number;
-  runtime: number;
+  runtime: number | null;
   spoken_languages: SpokenLanguage[];
   status: string;
-  tagline: string;
+  tagline: string | null;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: {
+    cast: CastPersonAttr[];
+    crew: CrewPersonAttr[];
+  };
+  recommendations: {
+    results: MovieItemAttr[];
+  };
 };
 
 export type CrewPersonAttr = {
