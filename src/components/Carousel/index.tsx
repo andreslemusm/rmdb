@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { MovieCard } from "../MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
@@ -35,66 +35,79 @@ export const Carousel = ({
   titleClass = "",
   wrapperClass = "",
   sliderClass = "",
-}: CarouselProps): React.ReactElement => (
-  <section className={`max-w-screen-lg lg:mx-auto ${wrapperClass}`}>
-    <h2
-      className={`text-gray-800 font-light tracking-wider text-lg ${titleClass}`}
-    >
-      {title}
-    </h2>
-    <Swiper
-      tag="section"
-      className={sliderClass}
-      a11y={{
-        enabled: true,
-      }}
-      breakpoints={breakpointsConfig}
-      mousewheel={{
-        forceToAxis: true,
-      }}
-      spaceBetween={15}
-    >
-      {data.length > 1 &&
-        data.map((element) => {
-          switch (cardType) {
-            case "movie": {
-              const {
-                id,
-                original_language,
-                poster_path,
-                release_date,
-                title,
-                vote_average,
-              } = element as MovieItemAttr;
-              return (
-                <SwiperSlide key={id}>
-                  <MovieCard
-                    id={id}
-                    imageUrl={poster_path || ""}
-                    language={original_language}
-                    releaseDate={release_date}
-                    title={title}
-                    voteAvg={vote_average}
-                  />
-                </SwiperSlide>
-              );
+}: CarouselProps): React.ReactElement => {
+  // Workaround to update swiper slides between updates.
+  const swiperRef = useRef<SwiperCore>();
+  useEffect(() => {
+    swiperRef.current?.updateSlides();
+  }, [data]);
+
+  return (
+    <section className={`max-w-screen-lg lg:mx-auto ${wrapperClass}`}>
+      <h2
+        className={`text-gray-800 font-light tracking-wider text-lg ${titleClass}`}
+      >
+        {title}
+      </h2>
+      <Swiper
+        tag="section"
+        wrapperTag="ul"
+        className={sliderClass}
+        a11y={{
+          enabled: true,
+        }}
+        breakpoints={breakpointsConfig}
+        mousewheel={{
+          forceToAxis: true,
+        }}
+        cssMode
+        spaceBetween={15}
+        onInit={(swiper): void => {
+          swiperRef.current = swiper;
+        }}
+      >
+        {data.length > 0 &&
+          data.map((element) => {
+            switch (cardType) {
+              case "movie": {
+                const {
+                  id,
+                  original_language,
+                  poster_path,
+                  release_date,
+                  title,
+                  vote_average,
+                } = element as MovieItemAttr;
+                return (
+                  <SwiperSlide tag="li" key={id}>
+                    <MovieCard
+                      id={id}
+                      imageUrl={poster_path || ""}
+                      language={original_language}
+                      releaseDate={release_date}
+                      title={title}
+                      voteAvg={vote_average}
+                    />
+                  </SwiperSlide>
+                );
+              }
+              default: {
+                const castPerson = element as CastPersonAttr;
+                const { id, profile_path, character, name } = castPerson;
+                return (
+                  <SwiperSlide tag="li" key={id}>
+                    <CastCard
+                      id={id}
+                      imageUrl={profile_path as string}
+                      character={character}
+                      name={name}
+                    />
+                  </SwiperSlide>
+                );
+              }
             }
-            default: {
-              const castPerson = element as CastPersonAttr;
-              const { id, profile_path, character, name } = castPerson;
-              return (
-                <SwiperSlide key={id}>
-                  <CastCard
-                    id={id}
-                    imageUrl={profile_path as string}
-                    character={character}
-                    name={name}
-                  />
-                </SwiperSlide>
-              );
-            }
-          }
-        })}
-    </Swiper>
-  </section>
-);
+          })}
+      </Swiper>
+    </section>
+  );
+};
