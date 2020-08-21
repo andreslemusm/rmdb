@@ -25,7 +25,7 @@ export const MovieCard = ({
     <Link to={`/movie/${id}`}>
       <img
         className="w-full rounded-md md:rounded-none"
-        src={`${BASE_IMAGE_URL}${posterSize.sm}${imageUrl}`}
+        src={`${BASE_IMAGE_URL}${posterSize.xs}${imageUrl}`}
         alt={title}
       />
       <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">

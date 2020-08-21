@@ -60,7 +60,6 @@ export const Carousel = ({
         mousewheel={{
           forceToAxis: true,
         }}
-        cssMode
         spaceBetween={15}
         onInit={(swiper): void => {
           swiperRef.current = swiper;
@@ -97,7 +96,6 @@ export const Carousel = ({
                 return (
                   <SwiperSlide tag="li" key={id}>
                     <CastCard
-                      id={id}
                       imageUrl={profile_path as string}
                       character={character}
                       name={name}

@@ -5,7 +5,7 @@ import { CircularProgress } from "../../components/CircularProgress";
 import { Fact } from "./components/Fact";
 import { Carousel } from "../../components/Carousel";
 import { Layout } from "../../components/Layout";
-import { BASE_IMAGE_URL, backdropSize } from "../../apiConfig";
+import { BASE_IMAGE_URL, backdropSize, posterSize } from "../../apiConfig";
 import {
   dateFormatter,
   langFormatter,
@@ -85,15 +85,25 @@ export const Details = (): React.ReactElement => {
                   }}
                 />
                 <section className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
-                  <img
-                    className="w-full md:w-5/12 lg:w-4/12 rounded-md md:rounded shadow-md"
-                    src={
-                      movieDetails.poster_path
-                        ? `${BASE_IMAGE_URL}original${movieDetails.poster_path}`
-                        : undefined
-                    }
-                    alt={`${movieDetails.title} poster`}
-                  />
+                  <picture className="w-full md:w-5/12 lg:w-4/12">
+                    <source
+                      srcSet={
+                        movieDetails.poster_path
+                          ? `${BASE_IMAGE_URL}${posterSize.md}${movieDetails.poster_path}`
+                          : undefined
+                      }
+                      media="(min-width: 500px) and (max-width: 768px)"
+                    />
+                    <img
+                      className="w-full rounded-md md:rounded shadow-md"
+                      src={
+                        movieDetails.poster_path
+                          ? `${BASE_IMAGE_URL}${posterSize.sm}${movieDetails.poster_path}`
+                          : undefined
+                      }
+                      alt={`${movieDetails.title} poster`}
+                    />
+                  </picture>
                   <article className="mt-6 md:mt-0 md:ml-6 md:w-7/12 lg:w-8/12 text-gray-100">
                     <h2 className="text-4xl">{movieDetails.title}</h2>
                     <div className="mt-3">

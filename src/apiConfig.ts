@@ -12,6 +12,7 @@ export enum backdropSize {
 }
 
 export enum posterSize {
+  xs = "w342",
   sm = "w500",
   md = "w780",
   lg = "original",
