@@ -43,12 +43,14 @@
     "eslint-plugin-react-hooks": "^4.0.7",
     "prettier": "^2.0.5",
     "react-query-devtools": "^2.4.2",
+    "serve": "^11.3.2",
     "tailwindcss": "^1.6.2"
   },
   "scripts": {
     "prestart": "npm run build:tailwind",
     "start": "react-scripts start",
     "build": "npm run build:tailwind && react-scripts build",
+    "serve:production": "export NODE_ENV=production && npm run build && npx serve -s -l tcp://192.168.1.55:3000 ./build",
     "build:tailwind": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.output.css -c tailwind.config.js",
     "test": "react-scripts test",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --format codeframe"
