@@ -30,11 +30,15 @@ export const PrimaryCard = ({
             <picture>
               <source
                 srcSet={`${BASE_IMAGE_URL}${backdropSize.lg}${imageUrl}`}
-                media="(min-width: 1024px)"
+                media="(min-width: 1280px)"
+              />
+              <source
+                srcSet={`${BASE_IMAGE_URL}${backdropSize.md}${imageUrl}`}
+                media="(min-width: 768px)"
               />
               <img
                 className="relative w-full object-cover object-top shadow-lg rounded-md md:rounded-none md:shadow-none xl:h-screen"
-                src={`${BASE_IMAGE_URL}${backdropSize.md}${imageUrl}`}
+                src={`${BASE_IMAGE_URL}${backdropSize.sm}${imageUrl}`}
                 alt={title}
               />
             </picture>

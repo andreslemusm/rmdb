@@ -31,7 +31,7 @@ export const Hero = ({ data }: HeroProps): React.ReactElement => {
         forceToAxis: true,
       }}
     >
-      {data.map((movie) => {
+      {data.slice(0, 20).map((movie) => {
         const { id, title, backdrop_path, overview, vote_average } = movie;
         return (
           <SwiperSlide key={id}>
