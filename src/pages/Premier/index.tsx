@@ -4,6 +4,7 @@ import { Carousel } from "../../components/Carousel";
 import { Layout } from "../../components/Layout";
 import { useQuery } from "react-query";
 import { fetchMovies, releaseTypes } from "./queries";
+import { Loading } from "../../components/Loading";
 
 export const Premier = (): React.ReactElement => {
   const { isLoading, data } = useQuery("movies", fetchMovies, {
@@ -13,7 +14,7 @@ export const Premier = (): React.ReactElement => {
   return (
     <Layout>
       {isLoading ? (
-        "loading..."
+        <Loading />
       ) : (
         <React.Fragment>
           <Hero data={data!.trending} />

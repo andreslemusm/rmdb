@@ -66,7 +66,7 @@ export const Carousel = ({
         }}
       >
         {data.length > 0 &&
-          data.map((element) => {
+          data.slice(0, 15).map((element) => {
             switch (cardType) {
               case "movie": {
                 const {
