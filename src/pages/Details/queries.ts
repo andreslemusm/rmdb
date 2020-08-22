@@ -1,4 +1,4 @@
-import { MovieDetailsAttr, CastPersonAttr } from "./types";
+import { MovieDetailsAttr, CastPersonAttr, VideoAttr } from "./types";
 import { MovieItemAttr } from "../../components/Carousel/types";
 import {
   BASE_URL,
@@ -13,7 +13,7 @@ export const getDetails = async (
   _key: string,
   id: string
 ): Promise<
-  Omit<MovieDetailsAttr, "credits" | "recommendations"> & {
+  Omit<MovieDetailsAttr, "credits" | "recommendations" | "videos"> & {
     credits: {
       cast: CastPersonAttr[];
       directors: string[];
@@ -21,11 +21,12 @@ export const getDetails = async (
     };
     recommendations: MovieItemAttr[];
     vibrantColor: string;
+    videos: VideoAttr[];
   }
 > => {
   // Query
   const detailsQuery = fetch(
-    `${BASE_URL}movie/${id}?api_key=${API_KEY}&append_to_response=credits,recommendations`
+    `${BASE_URL}movie/${id}?api_key=${API_KEY}&append_to_response=credits,recommendations,videos`
   );
 
   // Requests
@@ -46,6 +47,7 @@ export const getDetails = async (
     },
     recommendations: data.recommendations.results,
     vibrantColor: palette?.DarkVibrant?.getHex() || "",
+    videos: data.videos.results,
   };
 
   return movieDetails;

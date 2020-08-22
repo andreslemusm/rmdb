@@ -3,19 +3,20 @@ import { MovieCard } from "../MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
 import { MovieItemAttr } from "./types";
-import { CastPersonAttr } from "../../pages/Details/types";
+import { CastPersonAttr, VideoAttr } from "../../pages/Details/types";
 import { CastCard } from "../CastCard";
+import { TrailerCard } from "../TrailerCard";
 
 SwiperCore.use([A11y, Mousewheel]);
 
 type CarouselProps = {
   title: string;
   titleClass?: string;
-  data: (MovieItemAttr | CastPersonAttr)[];
+  data: (MovieItemAttr | CastPersonAttr | VideoAttr)[];
   breakpointsConfig?: {
     [width: number]: SwiperOptions;
   };
-  cardType: "movie" | "castPerson";
+  cardType: "movie" | "castPerson" | "trailer";
   wrapperClass?: string;
   sliderClass?: string;
 };
@@ -87,6 +88,14 @@ export const Carousel = ({
                       title={title}
                       voteAvg={vote_average}
                     />
+                  </SwiperSlide>
+                );
+              }
+              case "trailer": {
+                const { name, key, id } = element as VideoAttr;
+                return (
+                  <SwiperSlide tag="li" key={id}>
+                    <TrailerCard videoKey={key} title={name} />
                   </SwiperSlide>
                 );
               }

@@ -64,7 +64,7 @@ export const Details = (): React.ReactElement => {
       ) : (
         movieDetails !== undefined && (
           <section className="md:pt-18">
-            <section className="relative">
+            <div className="relative">
               <picture>
                 <source
                   srcSet={
@@ -175,21 +175,23 @@ export const Details = (): React.ReactElement => {
                   </div>
                 </article>
               </section>
-            </section>
-            <Carousel
-              title="Starring"
-              titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
-              data={movieDetails.credits.cast.slice(0, 30)}
-              cardType="castPerson"
-              breakpointsConfig={{
-                "0": { slidesPerView: 4 },
-                "470": { slidesPerView: 5 },
-                "575": { slidesPerView: 6 },
-                "1024": { slidesPerView: 7 },
-              }}
-              sliderClass="px-5 md:px-0 md:mx-5"
-              wrapperClass="pt-10"
-            />
+            </div>
+            {movieDetails.credits.cast.length > 0 && (
+              <Carousel
+                title="Starring"
+                titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
+                data={movieDetails.credits.cast.slice(0, 30)}
+                cardType="castPerson"
+                breakpointsConfig={{
+                  "0": { slidesPerView: 4 },
+                  "470": { slidesPerView: 5 },
+                  "575": { slidesPerView: 6 },
+                  "1024": { slidesPerView: 7 },
+                }}
+                sliderClass="px-5 md:px-0 md:mx-5"
+                wrapperClass="pt-10"
+              />
+            )}
             <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
             <section className="h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
               {facts.map((fact) => (
@@ -202,20 +204,37 @@ export const Details = (): React.ReactElement => {
               ))}
             </section>
             <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
-            <Carousel
-              title="Recommended"
-              data={movieDetails.recommendations}
-              cardType="movie"
-              titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
-              sliderClass="px-5 md:px-0 md:mx-5"
-              breakpointsConfig={{
-                "0": { slidesPerView: 3 },
-                "575": { slidesPerView: 4 },
-                "765": { slidesPerView: 5 },
-                "1024": { slidesPerView: 6 },
-              }}
-              wrapperClass="pb-12"
-            />
+            {movieDetails.recommendations.length > 0 && (
+              <Carousel
+                title="Recommended"
+                data={movieDetails.recommendations}
+                cardType="movie"
+                titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+                sliderClass="px-5 md:px-0 md:mx-5"
+                breakpointsConfig={{
+                  "0": { slidesPerView: 3 },
+                  "575": { slidesPerView: 4 },
+                  "765": { slidesPerView: 5 },
+                  "1024": { slidesPerView: 6 },
+                }}
+              />
+            )}
+            <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
+            {movieDetails.videos.length > 0 && (
+              <Carousel
+                title="Videos"
+                data={movieDetails.videos}
+                cardType="trailer"
+                titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+                sliderClass="px-5 md:px-0 md:mx-5"
+                breakpointsConfig={{
+                  "0": { slidesPerView: 1, cssMode: true },
+                  "575": { slidesPerView: 2, cssMode: true },
+                  "900": { slidesPerView: 3, cssMode: true },
+                }}
+                wrapperClass="pb-16"
+              />
+            )}
           </section>
         )
       )}
