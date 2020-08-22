@@ -7,7 +7,7 @@ export const dateFormatter: FactFormatter = (data): string =>
   new Date(data as string).toUTCString().slice(0, 16);
 
 export const langFormatter: FactFormatter = (data): string =>
-  (data as SpokenLanguage[])[0].name;
+  (data as SpokenLanguage[])[0]?.name ?? undefined;
 
 export const moneyFormatter: FactFormatter = (data): string =>
-  `$ ${(data as number).toLocaleString()}`;
+  `$ ${(data as number)?.toLocaleString()}` ?? undefined;

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { getYear } from "../../utils/formats";
 import { CircularProgress } from "../CircularProgress";
 import { BASE_IMAGE_URL, posterSize } from "../../apiConfig";
+import imageNotFound from "../../assets/no-image-found.svg";
 
 type ItemCardProps = {
   id: number;
-  imageUrl: string;
+  imageUrl: string | null;
   language: string;
   title: string;
   releaseDate: string;
@@ -24,8 +25,12 @@ export const MovieCard = ({
   <article className="w-full h-full">
     <Link to={`/movie/${id}`}>
       <img
-        className="w-full rounded-md md:rounded-none"
-        src={`${BASE_IMAGE_URL}${posterSize.xs}${imageUrl}`}
+        className="w-full rounded-md md:rounded-none bg-gray-400"
+        src={
+          imageUrl
+            ? `${BASE_IMAGE_URL}${posterSize.xs}${imageUrl}`
+            : imageNotFound
+        }
         alt={title}
       />
       <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
@@ -33,13 +38,11 @@ export const MovieCard = ({
           {title}
         </h2>
         <div className="w-1/4 md:hidden">
-          {voteAvg !== undefined && <CircularProgress value={voteAvg} />}
+          {<CircularProgress value={voteAvg === 0 ? 5 : voteAvg} />}
         </div>
         <div className="hidden md:block">
           <span className="text-xs text-gray-900 uppercase">
-            {releaseDate !== undefined &&
-              language !== undefined &&
-              `${getYear(releaseDate)} ${language}`}
+            {`${getYear(releaseDate)} ${language}`}
           </span>
         </div>
       </div>

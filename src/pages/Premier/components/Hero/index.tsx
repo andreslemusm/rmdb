@@ -36,7 +36,7 @@ export const Hero = ({ data }: HeroProps): React.ReactElement => {
         return (
           <SwiperSlide key={id}>
             <PrimaryCard
-              id={id}
+              id={id.toString()}
               title={title}
               imageUrl={backdrop_path || ""}
               description={overview}

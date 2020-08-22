@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useTrailerModal } from "../../../../utils/hooks";
 
 type PrimaryCardProps = {
-  id: number;
+  id: string;
   title: string;
   imageUrl: string;
   description: string;

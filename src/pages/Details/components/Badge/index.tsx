@@ -1,15 +1,9 @@
 import React from "react";
 
 type BadgeProps = {
-  className?: string;
   children: React.ReactNode;
 };
 
-export const Badge = ({
-  className = "",
-  children,
-}: BadgeProps): React.ReactElement => (
-  <span className={`text-xs border px-2 py-1 rounded-md ${className}`}>
-    {children}
-  </span>
+export const Badge = ({ children }: BadgeProps): React.ReactElement => (
+  <span className="text-xs border px-2 py-1 rounded-md">{children}</span>
 );

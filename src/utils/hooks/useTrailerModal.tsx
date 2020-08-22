@@ -9,7 +9,7 @@ import { TrailerCard } from "../../components/TrailerCard";
 
 const fetchTrailer = async (
   _key: string,
-  id: number
+  id: string
 ): Promise<VideoAttr | undefined> => {
   // Query
   const videosQuery = fetch(`${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`);
@@ -27,7 +27,7 @@ const fetchTrailer = async (
 };
 
 export const useTrailerModal = (
-  movieId: number
+  movieId: string
 ): {
   showModal: boolean;
   showButton: boolean;

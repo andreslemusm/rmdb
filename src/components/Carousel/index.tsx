@@ -101,11 +101,18 @@ export const Carousel = ({
               }
               default: {
                 const castPerson = element as CastPersonAttr;
-                const { id, profile_path, character, name } = castPerson;
+                const {
+                  id,
+                  profile_path,
+                  character,
+                  name,
+                  gender,
+                } = castPerson;
                 return (
                   <SwiperSlide tag="li" key={id}>
                     <CastCard
-                      imageUrl={profile_path as string}
+                      gender={gender ?? 1}
+                      imageUrl={profile_path}
                       character={character}
                       name={name}
                     />
