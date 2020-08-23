@@ -4,7 +4,6 @@ import { Premier } from "./pages/Premier";
 import { Discover } from "./pages/Discover";
 import { Details } from "./pages/Details";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { ReactQueryDevtools } from "react-query-devtools";
 import { Layout } from "./components/Layout";
 
 export const App = (): React.ReactElement => {
@@ -27,8 +26,6 @@ export const App = (): React.ReactElement => {
           </Switch>
         </Layout>
       </BrowserRouter>
-      {/* Only in development mode */}
-      <ReactQueryDevtools initialIsOpen />
     </React.Fragment>
   );
 };

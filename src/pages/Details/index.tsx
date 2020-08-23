@@ -115,7 +115,7 @@ export const Details = (): React.ReactElement => {
                 <Badge>{getYear(movieDetails.release_date)}</Badge>
               </span>
               <span className="mr-6">
-                {movieDetails.genres.map((genre) => (
+                {movieDetails.genres.slice(0, 4).map((genre) => (
                   <span className="mr-1" key={genre.id}>
                     <Badge>{genre.name}</Badge>
                   </span>
