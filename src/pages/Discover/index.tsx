@@ -51,7 +51,7 @@ export const Discover = (): React.ReactElement => {
         <Loading />
       ) : (
         data !== undefined && (
-          <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 col-gap-4 row-gap-6 grid-flow-row-dense">
+          <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-4 gap-y-6 grid-flow-row-dense">
             {data.flat().map((movie) => (
               <MovieCard
                 key={movie.id}
