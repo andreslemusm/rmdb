@@ -6,12 +6,16 @@ type DropdownProps = {
   options?: { value: string; name: string }[];
 };
 
-export const Dropdown = ({
+const DropdownView = ({
   label,
   options = [],
 }: DropdownProps): React.ReactElement => {
   const [value, setValue] = React.useState("");
-  function handleSelect(event: React.FocusEvent<HTMLSelectElement>): void {
+  function handleSelect(
+    event:
+      | React.FocusEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ): void {
     setValue(event.target.value);
   }
 
@@ -40,3 +44,5 @@ export const Dropdown = ({
     </div>
   );
 };
+
+export const Dropdown = React.memo(DropdownView);

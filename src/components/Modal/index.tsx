@@ -5,6 +5,8 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
+const modalRoot = document.getElementById("modal-root") as HTMLElement;
+
 export const Modal = ({ children }: ModalProps): React.ReactElement => {
   const ref = React.useRef<HTMLDivElement>(null!);
   if (ref.current === null) {
@@ -13,7 +15,6 @@ export const Modal = ({ children }: ModalProps): React.ReactElement => {
   }
 
   React.useEffect(() => {
-    const modalRoot = document.getElementById("modal-root") as HTMLElement;
     modalRoot.appendChild(ref.current);
 
     return (): void => {

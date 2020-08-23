@@ -1,7 +1,13 @@
 import React from "react";
 
-export const Loading = (): React.ReactElement => (
-  <div className="h-screen flex justify-center items-center">
+type LoadingProps = {
+  height?: string;
+};
+
+export const Loading = ({
+  height = "h-screen",
+}: LoadingProps): React.ReactElement => (
+  <div className={`${height} flex justify-center items-center`}>
     <div className="spinner">
       <div></div>
       <div></div>

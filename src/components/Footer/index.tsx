@@ -9,7 +9,7 @@ export const Footer = (): React.ReactElement => (
   <footer className="bg-primary">
     <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
       <Link
-        to="/"
+        to="/premier"
         className="flex ml-3 text-xl text-gray-200 font-black tracking-widest items-center md:justify-start justify-center"
       >
         RMDB

@@ -5,7 +5,7 @@ type TrailerCard = {
   videoKey: string;
 };
 
-export const TrailerCard = ({
+const TrailerCardView = ({
   title,
   videoKey,
 }: TrailerCard): React.ReactElement => (
@@ -25,3 +25,5 @@ export const TrailerCard = ({
     />
   </div>
 );
+
+export const TrailerCard = React.memo(TrailerCardView);

@@ -1,10 +1,16 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Scrollbar, A11y, Autoplay, Mousewheel } from "swiper";
+import SwiperCore, {
+  Scrollbar,
+  A11y,
+  Autoplay,
+  Mousewheel,
+  Virtual,
+} from "swiper";
 import { PrimaryCard } from "../PrimaryCard";
 import { MovieItemAttr } from "../../../../components/Carousel/types";
 
-SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar]);
+SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar, Virtual]);
 
 type HeroProps = {
   data: MovieItemAttr[];
@@ -30,15 +36,24 @@ export const Hero = ({ data }: HeroProps): React.ReactElement => {
       mousewheel={{
         forceToAxis: true,
       }}
+      virtual
     >
       {data.slice(0, 10).map((movie) => {
-        const { id, title, backdrop_path, overview, vote_average } = movie;
+        const {
+          id,
+          title,
+          backdrop_path,
+          overview,
+          vote_average,
+          release_date,
+        } = movie;
         return (
           <SwiperSlide key={id}>
             <PrimaryCard
               id={id.toString()}
               title={title}
-              imageUrl={backdrop_path || ""}
+              releaseDate={release_date}
+              imageUrl={backdrop_path}
               description={overview}
               score={vote_average}
             />

@@ -10,7 +10,7 @@ type CastCardProps = {
   gender: number;
 };
 
-export const CastCard = ({
+const CastCardView = ({
   character,
   imageUrl,
   name,
@@ -52,3 +52,5 @@ export const CastCard = ({
     </div>
   </article>
 );
+
+export const CastCard = React.memo(CastCardView);

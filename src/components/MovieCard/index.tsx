@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getYear } from "../../utils/formats";
 import { CircularProgress } from "../CircularProgress";
 import { BASE_IMAGE_URL, posterSize } from "../../apiConfig";
-import imageNotFound from "../../assets/no-image-found.svg";
+import imageNotFound from "../../assets/image-not-found.svg";
 
 type ItemCardProps = {
   id: number;
@@ -14,7 +14,7 @@ type ItemCardProps = {
   voteAvg: number;
 };
 
-export const MovieCard = ({
+const MovieCardView = ({
   id,
   imageUrl,
   language,
@@ -49,3 +49,5 @@ export const MovieCard = ({
     </Link>
   </article>
 );
+
+export const MovieCard = React.memo(MovieCardView);
