@@ -60,24 +60,24 @@ export const Details = (): React.ReactElement => {
   return isLoading || movieDetails === undefined ? (
     <Loading />
   ) : (
-    <section className="md:pt-18 pb-16">
+    <section className="pb-16 md:pt-24">
       <div className="relative">
         <picture>
           <source
             srcSet={
               movieDetails.backdrop_path
                 ? `${BASE_IMAGE_URL}${backdropSize.md}${movieDetails.backdrop_path}`
-                : undefined
+                : imageNotFound
             }
             media="(min-width: 768px)"
           />
           <img
-            className="block absolute left-0 z-0 object-cover w-full h-full"
+            className="block absolute left-0 z-0 object-cover w-full h-full bg-gray-500"
             style={{ filter: "grayscale(1) contrast(1.5)" }}
             src={
               movieDetails.backdrop_path
                 ? `${BASE_IMAGE_URL}${backdropSize.sm}${movieDetails.backdrop_path}`
-                : undefined
+                : imageNotFound
             }
             alt={`${movieDetails.title} backdrop`}
           />
@@ -112,7 +112,11 @@ export const Details = (): React.ReactElement => {
             <h2 className="text-4xl">{movieDetails.title}</h2>
             <div className="mt-3">
               <span className="mr-6">
-                <Badge>{getYear(movieDetails.release_date)}</Badge>
+                <Badge>
+                  {movieDetails.release_date
+                    ? getYear(movieDetails.release_date)
+                    : new Date().getFullYear() + 1}
+                </Badge>
               </span>
               <span className="mr-6">
                 {movieDetails.genres.slice(0, 4).map((genre) => (

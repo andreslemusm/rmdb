@@ -15,25 +15,25 @@
   @apply absolute;
 }
 
-.spinner > div:nth-child(1){
+.spinner > div:nth-child(1) {
   left: 0%;
   top: 0%;
   animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid #EFEFFA;
+  border-bottom: 3px solid #efeffa;
 }
 
 .spinner > div:nth-child(2) {
   right: 0%;
   top: 0%;
   animation: rotate-two 1s linear infinite;
-  border-right: 3px solid #EFEFFA;
+  border-right: 3px solid #efeffa;
 }
 
 .spinner > div:nth-child(3) {
   right: 0%;
   bottom: 0%;
   animation: rotate-three 1s linear infinite;
-  border-top: 3px solid #EFEFFA;
+  border-top: 3px solid #efeffa;
 }
 
 @keyframes rotate-one {
@@ -64,9 +64,3 @@
 }
 
 @tailwind utilities;
-
-@media (min-width: 768px) {
-  .md\:pt-18 {
-      padding-top: 4.5rem;
-  }
-}

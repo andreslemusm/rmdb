@@ -3,11 +3,8 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "swiper/swiper.scss";
-import "swiper/components/a11y";
-import "swiper/components/autoplay";
-import "swiper/components/mousewheel";
-import "swiper/components/scrollbar";
-import "swiper/components/virtual";
+import "swiper/components/a11y/a11y.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
 import "./styles/tailwind.output.css";
 
 ReactDOM.render(

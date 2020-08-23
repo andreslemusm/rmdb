@@ -44,7 +44,9 @@ const MovieCardView = ({
         {<CircularProgress value={voteAvg === 0 ? 5 : voteAvg} />}
       </div>
       <span className="hidden md:block text-xs text-gray-900 uppercase">
-        {`${getYear(releaseDate)} ${language}`}
+        {`${
+          releaseDate ? getYear(releaseDate) : new Date().getFullYear() + 1
+        } ${language}`}
       </span>
     </div>
   </article>

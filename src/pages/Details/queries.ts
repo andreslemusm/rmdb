@@ -46,7 +46,7 @@ export const getDetails = async (
       ...getPrincipalCrew(data.credits.crew),
     },
     recommendations: data.recommendations.results,
-    vibrantColor: palette?.DarkVibrant?.getHex() || "",
+    vibrantColor: palette?.DarkVibrant?.getHex() || "#555555",
     videos: data.videos.results.filter((video) => video.type !== "Trailer"),
   };
 
