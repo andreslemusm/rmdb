@@ -3,7 +3,7 @@ import { ReactComponent as MenuIcon } from "../../assets/menu.svg";
 import { NavLink, Link } from "react-router-dom";
 
 const sections = [
-  { name: "Premier", path: "/premier" },
+  { name: "Premier", path: "/" },
   { name: "Discover", path: "/discover" },
 ];
 
@@ -12,7 +12,7 @@ export const Navbar = (): React.ReactElement => {
     <header className="md:absolute w-full md:z-40">
       <div className="container mx-auto flex p-5 flex-row items-center justify-between tracking-wide lg:px-8">
         <Link
-          to="/premier"
+          to="/"
           className="flex font-black tracking-widest text-gray-200 items-center text-xl"
         >
           <span className="text-primary">R</span>MDB

@@ -13,7 +13,7 @@ export const App = (): React.ReactElement => {
         <ScrollToTop />
         <Layout>
           <Switch>
-            <Route exact path="/premier">
+            <Route exact path="/">
               <Premier />
             </Route>
             <Route exact path="/discover">
@@ -22,7 +22,7 @@ export const App = (): React.ReactElement => {
             <Route exact path="/movie/:id">
               <Details />
             </Route>
-            <Redirect from="*" to="/premier" />
+            <Redirect from="*" to="/" />
           </Switch>
         </Layout>
       </BrowserRouter>
