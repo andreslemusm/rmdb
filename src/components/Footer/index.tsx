@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = (): React.ReactElement => (
   <footer className="bg-primary">
-    <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <div className="container px-5 py-8 mx-auto flex items-center flex-col sm:flex-row lg:px-10">
       <Link
         to="/"
         className="flex ml-3 text-xl text-gray-200 font-black tracking-widest items-center md:justify-start justify-center"
@@ -25,7 +25,7 @@ export const Footer = (): React.ReactElement => (
           &#64;andresclm
         </a>
       </p>
-      <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+      <span className="inline-flex mt-4 justify-center sm:ml-auto sm:mt-0">
         <a
           rel="noopener noreferrer"
           target="_blank"

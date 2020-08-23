@@ -8,24 +8,22 @@ import { Layout } from "./components/Layout";
 
 export const App = (): React.ReactElement => {
   return (
-    <React.Fragment>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <ScrollToTop />
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <Premier />
-            </Route>
-            <Route exact path="/discover">
-              <Discover />
-            </Route>
-            <Route exact path="/movie/:id">
-              <Details />
-            </Route>
-            <Redirect from="*" to="/" />
-          </Switch>
-        </Layout>
-      </BrowserRouter>
-    </React.Fragment>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <ScrollToTop />
+      <Layout>
+        <Switch>
+          <Route path="/discover">
+            <Discover />
+          </Route>
+          <Route path="/movie/:id">
+            <Details />
+          </Route>
+          <Route path="/">
+            <Premier />
+          </Route>
+          <Redirect from="*" to="/" />
+        </Switch>
+      </Layout>
+    </BrowserRouter>
   );
 };

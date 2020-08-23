@@ -37,7 +37,7 @@ export const Carousel = ({
   wrapperClass = "",
   sliderClass = "",
 }: CarouselProps): React.ReactElement => {
-  // Workaround to update swiper slides between updates.
+  // Workaround to update swiper slides between rerenders.
   const swiperRef = useRef<SwiperCore>();
   useEffect(() => {
     swiperRef.current?.updateSlides();

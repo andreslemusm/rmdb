@@ -47,7 +47,7 @@ export const getDetails = async (
     },
     recommendations: data.recommendations.results,
     vibrantColor: palette?.DarkVibrant?.getHex() || "",
-    videos: data.videos.results,
+    videos: data.videos.results.filter((video) => video.type !== "Trailer"),
   };
 
   return movieDetails;

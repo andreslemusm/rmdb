@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import React from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { MovieCard } from "../../components/MovieCard";

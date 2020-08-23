@@ -33,20 +33,20 @@ const MovieCardView = ({
         }
         alt={title}
       />
-      <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
-        <h2 className="text-gray-700 w-3/4 md:text-sm md:w-full whitespace-no-wrap truncate">
+    </Link>
+    <div className="mt-3 px-2 flex items-center justify-between md:flex-col md:items-start">
+      <Link className="w-3/4 md:w-full" to={`/movie/${id}`}>
+        <h2 className="text-gray-700 md:text-sm whitespace-no-wrap truncate">
           {title}
         </h2>
-        <div className="w-1/4 md:hidden">
-          {<CircularProgress value={voteAvg === 0 ? 5 : voteAvg} />}
-        </div>
-        <div className="hidden md:block">
-          <span className="text-xs text-gray-900 uppercase">
-            {`${getYear(releaseDate)} ${language}`}
-          </span>
-        </div>
+      </Link>
+      <div className="w-1/4 md:hidden">
+        {<CircularProgress value={voteAvg === 0 ? 5 : voteAvg} />}
       </div>
-    </Link>
+      <span className="hidden md:block text-xs text-gray-900 uppercase">
+        {`${getYear(releaseDate)} ${language}`}
+      </span>
+    </div>
   </article>
 );
 

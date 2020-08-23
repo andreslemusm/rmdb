@@ -7,9 +7,9 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps): React.ReactElement => (
-  <div className="relative">
+  <React.Fragment>
     <Navbar />
     <main>{children}</main>
     <Footer />
-  </div>
+  </React.Fragment>
 );

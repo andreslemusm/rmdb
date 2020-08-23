@@ -10,17 +10,17 @@ export const Premier = (): React.ReactElement => {
     staleTime: Infinity,
   });
 
-  return isLoading ? (
+  return isLoading || data === undefined ? (
     <Loading />
   ) : (
     <React.Fragment>
-      <Hero data={data!.trending} />
+      <Hero data={data.trending} />
       <div className="pb-8 md:pb-16 md:pt-2">
         {releaseTypes.map((listType) => (
           <React.Fragment key={listType}>
             <Carousel
               title={listType.split("_").join(" ")}
-              data={data![listType]}
+              data={data[listType]}
               cardType="movie"
               titleClass="pl-10 pb-3 md:pl-0 md:w-3/4 md:mx-auto md:pb-6 md:text-gray-500 uppercase"
               sliderClass="px-5 sm:px-8 md:p-0"
