@@ -9,7 +9,7 @@ import { Layout } from "./components/Layout";
 export const App = (): React.ReactElement => {
   return (
     <React.Fragment>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ScrollToTop />
         <Layout>
           <Switch>
