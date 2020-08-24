@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 
@@ -7,9 +7,9 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps): React.ReactElement => (
-  <React.Fragment>
+  <Fragment>
     <Navbar />
     <main>{children}</main>
     <Footer />
-  </React.Fragment>
+  </Fragment>
 );

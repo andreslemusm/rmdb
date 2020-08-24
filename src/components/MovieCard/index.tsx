@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { getYear } from "../../utils/formats";
 import { CircularProgress } from "../CircularProgress";
@@ -28,7 +28,7 @@ const MovieCardView = ({
         className="w-full rounded-md md:rounded-none bg-gray-400"
         src={
           imageUrl
-            ? `${BASE_IMAGE_URL}${posterSize.xs}${imageUrl}`
+            ? `${BASE_IMAGE_URL}${posterSize.sm}${imageUrl}`
             : imageNotFound
         }
         alt={title}
@@ -52,4 +52,4 @@ const MovieCardView = ({
   </article>
 );
 
-export const MovieCard = React.memo(MovieCardView);
+export const MovieCard = memo(MovieCardView);

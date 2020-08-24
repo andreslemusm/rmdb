@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type TrailerCard = {
   title: string;
@@ -26,4 +26,4 @@ const TrailerCardView = ({
   </div>
 );
 
-export const TrailerCard = React.memo(TrailerCardView);
+export const TrailerCard = memo(TrailerCardView);

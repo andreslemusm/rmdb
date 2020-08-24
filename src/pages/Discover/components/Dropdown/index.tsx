@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, memo } from "react";
 import { ReactComponent as CaretDown } from "../../../../assets/caret-down.svg";
 
 type DropdownProps = {
@@ -10,7 +10,7 @@ const DropdownView = ({
   label,
   options = [],
 }: DropdownProps): React.ReactElement => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
   function handleSelect(
     event:
       | React.FocusEvent<HTMLSelectElement>
@@ -45,4 +45,4 @@ const DropdownView = ({
   );
 };
 
-export const Dropdown = React.memo(DropdownView);
+export const Dropdown = memo(DropdownView);

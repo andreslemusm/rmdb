@@ -16,7 +16,7 @@ const sortByData = [
   { value: "vote_average.asc", name: "Vote Average Ascending" },
 ];
 
-export const Discover = (): React.ReactElement => {
+const Discover = (): React.ReactElement => {
   // Filters
   const { data: genresData } = useQuery("genres", getGenres, {
     staleTime: Infinity,
@@ -35,7 +35,9 @@ export const Discover = (): React.ReactElement => {
     void fetchMore();
   }
 
-  return (
+  return isLoading || data === undefined ? (
+    <Loading />
+  ) : (
     <section className="px-5 max-w-6xl md:pt-24 md:mx-4 lg:mx-auto">
       <div className="flex flex-col md:flex-row justify-around items-center">
         <h2 className="lg:pl-16 uppercase text-lg text-gray-800 font-light tracking-wider">
@@ -46,25 +48,19 @@ export const Discover = (): React.ReactElement => {
           <Dropdown label="sort by" options={sortByData} />
         </div>
       </div>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        data !== undefined && (
-          <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-4 gap-y-6 grid-flow-row-dense">
-            {data.flat().map((movie) => (
-              <MovieCard
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                language={movie.original_language}
-                releaseDate={movie.release_date}
-                voteAvg={movie.vote_average}
-              />
-            ))}
-          </div>
-        )
-      )}
+      <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-4 gap-y-6 grid-flow-row-dense">
+        {data.flat().map((movie) => (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            imageUrl={movie.poster_path}
+            title={movie.title}
+            language={movie.original_language}
+            releaseDate={movie.release_date}
+            voteAvg={movie.vote_average}
+          />
+        ))}
+      </div>
       <div className="flex justify-center items-center h-20 mb-20">
         {isFetchingMore ? (
           <Loading height="h-auto" />
@@ -82,3 +78,5 @@ export const Discover = (): React.ReactElement => {
     </section>
   );
 };
+
+export default Discover;

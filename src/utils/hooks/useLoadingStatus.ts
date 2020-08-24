@@ -1,12 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 export const useLoadingStatus = (
   timeOut: number,
   defaultState: boolean
 ): boolean => {
-  const [isLoading, toggle] = React.useState(defaultState);
+  const [isLoading, toggle] = useState(defaultState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = window.setTimeout(() => {
       toggle(!defaultState);
     }, timeOut);

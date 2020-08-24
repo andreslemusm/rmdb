@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { getYear, toHourFormat } from "../../utils/formats";
 import { Badge } from "./components/Badge";
 import { CircularProgress } from "../../components/CircularProgress";
@@ -42,7 +42,7 @@ const facts: FactConfig[] = [
   },
 ];
 
-export const Details = (): React.ReactElement => {
+const Details = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
 
   const { data: movieDetails, isLoading } = useQuery(
@@ -155,7 +155,7 @@ export const Details = (): React.ReactElement => {
             {(["directors", "writters"] as const).map(
               (job) =>
                 movieDetails.credits[job].length > 0 && (
-                  <React.Fragment key={job}>
+                  <Fragment key={job}>
                     <h3 className="uppercase text-gray-400 tracking-wide text-xs mt-5">
                       {job}
                     </h3>
@@ -164,7 +164,7 @@ export const Details = (): React.ReactElement => {
                         <Badge>{name}</Badge>
                       </span>
                     ))}
-                  </React.Fragment>
+                  </Fragment>
                 )
             )}
           </div>
@@ -200,26 +200,24 @@ export const Details = (): React.ReactElement => {
             )
         )}
       </div>
+      <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
       {movieDetails.recommendations.length > 0 && (
-        <React.Fragment>
-          <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
-          <Carousel
-            title="Recommended"
-            data={movieDetails.recommendations}
-            cardType="movie"
-            titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
-            sliderClass="px-5 md:px-0 md:mx-5"
-            breakpointsConfig={{
-              "0": { slidesPerView: 3 },
-              "575": { slidesPerView: 4 },
-              "765": { slidesPerView: 5 },
-              "1024": { slidesPerView: 6 },
-            }}
-          />
-        </React.Fragment>
+        <Carousel
+          title="Recommended"
+          data={movieDetails.recommendations}
+          cardType="movie"
+          titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+          sliderClass="px-5 md:px-0 md:mx-5"
+          breakpointsConfig={{
+            "0": { slidesPerView: 3 },
+            "575": { slidesPerView: 4 },
+            "765": { slidesPerView: 5 },
+            "1024": { slidesPerView: 6 },
+          }}
+        />
       )}
       {movieDetails.videos.length > 0 && (
-        <React.Fragment>
+        <Fragment>
           <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
           <Carousel
             title="Videos"
@@ -233,9 +231,11 @@ export const Details = (): React.ReactElement => {
               "900": { slidesPerView: 3, cssMode: true },
             }}
           />
-        </React.Fragment>
+        </Fragment>
       )}
       {showModal && <TrailerModal />}
     </section>
   );
 };
+
+export default Details;

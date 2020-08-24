@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, memo } from "react";
 import { BASE_IMAGE_URL, backdropSize } from "../../../../apiConfig";
 import { Link } from "react-router-dom";
 import { useTrailerModal } from "../../../../utils/hooks";
@@ -27,17 +27,25 @@ const PrimaryCardView = ({
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <article className="mx-2 md:mx-0 relative">
         <Link to={`/movie/${id}`}>
           <picture>
             <source
               srcSet={
                 imageUrl
+                  ? `${BASE_IMAGE_URL}${backdropSize.lg}${imageUrl}`
+                  : imageNotFound
+              }
+              media="(min-width: 1280px)"
+            />
+            <source
+              srcSet={
+                imageUrl
                   ? `${BASE_IMAGE_URL}${backdropSize.md}${imageUrl}`
                   : imageNotFound
               }
-              media="(min-width: 768px)"
+              media="(min-width: 780px)"
             />
             <img
               className="relative w-full object-cover object-top shadow-lg rounded-md md:rounded-none md:shadow-none xl:h-screen"
@@ -86,8 +94,8 @@ const PrimaryCardView = ({
         </section>
       </article>
       {showModal && <TrailerModal />}
-    </React.Fragment>
+    </Fragment>
   );
 };
 
-export const PrimaryCard = React.memo(PrimaryCardView);
+export const PrimaryCard = memo(PrimaryCardView);

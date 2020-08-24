@@ -48,6 +48,7 @@
   "scripts": {
     "prestart": "npm run tailwind:dev",
     "start": "react-scripts start",
+    "start:prod": "npm run build && npx serve -s ./build",
     "build": "npm run tailwind:prod && react-scripts build",
     "tailwind:dev": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.output.css -c tailwind.config.js",
     "tailwind:prod": "export NODE_ENV=production && npm run tailwind:dev",

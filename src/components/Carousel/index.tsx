@@ -28,7 +28,7 @@ export const Carousel = ({
   breakpointsConfig = {
     "0": { slidesPerView: 2 },
     "470": { slidesPerView: 3 },
-    "690": { slidesPerView: 4 },
+    "649": { slidesPerView: 4 },
     "768": { slidesPerView: 5 },
     "1024": { slidesPerView: 6 },
     "1280": { slidesPerView: 7 },

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, Fragment } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ScrollToTop = (): React.ReactElement => {
   const { pathname } = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return <React.Fragment />;
+  return <Fragment />;
 };

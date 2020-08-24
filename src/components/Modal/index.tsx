@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useRef, useEffect, Fragment } from "react";
+import { createPortal } from "react-dom";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -8,13 +8,13 @@ type ModalProps = {
 const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
 export const Modal = ({ children }: ModalProps): React.ReactElement => {
-  const ref = React.useRef<HTMLDivElement>(null!);
+  const ref = useRef<HTMLDivElement>(null!);
   if (ref.current === null) {
     const div = document.createElement("div");
     ref.current = div;
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     modalRoot.appendChild(ref.current);
 
     return (): void => {
@@ -22,8 +22,5 @@ export const Modal = ({ children }: ModalProps): React.ReactElement => {
     };
   }, []);
 
-  return ReactDOM.createPortal(
-    <React.Fragment>{children}</React.Fragment>,
-    ref.current
-  );
+  return createPortal(<Fragment>{children}</Fragment>, ref.current);
 };

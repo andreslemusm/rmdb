@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Hero } from "./components/Hero";
 import { Carousel } from "../../components/Carousel";
 import { useQuery } from "react-query";
@@ -13,11 +13,11 @@ export const Premier = (): React.ReactElement => {
   return isLoading || data === undefined ? (
     <Loading />
   ) : (
-    <React.Fragment>
+    <Fragment>
       <Hero data={data.trending} />
       <div className="pb-8 md:pb-16 md:pt-2">
         {releaseTypes.map((listType) => (
-          <React.Fragment key={listType}>
+          <Fragment key={listType}>
             <Carousel
               title={listType.split("_").join(" ")}
               data={data[listType]}
@@ -27,9 +27,9 @@ export const Premier = (): React.ReactElement => {
               wrapperClass="my-8 md:mx-5"
             />
             <hr className="my-2 mx-auto border-gray-900 hidden md:block w-2/3 xl:w-1/2" />
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };

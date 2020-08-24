@@ -14,7 +14,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+      montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
     },
     extend: {
       colors: {

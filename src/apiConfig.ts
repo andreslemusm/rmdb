@@ -6,16 +6,17 @@ export const BASE_URL = "https://api.themoviedb.org/3/";
 export const API_KEY = process.env.REACT_APP_API_KEY!;
 
 export enum backdropSize {
+  xs = "w300",
   sm = "w780",
   md = "w1280",
   lg = "original",
 }
 
 export enum posterSize {
-  xs = "w342",
-  sm = "w500",
-  md = "w780",
-  lg = "original",
+  xs = "w185",
+  sm = "w342",
+  md = "w500",
+  lg = "w780",
 }
 
 export enum profileSize {
