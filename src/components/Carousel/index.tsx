@@ -1,16 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { MovieCard } from "../MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { A11y, Mousewheel, SwiperOptions } from "swiper";
+import SwiperCore, { A11y, Mousewheel, SwiperOptions, Virtual } from "swiper";
 import { MovieItemAttr } from "./types";
 import { CastPersonAttr, VideoAttr } from "../../pages/Details/types";
 import { CastCard } from "../CastCard";
 import { TrailerCard } from "../TrailerCard";
 
-SwiperCore.use([A11y, Mousewheel]);
+SwiperCore.use([A11y, Mousewheel, Virtual]);
 
 type CarouselProps = {
   title: string;
+  preRenderedSlides?: number;
   titleClass?: string;
   data: (MovieItemAttr | CastPersonAttr | VideoAttr)[];
   breakpointsConfig?: {
@@ -25,6 +26,7 @@ export const Carousel = ({
   data,
   title,
   cardType,
+  preRenderedSlides,
   breakpointsConfig = {
     "0": { slidesPerView: 2 },
     "470": { slidesPerView: 3 },
@@ -65,9 +67,14 @@ export const Carousel = ({
         onInit={(swiper): void => {
           swiperRef.current = swiper;
         }}
+        virtual={
+          preRenderedSlides
+            ? { addSlidesAfter: preRenderedSlides, addSlidesBefore: 2 }
+            : false
+        }
       >
         {data.length > 0 &&
-          data.slice(0, 15).map((element) => {
+          data.map((element) => {
             switch (cardType) {
               case "movie": {
                 const {

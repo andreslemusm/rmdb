@@ -4,7 +4,8 @@
 .spinner {
   border-radius: 50%;
   perspective: 800px;
-  @apply h-16 w-16;
+  @apply h-16;
+  @apply w-16;
 }
 
 .spinner > div {
@@ -64,3 +65,9 @@
 }
 
 @tailwind utilities;
+
+@responsive {
+  .pt-18 {
+    padding-top: 4.5rem;
+  }
+}

@@ -1,16 +1,10 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  Scrollbar,
-  A11y,
-  Autoplay,
-  Mousewheel,
-  Virtual,
-} from "swiper";
+import SwiperCore, { Scrollbar, A11y, Mousewheel, Virtual } from "swiper";
 import { PrimaryCard } from "../PrimaryCard";
 import { MovieItemAttr } from "../../../../components/Carousel/types";
 
-SwiperCore.use([A11y, Autoplay, Mousewheel, Scrollbar, Virtual]);
+SwiperCore.use([A11y, Mousewheel, Scrollbar, Virtual]);
 
 type HeroProps = {
   data: MovieItemAttr[];
@@ -28,10 +22,6 @@ export const Hero = ({ data }: HeroProps): React.ReactElement => {
       scrollbar={{
         draggable: true,
         dragClass: "swiper-scrollbar-drag bg-primary",
-      }}
-      autoplay={{
-        delay: 10000,
-        disableOnInteraction: false,
       }}
       mousewheel={{
         forceToAxis: true,

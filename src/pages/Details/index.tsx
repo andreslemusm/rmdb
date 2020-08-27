@@ -60,7 +60,7 @@ const Details = (): React.ReactElement => {
   return isLoading || movieDetails === undefined ? (
     <Loading />
   ) : (
-    <section className="pb-16 md:pt-24">
+    <section className="pb-16 md:pt-24 lg:pt-18">
       <div className="relative">
         <picture>
           <source
@@ -89,25 +89,15 @@ const Details = (): React.ReactElement => {
           }}
         />
         <article className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
-          <picture className="w-full md:w-4/12">
-            <source
-              srcSet={
-                movieDetails.poster_path
-                  ? `${BASE_IMAGE_URL}${posterSize.md}${movieDetails.poster_path}`
-                  : imageNotFound
-              }
-              media="(min-width: 500px) and (max-width: 768px)"
-            />
-            <img
-              className="w-full bg-gray-400 rounded-md md:rounded shadow-md"
-              src={
-                movieDetails.poster_path
-                  ? `${BASE_IMAGE_URL}${posterSize.sm}${movieDetails.poster_path}`
-                  : imageNotFound
-              }
-              alt={`${movieDetails.title} poster`}
-            />
-          </picture>
+          <img
+            className="w-full object-cover md:w-4/12 bg-gray-400 rounded-md md:rounded shadow-md"
+            src={
+              movieDetails.poster_path
+                ? `${BASE_IMAGE_URL}${posterSize.md}${movieDetails.poster_path}`
+                : imageNotFound
+            }
+            alt={`${movieDetails.title} poster`}
+          />
           <div className="mt-6 md:mt-0 md:ml-6 md:w-8/12 text-gray-100">
             <h2 className="text-4xl">{movieDetails.title}</h2>
             <div className="mt-3">
@@ -184,6 +174,7 @@ const Details = (): React.ReactElement => {
           }}
           sliderClass="px-5 md:px-0 md:mx-5"
           wrapperClass="pt-10"
+          preRenderedSlides={5}
         />
       )}
       <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
@@ -214,6 +205,7 @@ const Details = (): React.ReactElement => {
             "765": { slidesPerView: 5 },
             "1024": { slidesPerView: 6 },
           }}
+          preRenderedSlides={4}
         />
       )}
       {movieDetails.videos.length > 0 && (

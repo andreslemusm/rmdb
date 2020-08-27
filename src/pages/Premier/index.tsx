@@ -25,6 +25,7 @@ export const Premier = (): React.ReactElement => {
               titleClass="pl-10 pb-3 md:pl-0 md:w-3/4 md:mx-auto md:pb-6 md:text-gray-500 uppercase"
               sliderClass="px-5 sm:px-8 md:p-0"
               wrapperClass="my-8 md:mx-5"
+              preRenderedSlides={5}
             />
             <hr className="my-2 mx-auto border-gray-900 hidden md:block w-2/3 xl:w-1/2" />
           </Fragment>

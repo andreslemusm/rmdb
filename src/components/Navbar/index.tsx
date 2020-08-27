@@ -12,7 +12,7 @@ export const Navbar = (): React.ReactElement => {
 
   return (
     <header className="md:absolute w-full md:z-40">
-      <div className="container mx-auto flex px-5 py-8 items-center justify-between tracking-wide md:justify-start lg:px-10">
+      <div className="container mx-auto flex px-5 py-8 items-center justify-between tracking-wide md:justify-start lg:py-5 lg:px-10">
         <Link
           to="/"
           className="flex font-black tracking-widest text-gray-200 items-center text-xl"
