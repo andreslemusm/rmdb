@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Modal } from "../../components/Modal";
-import { ReactComponent as CaretRight } from "../../assets/caret-right.svg";
-import { ReactComponent as Close } from "../../assets/close.svg";
+import { ReactComponent as Play } from "../../assets/play.svg";
+import { ReactComponent as X } from "../../assets/x.svg";
 import { BASE_URL, API_KEY } from "../../apiConfig";
 import { VideoAttr } from "../../pages/Details/types";
 import { TrailerCard } from "../../components/TrailerCard";
@@ -54,7 +54,7 @@ export const useTrailerModal = (
           className="self-end text-gray-500 transition-colors duration-200 hover:text-gray-100"
           onClick={handleCloseModal}
         >
-          <Close className="w-10 h-10 fill-current" />
+          <X className="w-10 h-10" />
         </button>
         {data !== undefined && (
           <TrailerCard videoKey={data.key} title={data.name} />
@@ -68,8 +68,8 @@ export const useTrailerModal = (
       onClick={handleOpenModal}
       className="tracking-widest inline-flex items-center transition-colors duration-500 ease-in-out text-gray-200 hover:text-primary bg-primary hover:bg-secondary border-primary hover:border-primary border py-2 pl-6 pr-8 mr-5 focus:outline-none rounded-sm text-sm lg:mr-8"
     >
-      <CaretRight className="w-5 h-5 fill-current" />
-      PLAY
+      <Play />
+      &nbsp;PLAY
     </button>
   );
 

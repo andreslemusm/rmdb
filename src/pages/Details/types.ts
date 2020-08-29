@@ -35,6 +35,13 @@ export type VideoAttr = {
     | "Bloopers";
 };
 
+export type ReviewAttr = {
+  id: string;
+  author: string;
+  content: string;
+  url: string;
+};
+
 export type MovieDetailsAttr = {
   adult: boolean;
   backdrop_path: string | null;
@@ -70,6 +77,9 @@ export type MovieDetailsAttr = {
   };
   videos: {
     results: VideoAttr[];
+  };
+  reviews: {
+    results: ReviewAttr[];
   };
 };
 

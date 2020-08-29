@@ -17,6 +17,7 @@ import { getDetails } from "./queries";
 import { Loading } from "../../components/Loading";
 import { useTrailerModal } from "../../utils/hooks";
 import imageNotFound from "../../assets/image-not-found.svg";
+import { Review } from "./components/Review";
 
 const facts: FactConfig[] = [
   { name: "Status", key: "status" },
@@ -60,7 +61,7 @@ const Details = (): React.ReactElement => {
   return isLoading || movieDetails === undefined ? (
     <Loading />
   ) : (
-    <section className="pb-16 md:pt-24 lg:pt-18">
+    <section className="pb-16 md:pt-18">
       <div className="relative">
         <picture>
           <source
@@ -85,10 +86,10 @@ const Details = (): React.ReactElement => {
         <div
           className="block absolute left-0 z-10 w-full h-full"
           style={{
-            backgroundColor: `${movieDetails.vibrantColor}E6`,
+            backgroundImage: `linear-gradient(${movieDetails.vibrantColor}E6, #111822E6, #111822)`,
           }}
         />
-        <article className="px-5 md:px-6 py-10 md:py-10 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
+        <article className="px-5 md:px-6 pt-10 pb-6 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
           <img
             className="w-full object-cover md:w-4/12 bg-gray-400 rounded-md md:rounded shadow-md"
             src={
@@ -173,12 +174,11 @@ const Details = (): React.ReactElement => {
             "1024": { slidesPerView: 7 },
           }}
           sliderClass="px-5 md:px-0 md:mx-5"
-          wrapperClass="pt-10"
+          wrapperClass="mt-10"
           preRenderedSlides={5}
         />
       )}
-      <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
-      <div className="h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
+      <div className="mt-16 h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
         {facts.map(
           (fact) =>
             movieDetails[fact.key] !== 0 && (
@@ -191,7 +191,6 @@ const Details = (): React.ReactElement => {
             )
         )}
       </div>
-      <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
       {movieDetails.recommendations.length > 0 && (
         <Carousel
           title="Recommended"
@@ -199,6 +198,7 @@ const Details = (): React.ReactElement => {
           cardType="movie"
           titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
           sliderClass="px-5 md:px-0 md:mx-5"
+          wrapperClass="mt-16"
           breakpointsConfig={{
             "0": { slidesPerView: 3 },
             "575": { slidesPerView: 4 },
@@ -209,21 +209,37 @@ const Details = (): React.ReactElement => {
         />
       )}
       {movieDetails.videos.length > 0 && (
-        <Fragment>
-          <hr className="w-2/3 my-8 mx-auto border-gray-900 md:max-w-3xl" />
-          <Carousel
-            title="Videos"
-            data={movieDetails.videos}
-            cardType="trailer"
-            titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
-            sliderClass="mx-5"
-            breakpointsConfig={{
-              "0": { slidesPerView: 1, cssMode: true },
-              "575": { slidesPerView: 2, cssMode: true },
-              "900": { slidesPerView: 3, cssMode: true },
-            }}
-          />
-        </Fragment>
+        <Carousel
+          title="Videos"
+          data={movieDetails.videos}
+          cardType="trailer"
+          titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+          sliderClass="mx-5"
+          wrapperClass="mt-16"
+          breakpointsConfig={{
+            "0": { slidesPerView: 1, cssMode: true },
+            "575": { slidesPerView: 2, cssMode: true },
+            "900": { slidesPerView: 3, cssMode: true },
+          }}
+        />
+      )}
+      {movieDetails.reviews.length > 0 && (
+        <section className="max-w-screen-lg lg:mx-auto mt-16">
+          <h2 className="text-gray-800 font-light tracking-wider text-lg pl-5 pb-4 md:pl-10 md:pb-6">
+            Reviews
+          </h2>
+          <ul className="flex flex-col mx-5">
+            {movieDetails.reviews.map((review) => (
+              <li className="mb-5" key={review.id}>
+                <Review
+                  url={review.url}
+                  author={review.author}
+                  content={review.content}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
       {showModal && <TrailerModal />}
     </section>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as MenuIcon } from "../../assets/menu.svg";
+import { ReactComponent as MenuAlt1 } from "../../assets/menu-alt1.svg";
 import { NavLink, Link } from "react-router-dom";
 
 export const Navbar = (): React.ReactElement => {
@@ -12,7 +12,7 @@ export const Navbar = (): React.ReactElement => {
 
   return (
     <header className="md:absolute w-full md:z-40">
-      <div className="container mx-auto flex px-5 py-8 items-center justify-between tracking-wide md:justify-start lg:py-5 lg:px-10">
+      <div className="container mx-auto flex px-5 py-5 items-center justify-between tracking-wide md:justify-start lg:px-10">
         <Link
           to="/"
           className="flex font-black tracking-widest text-gray-200 items-center text-xl"
@@ -35,7 +35,9 @@ export const Navbar = (): React.ReactElement => {
             Sign in
           </a>
         </nav>
-        <MenuIcon className="fill-current text-gray-200 cursor-pointer md:hidden" />
+        <div className="cursor-pointer md:hidden">
+          <MenuAlt1 />
+        </div>
       </div>
     </header>
   );
