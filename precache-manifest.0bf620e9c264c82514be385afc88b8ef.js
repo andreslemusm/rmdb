@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8d2d6f2d50afae9eac2d674751c349c4",
+    "revision": "17da5821d2df8acd11dcb8c29158fa55",
     "url": "/rmdb/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rmdb/static/css/3.4593c9fd.chunk.css"
   },
   {
-    "revision": "15bd60810947006bf533",
+    "revision": "c567f01fbc0c8dc460d4",
     "url": "/rmdb/static/css/main.597da499.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rmdb/static/js/5.65124da5.chunk.js"
   },
   {
-    "revision": "15bd60810947006bf533",
-    "url": "/rmdb/static/js/main.681ac055.chunk.js"
+    "revision": "c567f01fbc0c8dc460d4",
+    "url": "/rmdb/static/js/main.e056213c.chunk.js"
   },
   {
     "revision": "801c505661031e2b40b3",
@@ -80,8 +80,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rmdb/static/media/menu.cafd9e25.svg"
   },
   {
-    "revision": "366143eb5efadca29979081d2b56ff1f",
-    "url": "/rmdb/static/media/play.366143eb.svg"
+    "revision": "a8d4b2279b85e4711582c560b3077bbb",
+    "url": "/rmdb/static/media/play.a8d4b227.svg"
   },
   {
     "revision": "865a73102bdef345d54da72590d33215",
