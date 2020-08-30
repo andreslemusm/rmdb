@@ -61,7 +61,7 @@ const Details = (): React.ReactElement => {
   return isLoading || movieDetails === undefined ? (
     <Loading />
   ) : (
-    <section className="pb-16 md:pt-18">
+    <section className="pb-16">
       <div className="relative">
         <picture>
           <source
@@ -86,12 +86,12 @@ const Details = (): React.ReactElement => {
         <div
           className="block absolute left-0 z-10 w-full h-full"
           style={{
-            backgroundImage: `linear-gradient(${movieDetails.vibrantColor}E6, #111822E6, #111822)`,
+            backgroundImage: `linear-gradient(${movieDetails.vibrantColor}E6, #111822)`,
           }}
         />
-        <article className="px-5 md:px-6 pt-10 pb-6 flex flex-col md:flex-row relative z-20 max-w-5xl mx-auto">
+        <article className="px-5 pt-10 flex flex-col relative z-20 max-w-5xl mx-auto md:flex-row md:px-6 md:pt-20 lg:pt-24">
           <img
-            className="w-full object-cover md:w-4/12 bg-gray-400 rounded-md md:rounded shadow-md"
+            className="w-full h-full object-cover bg-gray-400 md:w-4/12 md:mt-1 rounded-md md:rounded shadow-md"
             src={
               movieDetails.poster_path
                 ? `${BASE_IMAGE_URL}${posterSize.md}${movieDetails.poster_path}`
@@ -99,24 +99,24 @@ const Details = (): React.ReactElement => {
             }
             alt={`${movieDetails.title} poster`}
           />
-          <div className="mt-6 md:mt-0 md:ml-6 md:w-8/12 text-gray-100">
-            <h2 className="text-4xl">{movieDetails.title}</h2>
-            <div className="mt-3">
-              <span className="mr-6">
+          <div className="mt-6 text-gray-100 self-center md:mt-0 md:ml-6 md:w-8/12">
+            <h2 className="text-4xl leading-none">{movieDetails.title}</h2>
+            <div className="flex flex-wrap">
+              <span className="mr-6 mt-5">
                 <Badge>
                   {movieDetails.release_date
                     ? getYear(movieDetails.release_date)
                     : new Date().getFullYear() + 1}
                 </Badge>
               </span>
-              <span className="mr-6">
+              <span className="mt-5 mr-5">
                 {movieDetails.genres.slice(0, 4).map((genre) => (
                   <span className="mr-1" key={genre.id}>
                     <Badge>{genre.name}</Badge>
                   </span>
                 ))}
               </span>
-              <p className="text-gray-200 hidden sm:inline">
+              <p className="inline text-gray-200 mt-5 ml-1">
                 {movieDetails.runtime
                   ? toHourFormat(movieDetails.runtime)
                   : toHourFormat(200)}
@@ -137,21 +137,24 @@ const Details = (): React.ReactElement => {
               </div>
               {showButton && <PlayButton />}
             </div>
-            <h3 className="mt-5 text-xs leading-4 uppercase text-gray-400 tracking-wide">
+            <h3 className="mt-5 font-light text-gray-700 text-lg tracking-wide md:text-base">
               Overview
             </h3>
-            <p className="mt-2 tracking-wide text-sm">
+            <p className="mt-3 tracking-wide text-gray-600 text-sm leading-normal">
               {movieDetails.overview}
             </p>
             {(["directors", "writters"] as const).map(
               (job) =>
                 movieDetails.credits[job].length > 0 && (
                   <Fragment key={job}>
-                    <h3 className="uppercase text-gray-400 tracking-wide text-xs mt-5">
+                    <h3 className="capitalize font-light text-gray-800 tracking-wide text-lg mt-12 md:mt-5 md:text-base">
                       {job}
                     </h3>
                     {movieDetails.credits[job].map((name) => (
-                      <span key={name} className="inline-block mt-2 mr-3">
+                      <span
+                        key={name}
+                        className="inline-block mt-2 mr-3 text-gray-600"
+                      >
                         <Badge>{name}</Badge>
                       </span>
                     ))}
@@ -174,7 +177,7 @@ const Details = (): React.ReactElement => {
             "1024": { slidesPerView: 7 },
           }}
           sliderClass="px-5 md:px-0 md:mx-5"
-          wrapperClass="mt-10"
+          wrapperClass="mt-16"
           preRenderedSlides={5}
         />
       )}

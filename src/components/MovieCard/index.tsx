@@ -43,7 +43,7 @@ const MovieCardView = ({
       <div className="w-1/4 md:hidden">
         {<CircularProgress value={voteAvg === 0 ? 5 : voteAvg} />}
       </div>
-      <p className="hidden md:block text-xs text-gray-900 uppercase">
+      <p className="hidden md:block md:text-xs md:text-gray-900 md:uppercase">
         {`${
           releaseDate ? getYear(releaseDate) : new Date().getFullYear() + 1
         } ${language}`}

@@ -58,7 +58,7 @@ const PrimaryCardView = ({
             />
           </picture>
         </Link>
-        <section className="md:hidden container mx-auto pt-3 pb-4 px-4 sm:px-6 flex justify-between items-center">
+        <section className="container mx-auto pt-3 pb-4 px-4 flex justify-between items-center sm:px-6 md:hidden">
           <h2 className="text-gray-600 text-xl tracking-wide truncate w-4/6">
             {title}
           </h2>

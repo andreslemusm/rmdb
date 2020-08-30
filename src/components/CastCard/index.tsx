@@ -42,11 +42,11 @@ const CastCardView = ({
     </picture>
     <h2
       style={{ maxHeight: "3rem" }}
-      className="mt-3 text-gray-700 text-center overflow-hidden md:text-gray-600 md:text-sm md:text-left md:truncate"
+      className="mt-3 text-gray-700 text-center overflow-hidden md:text-sm md:text-left md:truncate"
     >
       {name}
     </h2>
-    <p className="hidden md:text-gray-800 md:text-xs md:block md:truncate">
+    <p className="hidden md:block md:text-gray-900 md:text-xs md:truncate">
       {character}
     </p>
   </article>

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { ReactComponent as ArrowRight } from "../../../../assets/arrow-right.svg";
 
 type ReviewProps = {
@@ -7,14 +7,17 @@ type ReviewProps = {
   url: string;
 };
 
-const ReviewView = ({
+export const Review = ({
   author,
   content,
   url,
 }: ReviewProps): React.ReactElement => (
   <article className="w-full shadow-2xl p-8">
-    <h3 className="text-gray-100 mb-4">{author}</h3>
-    <p className="leading-relaxed mb-6">{`${content.slice(0, 195)}...`}</p>
+    <h3 className="text-gray-300 mb-4">{author}</h3>
+    <p className="leading-relaxed text-gray-600 mb-6">{`${content.slice(
+      0,
+      195
+    )}...`}</p>
     <a
       rel="noopener noreferrer"
       target="_blank"
@@ -26,5 +29,3 @@ const ReviewView = ({
     </a>
   </article>
 );
-
-export const Review = memo(ReviewView);

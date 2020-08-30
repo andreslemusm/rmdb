@@ -12,7 +12,7 @@ export const useLoadingStatus = (
     }, timeOut);
 
     return (): void => {
-      clearTimeout(id);
+      window.clearTimeout(id);
     };
   });
 

@@ -68,7 +68,7 @@ export const useTrailerModal = (
       onClick={handleOpenModal}
       className="tracking-widest inline-flex items-center transition-colors duration-500 ease-in-out text-gray-200 hover:text-primary bg-primary hover:bg-secondary border-primary hover:border-primary border py-2 pl-6 pr-8 mr-5 focus:outline-none rounded-sm text-sm lg:mr-8"
     >
-      <Play />
+      <Play className="play w-5 h-5" />
       &nbsp;PLAY
     </button>
   );

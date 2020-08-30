@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as MenuAlt1 } from "../../assets/menu-alt1.svg";
+import { ReactComponent as Menu } from "../../assets/menu.svg";
 import { NavLink, Link } from "react-router-dom";
 
 export const Navbar = (): React.ReactElement => {
@@ -19,7 +19,7 @@ export const Navbar = (): React.ReactElement => {
         >
           <span className="text-primary">R</span>MDB
         </Link>
-        <nav className="hidden md:w-full md:ml-4 md:pl-4 md:border-l md:border-gray-300 md:flex md:items-center md:text-sm md:justify-between">
+        <nav className="hidden md:flex md:items-center md:w-full md:ml-4 md:pl-4 md:border-l md:border-gray-300 md:text-sm md:justify-between">
           <NavLink
             to="/discover"
             activeClassName="text-primary"
@@ -30,14 +30,12 @@ export const Navbar = (): React.ReactElement => {
           <a
             href="/login"
             onClick={handleUnavaliable}
-            className="hidden md:block uppercase transition-colors duration-200 text-gray-400 font-light text-sm hover:text-primary"
+            className="uppercase transition-colors duration-200 text-gray-400 font-light text-sm hover:text-primary"
           >
             Sign in
           </a>
         </nav>
-        <div className="cursor-pointer md:hidden">
-          <MenuAlt1 />
-        </div>
+        <Menu className="menu-alt2 w-8 h-8 cursor-pointer md:hidden" />
       </div>
     </header>
   );
