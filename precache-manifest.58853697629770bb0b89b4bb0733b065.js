@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f0bfd7032fd2c48465d7437f6ef36b8a",
+    "revision": "989e3a9f4a9b2e59a3ee22eb4613880f",
     "url": "/rmdb/index.html"
   },
   {
