@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   MovieDetailsAttr,
   CastPersonAttr,
@@ -55,7 +56,7 @@ export const getDetails = async (
       ...getPrincipalCrew(data.credits.crew),
     },
     recommendations: data.recommendations.results,
-    vibrantColor: palette?.DarkVibrant?.getHex() || "#555555",
+    vibrantColor: palette?.DarkVibrant?.hex || "#555555",
     videos: data.videos.results.filter((video) => video.type !== "Trailer"),
     reviews: data.reviews.results,
   };

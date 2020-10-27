@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { fetchMovies, releaseTypes } from "./queries";
 import { Loading } from "../../components/Loading";
 
-export const Premier = (): React.ReactElement => {
+const Home = (): React.ReactElement => {
   const { isLoading, data } = useQuery("movies", fetchMovies, {
     staleTime: Infinity,
   });
@@ -32,3 +32,5 @@ export const Premier = (): React.ReactElement => {
     </Fragment>
   );
 };
+
+export default Home;

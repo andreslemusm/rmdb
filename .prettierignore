@@ -1,11 +1,7 @@
 # dependencies
-/node_modules
+node_modules
 package-lock.json
-debug.log
-
-# system
-.DS_store
 
 # build
-/dist
+dist
 src/styles/bundle.scss

@@ -1,10 +1,6 @@
-/* eslint-disable */
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
   purge: [
     "src/**/*.js",
     "src/**/*.jsx",
@@ -36,4 +32,8 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
 };

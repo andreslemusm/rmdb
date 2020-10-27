@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Menu } from "../../assets/menu.svg";
 import { NavLink, Link } from "react-router-dom";
+import { Menu } from "../Icons";
 
 export const Navbar = (): React.ReactElement => {
   function handleUnavaliable(
@@ -14,7 +14,7 @@ export const Navbar = (): React.ReactElement => {
     <header className="md:absolute w-full md:z-40">
       <div className="container mx-auto flex px-5 py-5 items-center justify-between tracking-wide md:justify-start lg:px-10">
         <Link
-          to="/"
+          to="/home"
           className="flex font-black tracking-widest text-gray-200 items-center text-xl"
         >
           <span className="text-primary">R</span>MDB
