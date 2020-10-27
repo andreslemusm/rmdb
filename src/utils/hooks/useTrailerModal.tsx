@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Modal } from "../../components/Modal";
-import { ReactComponent as Play } from "../../assets/play.svg";
-import { ReactComponent as X } from "../../assets/x.svg";
 import { BASE_URL, API_KEY } from "../../apiConfig";
 import { VideoAttr } from "../../pages/Details/types";
 import { TrailerCard } from "../../components/TrailerCard";
+import { Play, X } from "../../components/Icons";
 
 const fetchTrailer = async (
   _key: string,
@@ -68,7 +67,7 @@ export const useTrailerModal = (
       onClick={handleOpenModal}
       className="tracking-widest inline-flex items-center transition-colors duration-500 ease-in-out text-gray-200 hover:text-primary bg-primary hover:bg-secondary border-primary hover:border-primary border py-2 pl-6 pr-8 mr-5 focus:outline-none rounded-sm text-sm lg:mr-8"
     >
-      <Play className="play w-5 h-5" />
+      <Play className="w-5 h-5" />
       &nbsp;PLAY
     </button>
   );

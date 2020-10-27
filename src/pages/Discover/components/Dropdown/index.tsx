@@ -1,5 +1,5 @@
 import React, { useState, memo } from "react";
-import { ReactComponent as ChevronDown } from "../../../../assets/chevron-down.svg";
+import { Chevron } from "../../../../components/Icons";
 
 type DropdownProps = {
   label: string;
@@ -39,7 +39,7 @@ const DropdownView = ({
         ))}
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-800">
-        <ChevronDown />
+        <Chevron />
       </div>
     </div>
   );

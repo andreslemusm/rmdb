@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as ArrowRight } from "../../../../assets/arrow-right.svg";
+import { ArrowRight } from "../../../../components/Icons";
 
 type ReviewProps = {
   author: string;
