@@ -10,7 +10,6 @@ module.exports = () => ({
   },
   output: {
     publicPath: "/",
-    chunkFilename: "[name].lazy-chunk.js",
   },
   module: {
     rules: [

@@ -14,6 +14,7 @@ module.exports = ({ mode = "production", presets = [] }) => {
       mode,
       entry: "./src/index.tsx",
       output: {
+        chunkFilename: "[name].lazy-chunk.js",
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
       },
