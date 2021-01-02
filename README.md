@@ -1,6 +1,6 @@
 # RMDB
 
-Website to browse the latest, greatest films and find information about its actors, crew and reviews. Search for specific movies by genre, rating, region and other categories: [Visit](https://andresclm.github.io/rmdb/)
+Website to browse the latest, greatest films and find information about its actors, crew and reviews. Search for specific movies by genre, rating, region and other categories: [Visit](https://andreslemusm.github.io/rmdb/)
 
 ## Built With
 
