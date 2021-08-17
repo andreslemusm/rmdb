@@ -1,20 +1,14 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "public/**/*.html",
-  ],
+  purge: ["src/**/*.ts", "src/**/*.tsx", "public/**/*.html"],
   theme: {
     fontFamily: {
       montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
     },
     extend: {
       colors: {
-        primary: "#cc073c",
+        primary: "#CC073C",
         gray: {
           100: "#FAFAFA",
           200: "#F3F3F4",
@@ -30,10 +24,8 @@ module.exports = {
       },
     },
   },
-  variants: {},
-  plugins: [],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

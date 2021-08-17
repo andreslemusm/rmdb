@@ -1,5 +1,12 @@
 # dependencies
-node_modules
+/node_modules
+/.pnp
+.pnp.js
 
-# build
-dist
+# testing
+/coverage
+
+# production
+/build
+explorer.html
+/storybook-static

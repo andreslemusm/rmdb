@@ -1,9 +1,0 @@
-export { ArrowRight } from "./ArrowRight";
-export { Chevron } from "./Chevron";
-export { Facebook } from "./Facebook";
-export { Instagram } from "./Instagram";
-export { LinkedIn } from "./LinkedIn";
-export { Menu } from "./Menu";
-export { Play } from "./Play";
-export { Twitter } from "./Twitter";
-export { X } from "./X";
