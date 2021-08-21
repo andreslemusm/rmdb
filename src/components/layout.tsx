@@ -1,9 +1,12 @@
 import { Fragment } from "react";
-import { Outlet } from "react-router";
 import { Facebook, Instagram, LinkedIn, Menu, Twitter } from "@assets/icons";
 import { Link, NavLink } from "react-router-dom";
 
-export const Layout = (): React.ReactElement => (
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+export const Layout = ({ children }: LayoutProps): React.ReactElement => (
   <Fragment>
     <header className="md:absolute w-full md:z-40">
       <div className="container mx-auto flex px-5 py-5 items-center justify-between tracking-wide md:justify-start lg:px-10">
@@ -35,9 +38,7 @@ export const Layout = (): React.ReactElement => (
         <Menu className="menu-alt2 w-8 h-8 cursor-pointer md:hidden" />
       </div>
     </header>
-    <main>
-      <Outlet />
-    </main>
+    <main>{children}</main>
     <footer className="bg-primary">
       <div className="container px-5 py-8 mx-auto flex items-center flex-col sm:flex-row lg:px-10">
         <Link

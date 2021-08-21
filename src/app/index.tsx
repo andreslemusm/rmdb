@@ -26,15 +26,15 @@ export const App = (): React.ReactElement => (
   <QueryClientProvider client={queryClient}>
     <Router>
       <ScrollToTop />
-      <Routes>
-        <Route element={<Layout />}>
-          <Suspense fallback={<Loading />}>
+      <Layout>
+        <Suspense fallback={<Loading />}>
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/movie/:id" element={<Details />} />
-          </Suspense>
-        </Route>
-      </Routes>
+          </Routes>
+        </Suspense>
+      </Layout>
     </Router>
     <ReactQueryDevtools />
   </QueryClientProvider>
