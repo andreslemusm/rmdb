@@ -2,8 +2,8 @@ import { Layout } from "@components/layout";
 import { Loading } from "@components/loading";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ScrollToTop } from "@components/scroll-to-top";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 const Home = lazy(() => import(/* webpackChunkName: "home" */ "../pages/home"));
@@ -23,19 +23,19 @@ const queryClient = new QueryClient({
 });
 
 export const App = (): React.ReactElement => (
-  <BrowserRouter>
-    <ScrollToTop />
-    <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Suspense fallback={<Loading />}>
-          <Routes>
+  <QueryClientProvider client={queryClient}>
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<Layout />}>
+          <Suspense fallback={<Loading />}>
             <Route path="/" element={<Home />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/movie/:id" element={<Details />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  </BrowserRouter>
+          </Suspense>
+        </Route>
+      </Routes>
+    </Router>
+    <ReactQueryDevtools />
+  </QueryClientProvider>
 );
