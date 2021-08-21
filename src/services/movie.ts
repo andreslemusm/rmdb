@@ -11,7 +11,7 @@ const movieKeys = {
   list: (filters?: Record<string, unknown>) =>
     [...movieKeys.lists(), filters] as const,
   details: () => [...movieKeys.all, "detail"] as const,
-  detail: (userid: string) => [...movieKeys.details(), userid] as const,
+  detail: (movieID: string) => [...movieKeys.details(), movieID] as const,
 };
 
 type MovieItemAttr = {
