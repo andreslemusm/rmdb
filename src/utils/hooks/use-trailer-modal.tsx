@@ -1,19 +1,21 @@
 import { Modal } from "@components/modal";
+import { MovieDetailsAttr } from "@services/movie";
 import { TrailerCard } from "@components/trailer-card";
-import { VideoAttr } from "@pages/details/types";
 import { useQuery } from "react-query";
 import { useState } from "react";
-import { API_KEY, BASE_URL } from "@root/api-config";
+import { API_KEY, BASE_URL } from "@utils/api-config";
 import { Play, X } from "@assets/icons";
 
-const fetchTrailer = async (id: string): Promise<VideoAttr | undefined> => {
+const fetchTrailer = async (
+  id: string
+): Promise<MovieDetailsAttr["videos"]["results"][number] | undefined> => {
   // Query
   const videosQuery = fetch(`${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`);
 
   // Request
   const response = await videosQuery;
   const videos = (await response.json()) as {
-    results: Array<VideoAttr>;
+    results: Array<MovieDetailsAttr["videos"]["results"][number]>;
   };
 
   // Formatter

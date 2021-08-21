@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getYear } from "@utils/formats";
 import { imageNotFound } from "@assets/images";
 import { memo } from "react";
-import { BASE_IMAGE_URL, PosterSizes } from "@root/api-config";
+import { BASE_IMAGE_URL, PosterSizes } from "@utils/api-config";
 
 type ItemCardProps = {
   id: number;

@@ -1,5 +1,6 @@
 import { Layout } from "@components/layout";
 import { Loading } from "@components/loading";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { ScrollToTop } from "@components/scroll-to-top";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -13,7 +14,13 @@ const Details = lazy(
   () => import(/* webpackChunkName: "details" */ "../pages/details")
 );
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 export const App = (): React.ReactElement => (
   <BrowserRouter>
@@ -28,6 +35,7 @@ export const App = (): React.ReactElement => (
           </Routes>
         </Suspense>
       </Layout>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </BrowserRouter>
 );

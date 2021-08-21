@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import { render } from "react-dom";
 import { reportWebVitals } from "@root/report-web-vitals";
 import "@root/index.css";
+import "./bootstrap";
 
 render(
   <StrictMode>

@@ -1,25 +1,54 @@
 import { Badge } from "./badge";
 import { Carousel } from "@components/carousel";
 import { CircularProgress } from "@components/circular-progress";
-import { Fact } from "./fact";
-import { FactConfig } from "./fact/types";
 import { Fragment } from "react";
 import { Loading } from "@components/loading";
 import { Review } from "./review";
-import { getDetails } from "./queries";
 import { imageNotFound } from "@assets/images";
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
 import { useTrailerModal } from "@utils/hooks";
-import { BASE_IMAGE_URL, BackdropSizes, PosterSizes } from "@root/api-config";
+import { BASE_IMAGE_URL, BackdropSizes, PosterSizes } from "@utils/api-config";
 import {
+  Fact,
+  FactProps,
   dateFormatter,
   langFormatter,
   moneyFormatter,
-} from "./fact/formatters";
+} from "./fact";
+import { MovieDetailsAttr, useMovie } from "@services/movie";
 import { getYear, toHourFormat } from "@utils/formats";
 
-const facts: Array<FactConfig> = [
+const getPrincipalCrew = (
+  crewPeople: MovieDetailsAttr["credits"]["crew"]
+): {
+  directors: Array<string>;
+  writters: Array<string>;
+} =>
+  crewPeople.reduce<{
+    directors: Array<string>;
+    writters: Array<string>;
+  }>(
+    (accu, crewPerson) => {
+      if (crewPerson.job === "Director") {
+        return { ...accu, directors: [...accu.directors, crewPerson.name] };
+      }
+      if (crewPerson.job === "Writer") {
+        return { ...accu, writters: [...accu.writters, crewPerson.name] };
+      }
+
+      return accu;
+    },
+    {
+      directors: [],
+      writters: [],
+    }
+  );
+
+const facts: Array<
+  {
+    key: keyof MovieDetailsAttr;
+  } & Omit<FactProps, "data">
+> = [
   { name: "Status", key: "status" },
   {
     name: "Release date",
@@ -46,206 +75,216 @@ const facts: Array<FactConfig> = [
 const Details = (): React.ReactElement => {
   const { id } = useParams();
 
-  const { data: movieDetails, isLoading } = useQuery(
-    ["details", id],
-    () => getDetails(id),
-    {
-      staleTime: Infinity,
-    }
-  );
+  const movieQuery = useMovie(id);
 
   const { showButton, showModal, TrailerModal, PlayButton } =
     useTrailerModal(id);
 
-  return isLoading || movieDetails === undefined ? (
-    <Loading />
-  ) : (
-    <section className="pb-16">
-      <div className="relative">
-        <picture>
-          <source
-            srcSet={
-              movieDetails.backdrop_path
-                ? `${BASE_IMAGE_URL}${BackdropSizes.md}${movieDetails.backdrop_path}`
-                : imageNotFound
-            }
-            media="(min-width: 768px)"
+  if (movieQuery.isSuccess) {
+    const principalCrew = getPrincipalCrew(movieQuery.data.credits.crew);
+    const renderPrincipalCrew = (
+      job: keyof typeof principalCrew
+    ): React.ReactElement | null =>
+      principalCrew[job].length > 0 ? (
+        <Fragment>
+          <h3 className="capitalize font-light text-gray-800 tracking-wide text-lg mt-12 md:mt-5 md:text-base">
+            {job}
+          </h3>
+          {principalCrew[job].map((name) => (
+            <span key={name} className="inline-block mt-2 mr-3 text-gray-600">
+              <Badge>{name}</Badge>
+            </span>
+          ))}
+        </Fragment>
+      ) : null;
+
+    const trailers = movieQuery.data.videos.results.filter(
+      (video) => video.type !== "Trailer"
+    );
+
+    return (
+      <section className="pb-16">
+        <div className="relative">
+          <picture>
+            <source
+              srcSet={
+                movieQuery.data.backdrop_path
+                  ? `${BASE_IMAGE_URL}${BackdropSizes.md}${movieQuery.data.backdrop_path}`
+                  : imageNotFound
+              }
+              media="(min-width: 768px)"
+            />
+            <img
+              className="block absolute left-0 z-0 object-cover w-full h-full bg-gray-500"
+              style={{ filter: "grayscale(1) contrast(1.5)" }}
+              src={
+                movieQuery.data.backdrop_path
+                  ? `${BASE_IMAGE_URL}${BackdropSizes.sm}${movieQuery.data.backdrop_path}`
+                  : imageNotFound
+              }
+              alt={`${movieQuery.data.title} backdrop`}
+            />
+          </picture>
+          <div
+            className="block absolute left-0 z-10 w-full h-full"
+            style={{
+              backgroundImage: `linear-gradient(${movieQuery.data.vibrantColor}E6, #111822)`,
+            }}
           />
-          <img
-            className="block absolute left-0 z-0 object-cover w-full h-full bg-gray-500"
-            style={{ filter: "grayscale(1) contrast(1.5)" }}
-            src={
-              movieDetails.backdrop_path
-                ? `${BASE_IMAGE_URL}${BackdropSizes.sm}${movieDetails.backdrop_path}`
-                : imageNotFound
-            }
-            alt={`${movieDetails.title} backdrop`}
-          />
-        </picture>
-        <div
-          className="block absolute left-0 z-10 w-full h-full"
-          style={{
-            backgroundImage: `linear-gradient(${movieDetails.vibrantColor}E6, #111822)`,
-          }}
-        />
-        <article className="px-5 pt-10 flex flex-col relative z-20 max-w-5xl mx-auto md:flex-row md:px-6 md:pt-20 lg:pt-24">
-          <img
-            className="w-full h-full object-cover bg-gray-400 md:w-4/12 md:mt-1 rounded-md md:rounded shadow-md"
-            src={
-              movieDetails.poster_path
-                ? `${BASE_IMAGE_URL}${PosterSizes.md}${movieDetails.poster_path}`
-                : imageNotFound
-            }
-            alt={`${movieDetails.title} poster`}
-          />
-          <div className="mt-6 text-gray-100 self-center md:mt-0 md:ml-6 md:w-8/12">
-            <h2 className="text-4xl leading-none">{movieDetails.title}</h2>
-            <div className="flex flex-wrap">
-              <span className="mr-6 mt-5">
-                <Badge>
-                  {movieDetails.release_date
-                    ? getYear(movieDetails.release_date)
-                    : new Date().getFullYear() + 1}
-                </Badge>
-              </span>
-              <span className="mt-5 mr-5">
-                {movieDetails.genres.slice(0, 4).map((genre) => (
-                  <span className="mr-1" key={genre.id}>
-                    <Badge>{genre.name}</Badge>
-                  </span>
-                ))}
-              </span>
-              <p className="inline text-gray-200 mt-5 ml-1">
-                {movieDetails.runtime
-                  ? toHourFormat(movieDetails.runtime)
-                  : toHourFormat(200)}
-              </p>
-            </div>
-            <p className="italic mt-5">
-              {movieDetails.tagline ? `"${movieDetails.tagline}"` : undefined}
-            </p>
-            <div className="flex items-center mt-5">
-              <div className="w-12 mr-8">
-                <CircularProgress
-                  value={
-                    movieDetails.vote_average === 0
-                      ? 5
-                      : movieDetails.vote_average
+          <article className="px-5 pt-10 flex flex-col relative z-20 max-w-5xl mx-auto md:flex-row md:px-6 md:pt-20 lg:pt-24">
+            <div className="md:w-4/12 md:mt-1">
+              <div className="aspect-w-3 aspect-h-4">
+                <img
+                  className="w-full h-full object-cover bg-gray-400 rounded-md md:rounded shadow-md"
+                  src={
+                    movieQuery.data.poster_path
+                      ? `${BASE_IMAGE_URL}${PosterSizes.md}${movieQuery.data.poster_path}`
+                      : imageNotFound
                   }
+                  alt={`${movieQuery.data.title} poster`}
                 />
               </div>
-              {showButton && <PlayButton />}
             </div>
-            <h3 className="mt-5 font-light text-gray-700 text-lg tracking-wide md:text-base">
-              Overview
-            </h3>
-            <p className="mt-3 tracking-wide text-gray-600 text-sm leading-normal">
-              {movieDetails.overview}
-            </p>
-            {(["directors", "writters"] as const).map(
-              (job) =>
-                movieDetails.credits[job].length > 0 && (
-                  <Fragment key={job}>
-                    <h3 className="capitalize font-light text-gray-800 tracking-wide text-lg mt-12 md:mt-5 md:text-base">
-                      {job}
-                    </h3>
-                    {movieDetails.credits[job].map((name) => (
-                      <span
-                        key={name}
-                        className="inline-block mt-2 mr-3 text-gray-600"
-                      >
-                        <Badge>{name}</Badge>
-                      </span>
-                    ))}
-                  </Fragment>
-                )
-            )}
-          </div>
-        </article>
-      </div>
-      {movieDetails.credits.cast.length > 0 && (
-        <Carousel
-          title="Starring"
-          titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
-          data={movieDetails.credits.cast.slice(0, 30)}
-          cardType="castPerson"
-          breakpointsConfig={{
-            "0": { slidesPerView: 4 },
-            "470": { slidesPerView: 5 },
-            "575": { slidesPerView: 6 },
-            "1024": { slidesPerView: 7 },
-          }}
-          sliderClass="px-5 md:px-0 md:mx-5"
-          wrapperClass="mt-16"
-          preRenderedSlides={5}
-        />
-      )}
-      <div className="mt-16 h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
-        {facts.map(
-          (fact) =>
-            movieDetails[fact.key] !== 0 && (
+            <div className="mt-6 text-gray-100 self-center md:mt-0 md:ml-6 md:w-8/12">
+              <h2 className="text-4xl leading-none">{movieQuery.data.title}</h2>
+              <div className="flex flex-wrap">
+                <span className="mr-6 mt-5">
+                  <Badge>
+                    {movieQuery.data.release_date
+                      ? getYear(movieQuery.data.release_date)
+                      : new Date().getFullYear() + 1}
+                  </Badge>
+                </span>
+                <span className="mt-5 mr-5">
+                  {movieQuery.data.genres.slice(0, 4).map((genre) => (
+                    <span className="mr-1" key={genre.id}>
+                      <Badge>{genre.name}</Badge>
+                    </span>
+                  ))}
+                </span>
+                <p className="inline text-gray-200 mt-5 ml-1">
+                  {movieQuery.data.runtime
+                    ? toHourFormat(movieQuery.data.runtime)
+                    : toHourFormat(200)}
+                </p>
+              </div>
+              <p className="italic mt-5">
+                {movieQuery.data.tagline
+                  ? `"${movieQuery.data.tagline}"`
+                  : null}
+              </p>
+              <div className="flex items-center mt-5">
+                <div className="w-12 mr-8">
+                  <CircularProgress
+                    value={
+                      movieQuery.data.vote_average === 0
+                        ? 5
+                        : movieQuery.data.vote_average
+                    }
+                  />
+                </div>
+                {showButton ? <PlayButton /> : null}
+              </div>
+              <h3 className="mt-5 font-light text-gray-700 text-lg tracking-wide md:text-base">
+                Overview
+              </h3>
+              <p className="mt-3 tracking-wide text-gray-600 text-sm leading-normal">
+                {movieQuery.data.overview}
+              </p>
+              {renderPrincipalCrew("directors")}
+              {renderPrincipalCrew("writters")}
+            </div>
+          </article>
+        </div>
+        {movieQuery.data.credits.cast.length > 0 ? (
+          <Carousel
+            title="Starring"
+            titleClass="pl-5 md:pl-10 pb-4 md:pb-6"
+            data={movieQuery.data.credits.cast.slice(0, 30)}
+            cardType="castPerson"
+            breakpointsConfig={{
+              "0": { slidesPerView: 4 },
+              "470": { slidesPerView: 5 },
+              "575": { slidesPerView: 6 },
+              "1024": { slidesPerView: 7 },
+            }}
+            sliderClass="px-5 md:px-0 md:mx-5"
+            wrapperClass="mt-16"
+            preRenderedSlides={5}
+          />
+        ) : null}
+        <div className="mt-16 h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
+          {facts.map((fact) =>
+            movieQuery.data[fact.key] !== 0 ? (
               <Fact
                 name={fact.name}
                 formatter={fact.formatter}
-                data={movieDetails[fact.key]}
+                data={movieQuery.data[fact.key]}
                 key={fact.key}
               />
-            )
-        )}
-      </div>
-      {movieDetails.recommendations.length > 0 && (
-        <Carousel
-          title="Recommended"
-          data={movieDetails.recommendations}
-          cardType="movie"
-          titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
-          sliderClass="px-5 md:px-0 md:mx-5"
-          wrapperClass="mt-16"
-          breakpointsConfig={{
-            "0": { slidesPerView: 3 },
-            "575": { slidesPerView: 4 },
-            "765": { slidesPerView: 5 },
-            "1024": { slidesPerView: 6 },
-          }}
-          preRenderedSlides={4}
-        />
-      )}
-      {movieDetails.videos.length > 0 && (
-        <Carousel
-          title="Videos"
-          data={movieDetails.videos}
-          cardType="trailer"
-          titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
-          sliderClass="mx-5"
-          wrapperClass="mt-16"
-          breakpointsConfig={{
-            "0": { slidesPerView: 1, cssMode: true },
-            "575": { slidesPerView: 2, cssMode: true },
-            "900": { slidesPerView: 3, cssMode: true },
-          }}
-        />
-      )}
-      {movieDetails.reviews.length > 0 && (
-        <section className="max-w-screen-lg lg:mx-auto mt-16">
-          <h2 className="text-gray-800 font-light tracking-wider text-lg pl-5 pb-4 md:pl-10 md:pb-6">
-            Reviews
-          </h2>
-          <ul className="flex flex-col mx-5">
-            {movieDetails.reviews.map((review) => (
-              <li className="mb-5" key={review.id}>
-                <Review
-                  url={review.url}
-                  author={review.author}
-                  content={review.content}
-                />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      {showModal && <TrailerModal />}
-    </section>
-  );
+            ) : null
+          )}
+        </div>
+        {movieQuery.data.recommendations.results.length > 0 ? (
+          <Carousel
+            title="Recommended"
+            data={movieQuery.data.recommendations.results}
+            cardType="movie"
+            titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+            sliderClass="px-5 md:px-0 md:mx-5"
+            wrapperClass="mt-16"
+            breakpointsConfig={{
+              "0": { slidesPerView: 3 },
+              "575": { slidesPerView: 4 },
+              "765": { slidesPerView: 5 },
+              "1024": { slidesPerView: 6 },
+            }}
+            preRenderedSlides={4}
+          />
+        ) : null}
+        {trailers.length > 0 ? (
+          <Carousel
+            title="Videos"
+            data={trailers}
+            cardType="trailer"
+            titleClass="pl-5 pb-4 md:pl-10 md:pb-6"
+            sliderClass="mx-5"
+            wrapperClass="mt-16"
+            breakpointsConfig={{
+              "0": { slidesPerView: 1, cssMode: true },
+              "575": { slidesPerView: 2, cssMode: true },
+              "900": { slidesPerView: 3, cssMode: true },
+            }}
+          />
+        ) : null}
+        {movieQuery.data.reviews.results.length > 0 ? (
+          <section className="max-w-screen-lg lg:mx-auto mt-16">
+            <h2 className="text-gray-800 font-light tracking-wider text-lg pl-5 pb-4 md:pl-10 md:pb-6">
+              Reviews
+            </h2>
+            <ul className="flex flex-col mx-5">
+              {movieQuery.data.reviews.results.map((review) => (
+                <li className="mb-5" key={review.id}>
+                  <Review
+                    url={review.url}
+                    author={review.author}
+                    content={review.content}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+        {showModal ? <TrailerModal /> : null}
+      </section>
+    );
+  }
+
+  if (movieQuery.isError) {
+    return <p>There was an error while getting the movie :C</p>;
+  }
+
+  return <Loading />;
 };
 
 // eslint-disable-next-line import/no-default-export

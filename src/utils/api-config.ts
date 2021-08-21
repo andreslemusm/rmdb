@@ -1,9 +1,8 @@
-const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/";
+const BASE_IMAGE_URL = process.env.REACT_APP_API_IMAGE!;
 
-const BASE_URL = "https://api.themoviedb.org/3/";
+const BASE_URL = process.env.REACT_APP_API_BACKEND!;
 
-// You should use your own api key my man.
-const API_KEY = "8159e2d84c680cdf3f26ab87b194850a";
+const API_KEY = process.env.REACT_APP_API_KEY!;
 
 const enum BackdropSizes {
   xs = "w300",

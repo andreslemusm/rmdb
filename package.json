@@ -72,8 +72,6 @@
     "test": "craco test",
     "lint": "tsc && prettier -c . && eslint . --ext .js,.jsx,.ts,.tsx -f codeframe",
     "lint:fix": "prettier . -w && eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "docs": "start-storybook --docs --no-manager-cache",
-    "docs:build": "build-storybook --docs",
     "commit": "cz"
   },
   "config": {

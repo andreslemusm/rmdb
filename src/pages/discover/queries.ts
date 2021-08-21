@@ -1,6 +1,6 @@
 import { GenreAttr } from "./types";
 import { MovieItemAttr } from "@components/carousel";
-import { API_KEY, BASE_URL } from "@root/api-config";
+import { API_KEY, BASE_URL } from "@utils/api-config";
 
 const getDiscover = async ({
   pageParam = 1,

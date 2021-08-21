@@ -1,35 +1,20 @@
 import { CastCard } from "@components/cast-card";
 import { MovieCard } from "@components/movie-card";
 import { TrailerCard } from "@components/trailer-card";
-import { CastPersonAttr, VideoAttr } from "@pages/details/types";
+import { MovieDetailsAttr, MovieItemAttr } from "@services/movie";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { A11y, Mousewheel, SwiperOptions, Virtual } from "swiper";
+import SwiperCore, { SwiperOptions } from "swiper";
 import { useEffect, useRef } from "react";
-
-SwiperCore.use([A11y, Mousewheel, Virtual]);
-
-type MovieItemAttr = {
-  id: number;
-  popularity: number;
-  video: boolean;
-  title: string;
-  release_date: string;
-  original_title: string;
-  adult: boolean;
-  backdrop_path: string | null;
-  genre_ids: Array<number>;
-  overview: string;
-  original_language: string;
-  poster_path: string | null;
-  vote_count: number;
-  vote_average: number;
-};
 
 type CarouselProps = {
   title: string;
   preRenderedSlides?: number;
   titleClass?: string;
-  data: Array<MovieItemAttr | CastPersonAttr | VideoAttr>;
+  data: Array<
+    | MovieItemAttr
+    | MovieDetailsAttr["credits"]["cast"][number]
+    | MovieDetailsAttr["videos"]["results"][number]
+  >;
   breakpointsConfig?: {
     [width: number]: SwiperOptions;
   };
@@ -116,7 +101,8 @@ const Carousel = ({
                 );
               }
               case "trailer": {
-                const { name, key, id } = element as VideoAttr;
+                const { name, key, id } =
+                  element as MovieDetailsAttr["videos"]["results"][number];
 
                 return (
                   <SwiperSlide tag="li" key={id}>
@@ -125,7 +111,8 @@ const Carousel = ({
                 );
               }
               default: {
-                const castPerson = element as CastPersonAttr;
+                const castPerson =
+                  element as MovieDetailsAttr["credits"]["cast"][number];
                 const { id, profile_path, character, name, gender } =
                   castPerson;
 
