@@ -1,6 +1,5 @@
 import { CastCard } from "@components/cast-card";
 import { MovieCard } from "@components/movie-card";
-import { TrailerCard } from "@components/trailer-card";
 import { MovieDetailsAttr, MovieItemAttr } from "@services/movie";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { SwiperOptions } from "swiper";
@@ -106,7 +105,15 @@ const Carousel = ({
 
                 return (
                   <SwiperSlide tag="li" key={id}>
-                    <TrailerCard videoKey={key} title={name} />
+                    <div className="aspect-w-16 aspect-h-9">
+                      <iframe
+                        title={name}
+                        src={`https://www.youtube-nocookie.com/embed/${key}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
                   </SwiperSlide>
                 );
               }

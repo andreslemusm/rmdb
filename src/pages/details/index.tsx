@@ -4,9 +4,9 @@ import { CircularProgress } from "@components/circular-progress";
 import { Fragment } from "react";
 import { Loading } from "@components/loading";
 import { Review } from "./review";
+import { TrailerModal } from "@components/trailer-modal";
 import { imageNotFound } from "@assets/images";
 import { useParams } from "react-router-dom";
-import { useTrailerModal } from "@utils/hooks";
 import { BASE_IMAGE_URL, BackdropSizes, PosterSizes } from "@utils/api-config";
 import {
   Fact,
@@ -73,12 +73,9 @@ const facts: Array<
 ];
 
 const Details = (): React.ReactElement => {
-  const { id } = useParams();
+  const { id: movieID } = useParams();
 
-  const movieQuery = useMovie(id);
-
-  const { showButton, showModal, TrailerModal, PlayButton } =
-    useTrailerModal(id);
+  const movieQuery = useMovie(movieID);
 
   if (movieQuery.isSuccess) {
     const principalCrew = getPrincipalCrew(movieQuery.data.credits.crew);
@@ -183,7 +180,7 @@ const Details = (): React.ReactElement => {
                     }
                   />
                 </div>
-                {showButton ? <PlayButton /> : null}
+                <TrailerModal movieID={movieID} />
               </div>
               <h3 className="mt-5 font-light text-gray-700 text-lg tracking-wide md:text-base">
                 Overview
@@ -275,7 +272,6 @@ const Details = (): React.ReactElement => {
             </ul>
           </section>
         ) : null}
-        {showModal ? <TrailerModal /> : null}
       </section>
     );
   }

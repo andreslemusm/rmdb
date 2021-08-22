@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import { TrailerModal } from "@components/trailer-modal";
 import { getYear } from "@utils/formats";
 import { imageNotFound } from "@assets/images";
-import { useTrailerModal } from "@utils/hooks";
 import { BASE_IMAGE_URL, BackdropSizes } from "@utils/api-config";
 import { Fragment, memo } from "react";
 
@@ -22,9 +22,6 @@ const PrimaryCardView = ({
   score,
   releaseDate,
 }: PrimaryCardProps): React.ReactElement => {
-  const { showModal, showButton, PlayButton, TrailerModal } =
-    useTrailerModal(id);
-
   return (
     <Fragment>
       <article className="mx-2 md:mx-0 relative">
@@ -87,12 +84,11 @@ const PrimaryCardView = ({
                   {score === 0 ? 5 : score}
                 </span>
               </p>
-              {showButton && <PlayButton />}
+              <TrailerModal movieID={id} />
             </div>
           </div>
         </section>
       </article>
-      {showModal && <TrailerModal />}
     </Fragment>
   );
 };

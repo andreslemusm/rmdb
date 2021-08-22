@@ -1,7 +1,7 @@
 import Vibrant from "node-vibrant";
 import { publicRequest } from "@utils/public-request";
 import { BASE_IMAGE_URL, BackdropSizes } from "@utils/api-config";
-import { UseQueryResult, useQuery } from "react-query";
+import { UseQueryOptions, UseQueryResult, useQuery } from "react-query";
 
 const MOVIE_ENDPOINT = "/movie";
 
@@ -156,7 +156,10 @@ type MovieDetailsAttr = {
   vibrantColor: string;
 };
 
-const useMovie = (movieID: string): UseQueryResult<MovieDetailsAttr> =>
+const useMovie = (
+  movieID: string,
+  options?: Omit<UseQueryOptions<MovieDetailsAttr>, "queryKey" | "queryFn">
+): UseQueryResult<MovieDetailsAttr> =>
   useQuery({
     queryKey: movieKeys.detail(movieID),
     queryFn: async () => {
@@ -180,6 +183,7 @@ const useMovie = (movieID: string): UseQueryResult<MovieDetailsAttr> =>
 
       return { ...response.data, vibrantColor };
     },
+    ...options,
   });
 
 export { useMovies, useMovie };
