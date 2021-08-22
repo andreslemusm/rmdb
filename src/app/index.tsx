@@ -6,12 +6,29 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-const Home = lazy(() => import(/* webpackChunkName: "home" */ "../pages/home"));
+const Home = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "home" */
+      /* webpackPrefetch: true */
+      "../pages/home"
+    )
+);
 const Discover = lazy(
-  () => import(/* webpackChunkName: "discover" */ "../pages/discover")
+  () =>
+    import(
+      /* webpackChunkName: "discover" */
+      /* webpackPrefetch: true */
+      "../pages/discover"
+    )
 );
 const Details = lazy(
-  () => import(/* webpackChunkName: "details" */ "../pages/details")
+  () =>
+    import(
+      /* webpackChunkName: "details" */
+      /* webpackPrefetch: true */
+      "../pages/details"
+    )
 );
 
 const queryClient = new QueryClient({
