@@ -1,10 +1,9 @@
 # RMDB
 
-Website to browse the latest, greatest films and find information about its actors, crew and reviews. Search for specific movies by genre, rating, region and other categories: [Visit](https://andreslemusm.github.io/rmdb/)
+Website to browse the latest, greatest films and find information about its actors, crew and reviews. Search for specific movies by genre, rating, region and other categories: [Visit](https://rmdb.andreslemus.dev/)
 
 ## Built With
 
-- [Webpack](https://webpack.js.org/) - Module bundler
 - [TypeScript](https://www.typescriptlang.org/) - JS with types
 - [TailwindCSS](https://tailwindcss.com/) - CSS utility first framework
 - [React](https://reactjs.org/) - JS UI library
