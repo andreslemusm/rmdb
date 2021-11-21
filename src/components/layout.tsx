@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { classNames } from "@utils/formats";
 import { Facebook, Instagram, LinkedIn, Menu, Twitter } from "@assets/icons";
 import { Link, NavLink } from "react-router-dom";
 
@@ -19,8 +20,12 @@ export const Layout = ({ children }: LayoutProps): React.ReactElement => (
         <nav className="hidden md:flex md:items-center md:w-full md:ml-4 md:pl-4 md:border-l md:border-gray-300 md:text-sm md:justify-between">
           <NavLink
             to="/discover"
-            activeClassName="text-primary"
-            className="mr-5 transition-colors duration-200 hover:text-primary uppercase"
+            className={({ isActive }) =>
+              classNames(
+                isActive && "text-primary",
+                "mr-5 transition-colors duration-200 hover:text-primary uppercase"
+              )
+            }
           >
             Discover
           </NavLink>

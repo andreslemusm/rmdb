@@ -1,7 +1,8 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: ["src/**/*.ts", "src/**/*.tsx", "public/**/*.html"],
+  mode: "jit",
+  purge: ["./src/**/*.{ts,tsx}", "./index.html"],
   theme: {
     fontFamily: {
       montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],

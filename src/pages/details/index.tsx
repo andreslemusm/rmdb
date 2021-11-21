@@ -73,7 +73,7 @@ const facts: Array<
 ];
 
 const Details = (): React.ReactElement => {
-  const { id: movieID } = useParams();
+  const { id: movieID } = useParams() as { id: string };
 
   const movieQuery = useMovie(movieID);
 

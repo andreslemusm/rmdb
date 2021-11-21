@@ -1,8 +1,8 @@
-const BASE_IMAGE_URL = process.env.REACT_APP_API_IMAGE!;
+const BASE_IMAGE_URL = import.meta.env.VITE_API_IMAGE as string;
 
-const BASE_URL = process.env.REACT_APP_API_BACKEND!;
+const BASE_URL = import.meta.env.VITE_API_BACKEND as string;
 
-const API_KEY = process.env.REACT_APP_API_KEY!;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
 
 const enum BackdropSizes {
   xs = "w300",

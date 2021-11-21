@@ -1,7 +1,8 @@
+import { CustomQueryOptions } from "./types";
 import Vibrant from "node-vibrant";
 import { publicRequest } from "@utils/public-request";
 import { BASE_IMAGE_URL, BackdropSizes } from "@utils/api-config";
-import { UseQueryOptions, UseQueryResult, useQuery } from "react-query";
+import { UseQueryResult, useQuery } from "react-query";
 
 const MOVIE_ENDPOINT = "/movie";
 
@@ -158,7 +159,7 @@ type MovieDetailsAttr = {
 
 const useMovie = (
   movieID: string,
-  options?: Omit<UseQueryOptions<MovieDetailsAttr>, "queryKey" | "queryFn">
+  options?: CustomQueryOptions<typeof movieKeys.detail, MovieDetailsAttr>
 ): UseQueryResult<MovieDetailsAttr> =>
   useQuery({
     queryKey: movieKeys.detail(movieID),
