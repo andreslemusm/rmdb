@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { BASE_IMAGE_URL, ProfileSizes } from "@utils/api-config";
+import { BASE_IMAGE_URL, ProfileSizes } from "@root/utils/remote-images";
 import { janeDoe, johnDoe } from "@assets/images";
 
 type CastCardProps = {

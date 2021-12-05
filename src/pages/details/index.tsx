@@ -7,7 +7,11 @@ import { Review } from "./review";
 import { TrailerModal } from "@components/trailer-modal";
 import { imageNotFound } from "@assets/images";
 import { useParams } from "react-router-dom";
-import { BASE_IMAGE_URL, BackdropSizes, PosterSizes } from "@utils/api-config";
+import {
+  BASE_IMAGE_URL,
+  BackdropSizes,
+  PosterSizes,
+} from "@root/utils/remote-images";
 import {
   Fact,
   FactProps,

@@ -1,7 +1,7 @@
 import { CustomQueryOptions } from "./types";
 import Vibrant from "node-vibrant";
 import { publicRequest } from "@utils/public-request";
-import { BASE_IMAGE_URL, BackdropSizes } from "@utils/api-config";
+import { BASE_IMAGE_URL, BackdropSizes } from "@root/utils/remote-images";
 import { UseQueryResult, useQuery } from "react-query";
 
 const MOVIE_ENDPOINT = "/movie";
@@ -179,7 +179,10 @@ const useMovie = (
             `${BASE_IMAGE_URL}${BackdropSizes.sm}/${response.data.backdrop_path}`
           )
             .getPalette()
-            .then((palette) => palette.DarkVibrant?.hex ?? defaultVibrantColor)
+            .then(
+              (palette) => palette.DarkVibrant?.hex ?? defaultVibrantColor,
+              () => defaultVibrantColor
+            )
         : defaultVibrantColor;
 
       return { ...response.data, vibrantColor };

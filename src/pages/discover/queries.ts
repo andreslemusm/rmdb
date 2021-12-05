@@ -1,6 +1,9 @@
+// TODO: remove file
 import { GenreAttr } from "./types";
 import { MovieItemAttr } from "@components/carousel";
-import { API_KEY, BASE_URL } from "@utils/api-config";
+
+const BASE_URL = import.meta.env.VITE_API_BACKEND as string;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
 
 const getDiscover = async ({
   pageParam = 1,
