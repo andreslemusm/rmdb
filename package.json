@@ -2,18 +2,6 @@
   "name": "rmdb",
   "version": "0.1.0",
   "private": true,
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "dependencies": {
     "@headlessui/react": "1.4.2",
     "axios": "0.24.0",
@@ -23,45 +11,42 @@
     "react": "17.0.2",
     "react-circular-progressbar": "2.0.4",
     "react-dom": "17.0.2",
-    "react-hook-form": "7.20.2",
+    "react-hook-form": "7.20.5",
     "react-hot-toast": "2.1.1",
     "react-icons": "4.3.1",
-    "react-query": "3.33.2",
+    "react-query": "3.34.0",
     "react-router-dom": "6.0.2",
-    "swiper": "7.3.0",
+    "swiper": "7.3.1",
     "web-vitals": "2.1.2"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "0.3.0",
     "@tailwindcss/forms": "0.3.4",
     "@tailwindcss/line-clamp": "0.2.2",
-    "@testing-library/jest-dom": "5.15.0",
-    "@testing-library/react": "12.1.2",
-    "@testing-library/user-event": "13.5.0",
-    "@types/jest": "27.0.3",
-    "@types/node": "16.11.9",
-    "@types/react": "17.0.35",
+    "@types/node": "16.11.11",
+    "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
-    "@typescript-eslint/eslint-plugin": "5.4.0",
-    "@typescript-eslint/parser": "5.4.0",
-    "@vitejs/plugin-react": "1.0.9",
+    "@typescript-eslint/eslint-plugin": "5.5.0",
+    "@typescript-eslint/parser": "5.5.0",
+    "@vitejs/plugin-react": "1.1.0",
     "autoprefixer": "10.4.0",
     "commitizen": "4.2.4",
-    "eslint": "7.32.0",
+    "eslint": "8.4.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-functional": "3.6.0",
+    "eslint-plugin-functional": "4.0.2",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
-    "eslint-plugin-unicorn": "38.0.1",
-    "postcss": "8.3.11",
-    "prettier": "2.4.1",
+    "eslint-plugin-unicorn": "39.0.0",
+    "postcss": "8.4.4",
+    "prettier": "2.5.1",
     "react-scripts": "4.0.3",
     "tailwindcss": "2.2.19",
     "typescript": "4.5.2",
-    "vite": "2.6.14"
+    "vite": "2.6.14",
+    "vite-tsconfig-paths": "3.3.17"
   },
   "scripts": {
     "dev": "vite",
@@ -77,7 +62,7 @@
     }
   },
   "volta": {
-    "node": "16.6.2",
-    "npm": "7.20.6"
+    "node": "17.2.0",
+    "npm": "8.2.0"
   }
 }
