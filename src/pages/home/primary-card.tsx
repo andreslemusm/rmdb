@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { TrailerModal } from "@components/trailer-modal";
 import { getYear } from "@utils/formats";
 import { imageNotFound } from "@assets/images";
-import { BASE_IMAGE_URL, BackdropSizes } from "@root/utils/remote-images";
+import { BASE_IMAGE_URL, BackdropSizes } from "@utils/remote-images";
 import { Fragment, memo } from "react";
 
 type PrimaryCardProps = {

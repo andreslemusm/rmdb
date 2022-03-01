@@ -11,7 +11,7 @@ import {
   BASE_IMAGE_URL,
   BackdropSizes,
   PosterSizes,
-} from "@root/utils/remote-images";
+} from "@utils/remote-images";
 import {
   Fact,
   FactProps,

@@ -2,8 +2,8 @@
 import { GenreAttr } from "./types";
 import { MovieItemAttr } from "@components/carousel";
 
-const BASE_URL = import.meta.env.VITE_API_BACKEND as string;
-const API_KEY = import.meta.env.VITE_API_KEY as string;
+const BASE_URL = import.meta.env.VITE_API_BACKEND;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const getDiscover = async ({
   pageParam = 1,

@@ -1,7 +1,7 @@
 import { CustomQueryOptions } from "./types";
 import Vibrant from "node-vibrant";
 import { publicRequest } from "@utils/public-request";
-import { BASE_IMAGE_URL, BackdropSizes } from "@root/utils/remote-images";
+import { BASE_IMAGE_URL, BackdropSizes } from "@utils/remote-images";
 import { UseQueryResult, useQuery } from "react-query";
 
 const MOVIE_ENDPOINT = "/movie";

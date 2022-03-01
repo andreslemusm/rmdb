@@ -17,13 +17,20 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@root/*": ["./*"],
+      "@app/*": ["./app/*"],
       "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
       "@services/*": ["./services/*"],
       "@pages/*": ["./pages/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@test/*": ["./test/*"]
     }
+    /**
+     * TODO: uncomment once this is solved:
+     * https://github.com/vitest-dev/vitest/issues/517
+     */
+    // "types": ["vitest/globals"]
   },
-  "include": ["./src", "vite.config.ts"]
+  "include": ["./src", "vite.config.ts"],
+  "exclude": ["node_modules"]
 }

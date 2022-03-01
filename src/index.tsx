@@ -1,8 +1,8 @@
-import { App } from "@root/app";
+import { App } from "./app";
 import { StrictMode } from "react";
 import { render } from "react-dom";
-import { reportWebVitals } from "@root/report-web-vitals";
-import "@root/index.css";
+import { reportWebVitals } from "./report-web-vitals";
+import "./index.css";
 import "./bootstrap";
 
 render(

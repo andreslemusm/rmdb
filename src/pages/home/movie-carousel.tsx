@@ -1,4 +1,4 @@
-import { Carousel } from "@root/components/carousel";
+import { Carousel } from "@components/carousel";
 import { UseMoviesParams, useMovies } from "@services/movie";
 
 type MovieCarouselProps = UseMoviesParams;
