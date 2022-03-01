@@ -11,11 +11,10 @@ export const Layout = ({ children }: LayoutProps): React.ReactElement => (
   <Fragment>
     <header className="w-full md:absolute md:z-40">
       <div className="container mx-auto flex items-center justify-between px-5 py-5 tracking-wide md:justify-start lg:px-10">
-        <Link
-          to="/"
-          className="flex items-center text-xl font-black tracking-widest text-gray-200"
-        >
-          <span className="text-primary">R</span>MDB
+        <Link to="/">
+          <h1 className="flex items-center text-xl font-black tracking-widest text-gray-200">
+            <span className="text-primary">R</span>MDB
+          </h1>
         </Link>
         <nav className="hidden md:ml-4 md:flex md:w-full md:items-center md:justify-between md:border-l md:border-gray-300 md:pl-4 md:text-sm">
           <NavLink
