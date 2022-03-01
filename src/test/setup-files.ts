@@ -45,10 +45,12 @@ beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
-// General cleanup
-// afterEach(() => {
-//   removeAuthInCache();
-// });
+/*
+ * General cleanup
+ * afterEach(() => {
+ *   removeAuthInCache();
+ * });
+ */
 
 // Silence React Query errors
 setLogger({
