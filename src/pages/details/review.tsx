@@ -11,9 +11,9 @@ export const Review = ({
   content,
   url,
 }: ReviewProps): React.ReactElement => (
-  <article className="w-full shadow-2xl p-8">
-    <h3 className="text-gray-300 mb-4">{author}</h3>
-    <p className="leading-relaxed text-gray-600 mb-6">{`${content.slice(
+  <article className="w-full p-8 shadow-2xl">
+    <h3 className="mb-4 text-gray-300">{author}</h3>
+    <p className="mb-6 leading-relaxed text-gray-600">{`${content.slice(
       0,
       195
     )}...`}</p>
@@ -21,10 +21,10 @@ export const Review = ({
       rel="noopener noreferrer"
       target="_blank"
       href={url}
-      className="text-primary inline-flex items-center"
+      className="inline-flex items-center text-primary"
     >
       Read More
-      <ArrowRight className="h-4 w-4 ml-1" />
+      <ArrowRight className="ml-1 h-4 w-4" />
     </a>
   </article>
 );

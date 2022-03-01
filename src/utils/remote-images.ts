@@ -20,9 +20,4 @@ const enum ProfileSizes {
   xl = "original",
 }
 
-export {
-  BASE_IMAGE_URL,
-  BackdropSizes,
-  PosterSizes,
-  ProfileSizes,
-};
+export { BASE_IMAGE_URL, BackdropSizes, PosterSizes, ProfileSizes };

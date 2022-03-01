@@ -3,5 +3,5 @@ type BadgeProps = {
 };
 
 export const Badge = ({ children }: BadgeProps): React.ReactElement => (
-  <span className="text-xs border px-2 py-1 rounded-md w-auto">{children}</span>
+  <span className="w-auto rounded-md border px-2 py-1 text-xs">{children}</span>
 );

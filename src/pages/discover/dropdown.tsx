@@ -20,10 +20,10 @@ const DropdownView = ({
   };
 
   return (
-    <div className="relative mt-2 sm:m-0 sm:mr-1 w-full">
+    <div className="relative mt-2 w-full sm:m-0 sm:mr-1">
       <select
         value={value}
-        className="appearance-none cursor-pointer w-full bg-transparent border border-gray-800 text-gray-800 py-2 sm:py-1 pl-3 pr-6 lowercase focus:outline-none"
+        className="w-full cursor-pointer appearance-none border border-gray-800 bg-transparent py-2 pl-3 pr-6 lowercase text-gray-800 focus:outline-none sm:py-1"
         onBlur={handleSelect}
         onChange={handleSelect}
         disabled={options.length === 0}

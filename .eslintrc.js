@@ -19,6 +19,8 @@ module.exports = {
         "plugin:functional/external-recommended",
         "plugin:functional/no-mutations",
         "plugin:functional/no-object-orientation",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
         "prettier",
       ],
       parser: "@typescript-eslint/parser",
@@ -40,6 +42,8 @@ module.exports = {
         "unicorn",
         "prefer-arrow",
         "functional",
+        "testing-library",
+        "jest-dom",
       ],
       rules: {
         "line-comment-position": ["error", "above"],
@@ -72,10 +76,6 @@ module.exports = {
           },
         ],
         "functional/no-loop-statement": "error",
-        "import/dynamic-import-chunkname": [
-          "error",
-          { webpackChunknameFormat: "[a-z-]+" },
-        ],
         "import/export": "error",
         "import/exports-last": "error",
         "import/first": "error",
@@ -101,6 +101,7 @@ module.exports = {
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "unicorn/filename-case": "error",
+        "react/no-multi-comp": "error",
         "react/jsx-fragments": ["error", "element"],
         "react/function-component-definition": [
           "error",
@@ -114,17 +115,24 @@ module.exports = {
           "error",
           { disallowPrototype: true },
         ],
-        /**
-         * Typescript doesn't allow storing narrowing in booleans for further narrowing
-         * @link https://github.com/microsoft/TypeScript/issues/24865
-         */
-        "@typescript-eslint/no-non-null-assertion": "off",
+        "testing-library/consistent-data-testid": [
+          "error",
+          {
+            testIdPattern: "^test-id-([a-z]*)?$",
+          },
+        ],
+        "testing-library/prefer-user-event": "error",
         /**
          * In the functional react world, you likely will never have a function
          * that actually cares about the this context. Refer to:
          * @link https://github.com/typescript-eslint/typescript-eslint/issues/2245#issuecomment-648712540
          */
         "@typescript-eslint/unbound-method": "off",
+        /**
+         * When we destructure the props object, that creates a copy of the
+         * props and implicily avoids mutating the arguments you use to call the component.
+         */
+        "@typescript-eslint/prefer-readonly-parameter-types": "off",
         /**
          * This two rules are unnecesary since React v17.0:
          * @link https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
@@ -137,7 +145,7 @@ module.exports = {
          */
         "jsx-a11y/label-has-for": "off",
         /**
-         * By disallow mutating objects and arrays, this rule becomes obsolete.
+         * By disallowing object mutations, this rule becomes obsolete.
          */
         "functional/prefer-readonly-type": "off",
         /**

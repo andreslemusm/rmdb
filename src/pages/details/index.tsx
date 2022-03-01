@@ -88,11 +88,11 @@ const Details = (): React.ReactElement => {
     ): React.ReactElement | null =>
       principalCrew[job].length > 0 ? (
         <Fragment>
-          <h3 className="capitalize font-light text-gray-800 tracking-wide text-lg mt-12 md:mt-5 md:text-base">
+          <h3 className="mt-12 text-lg font-light capitalize tracking-wide text-gray-800 md:mt-5 md:text-base">
             {job}
           </h3>
           {principalCrew[job].map((name) => (
-            <span key={name} className="inline-block mt-2 mr-3 text-gray-600">
+            <span key={name} className="mt-2 mr-3 inline-block text-gray-600">
               <Badge>{name}</Badge>
             </span>
           ))}
@@ -116,7 +116,7 @@ const Details = (): React.ReactElement => {
               media="(min-width: 768px)"
             />
             <img
-              className="block absolute left-0 z-0 object-cover w-full h-full bg-gray-500"
+              className="absolute left-0 z-0 block h-full w-full bg-gray-500 object-cover"
               style={{ filter: "grayscale(1) contrast(1.5)" }}
               src={
                 movieQuery.data.backdrop_path
@@ -127,16 +127,16 @@ const Details = (): React.ReactElement => {
             />
           </picture>
           <div
-            className="block absolute left-0 z-10 w-full h-full"
+            className="absolute left-0 z-10 block h-full w-full"
             style={{
               backgroundImage: `linear-gradient(${movieQuery.data.vibrantColor}E6, #111822)`,
             }}
           />
-          <article className="px-5 pt-10 flex flex-col relative z-20 max-w-5xl mx-auto md:flex-row md:px-6 md:pt-20 lg:pt-24">
-            <div className="md:w-4/12 md:mt-1">
+          <article className="relative z-20 mx-auto flex max-w-5xl flex-col px-5 pt-10 md:flex-row md:px-6 md:pt-20 lg:pt-24">
+            <div className="md:mt-1 md:w-4/12">
               <div className="aspect-w-3 aspect-h-4">
                 <img
-                  className="w-full h-full object-cover bg-gray-400 rounded-md md:rounded shadow-md"
+                  className="h-full w-full rounded-md bg-gray-400 object-cover shadow-md md:rounded"
                   src={
                     movieQuery.data.poster_path
                       ? `${BASE_IMAGE_URL}${PosterSizes.md}${movieQuery.data.poster_path}`
@@ -146,7 +146,7 @@ const Details = (): React.ReactElement => {
                 />
               </div>
             </div>
-            <div className="mt-6 text-gray-100 self-center md:mt-0 md:ml-6 md:w-8/12">
+            <div className="mt-6 self-center text-gray-100 md:mt-0 md:ml-6 md:w-8/12">
               <h2 className="text-4xl leading-none">{movieQuery.data.title}</h2>
               <div className="flex flex-wrap">
                 <span className="mr-6 mt-5">
@@ -163,19 +163,19 @@ const Details = (): React.ReactElement => {
                     </span>
                   ))}
                 </span>
-                <p className="inline text-gray-200 mt-5 ml-1">
+                <p className="mt-5 ml-1 inline text-gray-200">
                   {movieQuery.data.runtime
                     ? toHourFormat(movieQuery.data.runtime)
                     : toHourFormat(200)}
                 </p>
               </div>
-              <p className="italic mt-5">
+              <p className="mt-5 italic">
                 {movieQuery.data.tagline
                   ? `"${movieQuery.data.tagline}"`
                   : null}
               </p>
-              <div className="flex items-center mt-5">
-                <div className="w-12 mr-8">
+              <div className="mt-5 flex items-center">
+                <div className="mr-8 w-12">
                   <CircularProgress
                     value={
                       movieQuery.data.vote_average === 0
@@ -186,10 +186,10 @@ const Details = (): React.ReactElement => {
                 </div>
                 <TrailerModal movieID={movieID} />
               </div>
-              <h3 className="mt-5 font-light text-gray-700 text-lg tracking-wide md:text-base">
+              <h3 className="mt-5 text-lg font-light tracking-wide text-gray-700 md:text-base">
                 Overview
               </h3>
-              <p className="mt-3 tracking-wide text-gray-600 text-sm leading-normal">
+              <p className="mt-3 text-sm leading-normal tracking-wide text-gray-600">
                 {movieQuery.data.overview}
               </p>
               {renderPrincipalCrew("directors")}
@@ -214,7 +214,7 @@ const Details = (): React.ReactElement => {
             preRenderedSlides={5}
           />
         ) : null}
-        <div className="mt-16 h-40 w-4/5 mx-auto flex flex-col justify-between md:max-w-2xl">
+        <div className="mx-auto mt-16 flex h-40 w-4/5 flex-col justify-between md:max-w-2xl">
           {facts.map((fact) =>
             movieQuery.data[fact.key] !== 0 ? (
               <Fact
@@ -259,11 +259,11 @@ const Details = (): React.ReactElement => {
           />
         ) : null}
         {movieQuery.data.reviews.results.length > 0 ? (
-          <section className="max-w-screen-lg lg:mx-auto mt-16">
-            <h2 className="text-gray-800 font-light tracking-wider text-lg pl-5 pb-4 md:pl-10 md:pb-6">
+          <section className="mt-16 max-w-screen-lg lg:mx-auto">
+            <h2 className="pl-5 pb-4 text-lg font-light tracking-wider text-gray-800 md:pl-10 md:pb-6">
               Reviews
             </h2>
-            <ul className="flex flex-col mx-5">
+            <ul className="mx-5 flex flex-col">
               {movieQuery.data.reviews.results.map((review) => (
                 <li className="mb-5" key={review.id}>
                   <Review

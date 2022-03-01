@@ -8,6 +8,4 @@ package-lock.json
 /coverage
 
 # production
-/build
-explorer.html
-/storybook-static
+/dist

@@ -15,8 +15,8 @@ const CastCardView = ({
   name,
   gender,
 }: CastCardProps): React.ReactElement => (
-  <article className="w-full h-full flex flex-col">
-    <picture className="w-20 h-20 rounded-full overflow-hidden sm:w-24 sm:h-24 md:w-full md:h-auto md:rounded-none">
+  <article className="flex h-full w-full flex-col">
+    <picture className="h-20 w-20 overflow-hidden rounded-full sm:h-24 sm:w-24 md:h-auto md:w-full md:rounded-none">
       <source
         srcSet={
           imageUrl
@@ -28,7 +28,7 @@ const CastCardView = ({
         media="(min-width: 768px)"
       />
       <img
-        className="h-full w-full object-contain bg-gray-200"
+        className="h-full w-full bg-gray-200 object-contain"
         src={
           imageUrl
             ? `${BASE_IMAGE_URL}${ProfileSizes.sm}${imageUrl}`
@@ -41,11 +41,11 @@ const CastCardView = ({
     </picture>
     <h2
       style={{ maxHeight: "3rem" }}
-      className="mt-3 text-gray-700 text-center overflow-hidden md:text-sm md:text-left md:truncate"
+      className="mt-3 overflow-hidden text-center text-gray-700 md:truncate md:text-left md:text-sm"
     >
       {name}
     </h2>
-    <p className="hidden md:block md:text-gray-900 md:text-xs md:truncate">
+    <p className="hidden md:block md:truncate md:text-xs md:text-gray-900">
       {character}
     </p>
   </article>

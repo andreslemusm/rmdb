@@ -31,17 +31,17 @@ const Discover = (): React.ReactElement => {
   return isLoading || data === undefined ? (
     <Loading />
   ) : (
-    <section className="px-5 max-w-6xl md:pt-24 md:mx-4 lg:mx-auto">
-      <div className="flex flex-col md:flex-row justify-around items-center">
-        <h2 className="lg:pl-16 uppercase text-lg text-gray-800 font-light tracking-wider">
+    <section className="max-w-6xl px-5 md:mx-4 md:pt-24 lg:mx-auto">
+      <div className="flex flex-col items-center justify-around md:flex-row">
+        <h2 className="text-lg font-light uppercase tracking-wider text-gray-800 lg:pl-16">
           Movies
         </h2>
-        <div className="pt-5 md:p-0 flex flex-wrap sm:flex-no-wrap justify-center max-w-xl">
+        <div className="sm:flex-no-wrap flex max-w-xl flex-wrap justify-center pt-5 md:p-0">
           <Dropdown label="genre" options={genresData} />
           <Dropdown label="sort by" options={sortByData} />
         </div>
       </div>
-      <div className="pt-12 pb-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-4 gap-y-6 grid-flow-row-dense">
+      <div className="grid grid-flow-row-dense grid-cols-2 gap-x-4 gap-y-6 pt-12 pb-20 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
         {data.pages.flatMap((movies) =>
           movies.map((movie) => (
             <MovieCard
@@ -56,14 +56,14 @@ const Discover = (): React.ReactElement => {
           ))
         )}
       </div>
-      <div className="flex justify-center items-center h-20 mb-20">
+      <div className="mb-20 flex h-20 items-center justify-center">
         {isFetchingNextPage ? (
           <Loading height="h-auto" />
         ) : (
           !isLoading && (
             <button
               onClick={() => fetchNextPage()}
-              className="uppercase text-gray-800 tracking-widest transition-colors duration-200 hover:text-gray-500"
+              className="uppercase tracking-widest text-gray-800 transition-colors duration-200 hover:text-gray-500"
             >
               Load More
             </button>

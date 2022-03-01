@@ -19,16 +19,16 @@ export const TrailerModal = ({
     <Fragment>
       <button
         onClick={open}
-        className="tracking-widest inline-flex items-center transition-colors duration-500 ease-in-out text-gray-200 hover:text-primary bg-primary hover:bg-secondary border-primary hover:border-primary border py-2 pl-6 pr-8 mr-5 focus:outline-none rounded-sm text-sm lg:mr-8"
+        className="mr-5 inline-flex items-center rounded-sm border border-primary bg-primary py-2 pl-6 pr-8 text-sm tracking-widest text-gray-200 transition-colors duration-500 ease-in-out hover:border-primary hover:bg-secondary hover:text-primary focus:outline-none lg:mr-8"
       >
-        <HiPlay className="w-5 h-5" />
+        <HiPlay className="h-5 w-5" />
         &nbsp;PLAY
       </button>
       <Modal open={isOpen} onClose={close}>
         <div className="flex justify-end">
           <button
             type="button"
-            className="transition bg-primary bg-opacity-0 rounded-md text-primary hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-secondary focus:ring-primary"
+            className="rounded-md bg-primary bg-opacity-0 text-primary ring-offset-secondary transition hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             onClick={close}
           >
             <span className="sr-only">Close</span>

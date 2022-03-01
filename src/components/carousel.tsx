@@ -48,7 +48,7 @@ const Carousel = ({
   return (
     <section className={`max-w-screen-lg lg:mx-auto ${wrapperClass}`}>
       <h2
-        className={`text-gray-800 font-light tracking-wider text-lg ${titleClass}`}
+        className={`text-lg font-light tracking-wider text-gray-800 ${titleClass}`}
       >
         {title}
       </h2>
