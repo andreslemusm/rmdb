@@ -1,4 +1,4 @@
-const BASE_IMAGE_URL = import.meta.env.VITE_API_IMAGE as string;
+const BASE_IMAGE_URL = import.meta.env.VITE_API_IMAGE;
 
 const enum BackdropSizes {
   xs = "w300",

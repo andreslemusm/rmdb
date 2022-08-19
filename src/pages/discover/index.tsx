@@ -62,7 +62,9 @@ const Discover = (): React.ReactElement => {
         ) : (
           !isLoading && (
             <button
-              onClick={() => fetchNextPage()}
+              onClick={() => {
+                void fetchNextPage();
+              }}
               className="uppercase tracking-widest text-gray-800 transition-colors duration-200 hover:text-gray-500"
             >
               Load More
