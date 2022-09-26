@@ -1,15 +1,20 @@
 import { App } from "./app";
 import { StrictMode } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { reportWebVitals } from "./report-web-vitals";
 import "./index.css";
 import "./bootstrap";
 
-render(
+const container = document.getElementById("app-root");
+if (!container) {
+  throw new Error("No container found");
+}
+
+const root = createRoot(container);
+root.render(
   <StrictMode>
     <App />
-  </StrictMode>,
-  document.getElementById("app-root")
+  </StrictMode>
 );
 
 /*
